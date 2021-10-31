@@ -17,7 +17,8 @@ namespace ContactManager
             InitializeComponent();
         }
 
-        private void cancelAccount_Click(object sender, EventArgs e)
+
+        private void cancelCreate_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
