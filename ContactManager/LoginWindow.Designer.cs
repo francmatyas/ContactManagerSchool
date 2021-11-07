@@ -113,6 +113,7 @@ namespace ContactManager
             this.showPasswordCheckBox.TabIndex = 7;
             this.showPasswordCheckBox.Text = "Show password";
             this.showPasswordCheckBox.UseVisualStyleBackColor = true;
+            this.showPasswordCheckBox.CheckedChanged += new System.EventHandler(this.showPasswordCheckBox_CheckedChanged);
             // 
             // passwordLabel
             // 
