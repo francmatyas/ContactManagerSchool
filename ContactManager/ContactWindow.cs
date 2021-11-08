@@ -17,6 +17,9 @@ namespace ContactManager
         private string username = LoginWindow.Username;
         private string password = LoginWindow.Password;
 
+        private List<Person> people = new List<Person>();
+        private List<Contact> contacts = new List<Contact>();
+
 
         public ContactWindow()
         {
@@ -25,7 +28,7 @@ namespace ContactManager
 
         private void ContactWindow_Load(object sender, EventArgs e)
         {
-            List<Person> people = new List<Person>();
+            contactsGrid.MultiSelect = false;
 
             try
             {
@@ -40,16 +43,24 @@ namespace ContactManager
                         int i = 0;
                         foreach (var contact in account.Contacts)
                         {
-                            people.Add(new Person()
-                            {
-                                Id = i, 
-                                FirstName = contact.FirstName,
-                                SecondName = contact.SecondName
-                            });
+                            contacts.Add(contact);
+                            
+                            Person person = new Person();
+                            person.Id = i;
+                            person.Name = contact.FirstName + " " + contact.SecondName;
+                            person.Contact = contact;
+                            
+                            people.Add(person);
+
                             i++;
                         }
 
-                        contactsGrid.DataSource = people;
+                        var source = new BindingSource();
+                        source.DataSource = people;
+
+                        contactsGrid.DataSource = source;
+                        contactsGrid.Columns["Id"].Visible = false;
+                        contactsGrid.Columns["Contact"].Visible = false;
 
                     }
                 }
@@ -59,13 +70,33 @@ namespace ContactManager
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
+
+        private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            groupBox1.Text = contactsGrid.SelectedCells[0].Value.ToString();
+
+            int contactIndex = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
+            
+            foreach (var person in people)
+            {
+                if (person.Id == contactIndex)
+                {
+                    firstNameBox.Text = person.Contact.FirstName;
+                    secondNameBox.Text = person.Contact.SecondName;
+                    birthdayBox.Text = person.Contact.Birthday;
+                    emailBox.Text = person.Contact.Email;
+                    phoneNumberBox.Text = person.Contact.PhoneNumber.ToString();
+                }
+            }
+            
+        }
     }
 
 
     public class Person
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
+        public string Name { get; set; }
+        public Contact Contact { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager
 {
-    class Contact
+    public class Contact
     {
         public string FirstName { get; set; }
         public string SecondName { get; set; }
