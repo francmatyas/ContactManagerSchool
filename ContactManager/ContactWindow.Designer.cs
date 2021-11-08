@@ -89,7 +89,7 @@ namespace ContactManager
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox2.Location = new System.Drawing.Point(6, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(276, 165);
+            this.groupBox2.Size = new System.Drawing.Size(375, 165);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Basic information";
@@ -108,7 +108,7 @@ namespace ContactManager
             // 
             this.phoneNumberBox.Location = new System.Drawing.Point(115, 134);
             this.phoneNumberBox.Name = "phoneNumberBox";
-            this.phoneNumberBox.Size = new System.Drawing.Size(150, 25);
+            this.phoneNumberBox.Size = new System.Drawing.Size(250, 25);
             this.phoneNumberBox.TabIndex = 10;
             // 
             // label2
@@ -125,7 +125,7 @@ namespace ContactManager
             // 
             this.emailBox.Location = new System.Drawing.Point(115, 105);
             this.emailBox.Name = "emailBox";
-            this.emailBox.Size = new System.Drawing.Size(150, 25);
+            this.emailBox.Size = new System.Drawing.Size(250, 25);
             this.emailBox.TabIndex = 9;
             // 
             // label4
@@ -142,7 +142,7 @@ namespace ContactManager
             // 
             this.birthdayBox.Location = new System.Drawing.Point(115, 76);
             this.birthdayBox.Name = "birthdayBox";
-            this.birthdayBox.Size = new System.Drawing.Size(150, 25);
+            this.birthdayBox.Size = new System.Drawing.Size(250, 25);
             this.birthdayBox.TabIndex = 8;
             // 
             // label5
@@ -159,7 +159,7 @@ namespace ContactManager
             // 
             this.secondNameBox.Location = new System.Drawing.Point(115, 47);
             this.secondNameBox.Name = "secondNameBox";
-            this.secondNameBox.Size = new System.Drawing.Size(150, 25);
+            this.secondNameBox.Size = new System.Drawing.Size(250, 25);
             this.secondNameBox.TabIndex = 7;
             // 
             // label6
@@ -176,7 +176,7 @@ namespace ContactManager
             // 
             this.firstNameBox.Location = new System.Drawing.Point(115, 18);
             this.firstNameBox.Name = "firstNameBox";
-            this.firstNameBox.Size = new System.Drawing.Size(150, 25);
+            this.firstNameBox.Size = new System.Drawing.Size(250, 25);
             this.firstNameBox.TabIndex = 6;
             // 
             // contactsLabel

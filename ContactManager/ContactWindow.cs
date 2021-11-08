@@ -20,7 +20,6 @@ namespace ContactManager
         private List<Person> people = new List<Person>();
         private List<Contact> contacts = new List<Contact>();
 
-
         public ContactWindow()
         {
             InitializeComponent();
@@ -49,7 +48,7 @@ namespace ContactManager
                             person.Id = i;
                             person.Name = contact.FirstName + " " + contact.SecondName;
                             person.Contact = contact;
-                            
+
                             people.Add(person);
 
                             i++;
