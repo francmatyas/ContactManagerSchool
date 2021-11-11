@@ -14,60 +14,81 @@ namespace ContactManager
 {
     public partial class ContactWindow : Form
     {
-        private string username = LoginWindow.Username;
-        private string password = LoginWindow.Password;
+        private Account loggedAccount = LoginWindow.Account;
 
-        private List<Person> people = new List<Person>();
-        private List<Contact> contacts = new List<Contact>();
+        private List<Person> People = new List<Person>();
+        private List<Account> Accounts = new List<Account>();
 
         public ContactWindow()
         {
             InitializeComponent();
         }
 
-        private void ContactWindow_Load(object sender, EventArgs e)
-        {
-            contactsGrid.MultiSelect = false;
 
+        private void ContactLoad()
+        {
             try
             {
-                var jsonString = File.ReadAllText("jsonFile.json");
+                People.Clear();
 
-                List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
-
-                foreach (var account in accounts)
+                int i = 0;
+                foreach (var contact in loggedAccount.Contacts)
                 {
-                    if (account.Username == username && account.Password == password)
-                    {
-                        int i = 0;
-                        foreach (var contact in account.Contacts)
-                        {
-                            contacts.Add(contact);
-                            
-                            Person person = new Person();
-                            person.Id = i;
-                            person.Name = contact.FirstName + " " + contact.SecondName;
-                            person.Contact = contact;
+                    Person person = new Person();
+                    person.Id = i;
+                    person.Name = contact.FirstName + " " + contact.SecondName;
+                    person.Contact = contact;
 
-                            people.Add(person);
+                    People.Add(person);
 
-                            i++;
-                        }
-
-                        var source = new BindingSource();
-                        source.DataSource = people;
-
-                        contactsGrid.DataSource = source;
-                        contactsGrid.Columns["Id"].Visible = false;
-                        contactsGrid.Columns["Contact"].Visible = false;
-
-                    }
+                    i++;
                 }
+
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
+        }
+        
+        
+        private void GridContactLoad()
+        {
+            ContactLoad();
+            var source = new BindingSource();
+            source.DataSource = People;
+
+            contactsGrid.DataSource = source;
+            contactsGrid.Columns["Id"].Visible = false;
+            contactsGrid.Columns["Contact"].Visible = false;
+        }
+
+        private void ContactSave()
+        {
+            var jsonString = File.ReadAllText("C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json");
+            Accounts.Clear();
+            Accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
+
+
+            for (int i = 0; i < Accounts.Count; i++)
+            {
+                if (Accounts[i].Password == loggedAccount.Password && Accounts[i].Username == loggedAccount.Username)
+                {
+                    Accounts[i] = loggedAccount;
+                }
+            }
+
+
+            string jsonNewString = JsonConvert.SerializeObject(Accounts);
+            File.WriteAllText(@"C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json", jsonNewString);
+        }
+
+        private void ContactWindow_Load(object sender, EventArgs e)
+        {
+            contactsGrid.MultiSelect = false;
+            ContactLoad();
+            contactsGrid.Rows.Clear();
+            GridContactLoad();
         }
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -76,7 +97,7 @@ namespace ContactManager
 
             int contactIndex = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
             
-            foreach (var person in people)
+            foreach (var person in People)
             {
                 if (person.Id == contactIndex)
                 {
@@ -88,6 +109,98 @@ namespace ContactManager
                 }
             }
             
+        }
+
+        private void azSort_Click(object sender, EventArgs e)
+        {
+            string[][] contactList = new string[contactsGrid.RowCount][];
+            for (int i = 0; i < contactsGrid.RowCount; i++)
+            {
+                contactList[i][0] = contactsGrid.Rows[i].Cells[0].Value.ToString();
+                contactList[i][1] = contactsGrid.Rows[i].Cells[1].Value.ToString();
+                //TODO
+            }
+
+            MessageBox.Show(contactList[2][1]);
+
+        }
+
+        private void zaSort_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void createContact_Click(object sender, EventArgs e)
+        {
+            firstNameBox.Text = "";
+            secondNameBox.Text = "";
+            birthdayBox.Text = "";
+            emailBox.Text = "";
+            phoneNumberBox.Text = "";
+
+            createCancelContact.Show();
+            createSubmitContact.Show();
+        }
+
+        private void deleteContact_Click(object sender, EventArgs e)
+        {
+
+            for (int i = 0; i < People.Count; i++)
+            {
+                if (People[i].Id == Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value
+                    .ToString()))
+                {
+                    loggedAccount.Contacts.Remove(People[i].Contact);
+                    People.Remove(People[i]);
+                    ContactSave();
+                    contactsGrid.Rows.Clear();
+                    GridContactLoad();
+
+                }
+            }
+        }
+
+        private void createCancelContact_Click(object sender, EventArgs e)
+        {
+            firstNameBox.Text = "";
+            secondNameBox.Text = "";
+            birthdayBox.Text = "";
+            emailBox.Text = "";
+            phoneNumberBox.Text = "";
+
+            createCancelContact.Hide();
+            createSubmitContact.Hide();
+        }
+
+        private void createSubmitContact_Click(object sender, EventArgs e)
+        {
+            //TODO integrity check
+
+            if (firstNameBox.Text.Length > 0)
+            {
+                Contact contact = new()
+                {
+                    FirstName = firstNameBox.Text,
+                    SecondName = secondNameBox.Text,
+                    Birthday = birthdayBox.Text,
+                    Email = emailBox.Text,
+                    PhoneNumber = Int32.Parse(phoneNumberBox.Text)
+                };
+
+                loggedAccount.Contacts.Add(contact);
+                ContactSave();
+                contactsGrid.Rows.Clear();
+                GridContactLoad();
+            }
+
+            firstNameBox.Text = "";
+            secondNameBox.Text = "";
+            birthdayBox.Text = "";
+            emailBox.Text = "";
+            phoneNumberBox.Text = "";
+
+            createCancelContact.Hide();
+            createSubmitContact.Hide();
         }
     }
 

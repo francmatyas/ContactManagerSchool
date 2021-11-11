@@ -15,8 +15,7 @@ namespace ContactManager
 
     public partial class LoginWindow : Form
     {
-        public static string Username;
-        public static string Password;
+        public static Account Account;
 
         public LoginWindow()
         {
@@ -35,7 +34,7 @@ namespace ContactManager
 
             try
             {
-                var jsonString = File.ReadAllText("jsonFile.json");
+                var jsonString = File.ReadAllText("C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json");
 
                 List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
 
@@ -43,9 +42,7 @@ namespace ContactManager
                 {
                     if (account.Username == username && account.Password == password)
                     {
-                        Username = username;
-                        Password = password;
-
+                        Account = account;
                         ContactWindow contactWindow = new ContactWindow();
                         contactWindow.Show();
                     }

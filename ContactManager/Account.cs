@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ContactManager
 {
-    class Account
+    public class Account
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public Contact[] Contacts { get; set; }
+        public List<Contact> Contacts { get; set; }
     }
 }

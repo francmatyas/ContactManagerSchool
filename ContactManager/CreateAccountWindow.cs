@@ -9,6 +9,7 @@ namespace ContactManager
 {
     public partial class CreateAccountWindow : Form
     {
+        private List<Account> accounts;
 
         public CreateAccountWindow()
         {
@@ -25,43 +26,34 @@ namespace ContactManager
         {
             try
             {
-                var jsonString = File.ReadAllText("jsonFile.json");
-                MessageBox.Show(jsonString);
-
-                List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
-
-                MessageBox.Show(accounts[0].Username);
+                var jsonString = File.ReadAllText("C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json");
+                
+                accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
 
-
-
-            /*
-            if (passwordCreate.Text == passwordCreate.Text)
+            if (passwordCreate.Text == agPasswordCreate.Text)
             {
-                
-                Accounts account = new Accounts();
+                accounts.Add(new Account
                 {
-                    account.Username = usernameCreate.Text;
-                    account.Password = passwordCreate.Text;
-                }
+                    Username = usernameCreate.Text,
+                    Password = passwordCreate.Text
+                });
 
-                string jsonString = JsonSerializer.Serialize(account);
-                MessageBox.Show(jsonString);
-                File.WriteAllText(fileName, jsonString);
-
+                string jsonNewString = JsonConvert.SerializeObject(accounts);
+                File.WriteAllText(@"C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json", jsonNewString);
                 this.Hide();
-            
             }
+
             else
             {
                 //TODO errror - heslo není stejné
                 MessageBox.Show("error");
             }
-            */
+            
         }
 
         private void showPasswordCreateAcc_CheckedChanged(object sender, EventArgs e)

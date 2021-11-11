@@ -31,6 +31,8 @@ namespace ContactManager
         {
             this.contactsGrid = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.createCancelContact = new System.Windows.Forms.Button();
+            this.createSubmitContact = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.phoneNumberBox = new System.Windows.Forms.TextBox();
@@ -43,6 +45,10 @@ namespace ContactManager
             this.label6 = new System.Windows.Forms.Label();
             this.firstNameBox = new System.Windows.Forms.TextBox();
             this.contactsLabel = new System.Windows.Forms.Label();
+            this.zaSort = new System.Windows.Forms.Button();
+            this.azSort = new System.Windows.Forms.Button();
+            this.deleteContact = new System.Windows.Forms.Button();
+            this.createContact = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.contactsGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -55,24 +61,48 @@ namespace ContactManager
             this.contactsGrid.AllowUserToResizeRows = false;
             this.contactsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contactsGrid.ColumnHeadersVisible = false;
-            this.contactsGrid.Location = new System.Drawing.Point(12, 27);
+            this.contactsGrid.Location = new System.Drawing.Point(12, 36);
             this.contactsGrid.Name = "contactsGrid";
             this.contactsGrid.ReadOnly = true;
             this.contactsGrid.RowHeadersVisible = false;
             this.contactsGrid.RowTemplate.Height = 25;
-            this.contactsGrid.Size = new System.Drawing.Size(150, 402);
+            this.contactsGrid.Size = new System.Drawing.Size(150, 368);
             this.contactsGrid.TabIndex = 0;
             this.contactsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.contactsGrid_CellClick);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.createCancelContact);
+            this.groupBox1.Controls.Add(this.createSubmitContact);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(168, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(524, 426);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // createCancelContact
+            // 
+            this.createCancelContact.Location = new System.Drawing.Point(362, 397);
+            this.createCancelContact.Name = "createCancelContact";
+            this.createCancelContact.Size = new System.Drawing.Size(75, 23);
+            this.createCancelContact.TabIndex = 13;
+            this.createCancelContact.Text = "Cancel";
+            this.createCancelContact.UseVisualStyleBackColor = true;
+            this.createCancelContact.Visible = false;
+            this.createCancelContact.Click += new System.EventHandler(this.createCancelContact_Click);
+            // 
+            // createSubmitContact
+            // 
+            this.createSubmitContact.Location = new System.Drawing.Point(443, 397);
+            this.createSubmitContact.Name = "createSubmitContact";
+            this.createSubmitContact.Size = new System.Drawing.Size(75, 23);
+            this.createSubmitContact.TabIndex = 12;
+            this.createSubmitContact.Text = "Submit";
+            this.createSubmitContact.UseVisualStyleBackColor = true;
+            this.createSubmitContact.Visible = false;
+            this.createSubmitContact.Click += new System.EventHandler(this.createSubmitContact_Click);
             // 
             // groupBox2
             // 
@@ -183,17 +213,61 @@ namespace ContactManager
             // 
             this.contactsLabel.AutoSize = true;
             this.contactsLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.contactsLabel.Location = new System.Drawing.Point(12, 9);
+            this.contactsLabel.Location = new System.Drawing.Point(12, 14);
             this.contactsLabel.Name = "contactsLabel";
             this.contactsLabel.Size = new System.Drawing.Size(61, 17);
             this.contactsLabel.TabIndex = 2;
             this.contactsLabel.Text = "Contacts";
+            // 
+            // zaSort
+            // 
+            this.zaSort.Location = new System.Drawing.Point(132, 12);
+            this.zaSort.Name = "zaSort";
+            this.zaSort.Size = new System.Drawing.Size(30, 23);
+            this.zaSort.TabIndex = 3;
+            this.zaSort.Text = "ZA";
+            this.zaSort.UseVisualStyleBackColor = true;
+            this.zaSort.Click += new System.EventHandler(this.zaSort_Click);
+            // 
+            // azSort
+            // 
+            this.azSort.Location = new System.Drawing.Point(102, 12);
+            this.azSort.Name = "azSort";
+            this.azSort.Size = new System.Drawing.Size(30, 23);
+            this.azSort.TabIndex = 4;
+            this.azSort.Text = "AZ";
+            this.azSort.UseVisualStyleBackColor = true;
+            this.azSort.Click += new System.EventHandler(this.azSort_Click);
+            // 
+            // deleteContact
+            // 
+            this.deleteContact.Location = new System.Drawing.Point(87, 406);
+            this.deleteContact.Name = "deleteContact";
+            this.deleteContact.Size = new System.Drawing.Size(75, 23);
+            this.deleteContact.TabIndex = 5;
+            this.deleteContact.Text = "Delete";
+            this.deleteContact.UseVisualStyleBackColor = true;
+            this.deleteContact.Click += new System.EventHandler(this.deleteContact_Click);
+            // 
+            // createContact
+            // 
+            this.createContact.Location = new System.Drawing.Point(12, 406);
+            this.createContact.Name = "createContact";
+            this.createContact.Size = new System.Drawing.Size(75, 23);
+            this.createContact.TabIndex = 6;
+            this.createContact.Text = "Create";
+            this.createContact.UseVisualStyleBackColor = true;
+            this.createContact.Click += new System.EventHandler(this.createContact_Click);
             // 
             // ContactWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 441);
+            this.Controls.Add(this.createContact);
+            this.Controls.Add(this.deleteContact);
+            this.Controls.Add(this.azSort);
+            this.Controls.Add(this.zaSort);
             this.Controls.Add(this.contactsLabel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.contactsGrid);
@@ -226,5 +300,11 @@ namespace ContactManager
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button zaSort;
+        private System.Windows.Forms.Button azSort;
+        private System.Windows.Forms.Button deleteContact;
+        private System.Windows.Forms.Button createContact;
+        private System.Windows.Forms.Button createSubmitContact;
+        private System.Windows.Forms.Button createCancelContact;
     }
 }
