@@ -26,7 +26,7 @@ namespace ContactManager
         {
             try
             {
-                var jsonString = File.ReadAllText("C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json");
+                var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
                 
                 accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
             }
@@ -43,8 +43,8 @@ namespace ContactManager
                     Password = passwordCreate.Text
                 });
 
-                string jsonNewString = JsonConvert.SerializeObject(accounts);
-                File.WriteAllText(@"C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json", jsonNewString);
+                string jsonNewString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
+                File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
                 this.Hide();
             }
 

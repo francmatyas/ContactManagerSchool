@@ -1,1 +1,83 @@
-[{"Username":"admin","Password":"admin","Contacts":[{"FirstName":"Bruno","SecondName":"H��bal","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""},{"FirstName":"Jind�ich","SecondName":"Fischer","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""},{"FirstName":"�imon","SecondName":"Plech��","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""},{"FirstName":"Otakar","SecondName":"�i�ka","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""},{"FirstName":"Tom�","SecondName":"Pracha�","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""}]},{"Username":"test","Password":"test","Contacts":[{"FirstName":"Vladislav","SecondName":"Nakl�dal","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""},{"FirstName":"Klement","SecondName":"Veselka","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""},{"FirstName":"Otakar","SecondName":"Vanou�","Birthday":"25.2.1993","Email":"test.email@gmail.com","PhoneNumber":651564135,"Note":""}]},{"Username":"test2","Password":"test2","Contacts":null}]
+[
+  {
+    "Username": "admin",
+    "Password": "admin",
+    "Contacts": [
+      {
+        "FirstName": "Bruno",
+        "SecondName": "H��bal",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      },
+      {
+        "FirstName": "Jind�ich",
+        "SecondName": "Fischer",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      },
+      {
+        "FirstName": "�imon",
+        "SecondName": "Plech��",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      },
+      {
+        "FirstName": "Otakar",
+        "SecondName": "�i�ka",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      },
+      {
+        "FirstName": "Tom�",
+        "SecondName": "Pracha�",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      }
+    ]
+  },
+  {
+    "Username": "test",
+    "Password": "test",
+    "Contacts": [
+      {
+        "FirstName": "Vladislav",
+        "SecondName": "Nakl�dal",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      },
+      {
+        "FirstName": "Klement",
+        "SecondName": "Veselka",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      },
+      {
+        "FirstName": "Otakar",
+        "SecondName": "Vanou�",
+        "Birthday": "25.2.1993",
+        "Email": "test.email@gmail.com",
+        "PhoneNumber": 651564135,
+        "Note": ""
+      }
+    ]
+  },
+  {
+    "Username": "test2",
+    "Password": "test2",
+    "Contacts": null
+  }
+]

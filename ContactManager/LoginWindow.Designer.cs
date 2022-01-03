@@ -38,6 +38,7 @@ namespace ContactManager
             this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +81,7 @@ namespace ContactManager
             // 
             this.createAccount.Location = new System.Drawing.Point(24, 150);
             this.createAccount.Name = "createAccount";
-            this.createAccount.Size = new System.Drawing.Size(222, 23);
+            this.createAccount.Size = new System.Drawing.Size(187, 23);
             this.createAccount.TabIndex = 4;
             this.createAccount.Text = "Create account";
             this.createAccount.UseVisualStyleBackColor = true;
@@ -133,15 +134,28 @@ namespace ContactManager
             this.usernameLabel.TabIndex = 4;
             this.usernameLabel.Text = "Username:";
             // 
+            // settingsButton
+            // 
+            this.settingsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.settingsButton.Location = new System.Drawing.Point(217, 150);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(23, 23);
+            this.settingsButton.TabIndex = 6;
+            this.settingsButton.Text = "⚙️";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
             // LoginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 179);
+            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.createAccount);
             this.Name = "LoginWindow";
             this.Text = "Contact Manager";
+            this.Load += new System.EventHandler(this.LoginWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -159,6 +173,7 @@ namespace ContactManager
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.CheckBox showPasswordCheckBox;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
 

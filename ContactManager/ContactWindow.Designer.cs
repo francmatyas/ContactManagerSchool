@@ -49,6 +49,9 @@ namespace ContactManager
             this.azSort = new System.Windows.Forms.Button();
             this.deleteContact = new System.Windows.Forms.Button();
             this.createContact = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.colorButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.contactsGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -106,6 +109,8 @@ namespace ContactManager
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.colorButton);
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.phoneNumberBox);
             this.groupBox2.Controls.Add(this.label2);
@@ -119,7 +124,7 @@ namespace ContactManager
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox2.Location = new System.Drawing.Point(6, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(375, 165);
+            this.groupBox2.Size = new System.Drawing.Size(375, 250);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Basic information";
@@ -259,6 +264,29 @@ namespace ContactManager
             this.createContact.UseVisualStyleBackColor = true;
             this.createContact.Click += new System.EventHandler(this.createContact_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.checkBox1.Location = new System.Drawing.Point(6, 201);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(79, 19);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "Favourite";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // colorButton
+            // 
+            this.colorButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.colorButton.Location = new System.Drawing.Point(278, 198);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(75, 23);
+            this.colorButton.TabIndex = 14;
+            this.colorButton.Text = "Color";
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ContactWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -306,5 +334,8 @@ namespace ContactManager
         private System.Windows.Forms.Button createContact;
         private System.Windows.Forms.Button createSubmitContact;
         private System.Windows.Forms.Button createCancelContact;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

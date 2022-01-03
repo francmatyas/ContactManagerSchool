@@ -16,6 +16,7 @@ namespace ContactManager
     public partial class LoginWindow : Form
     {
         public static Account Account;
+        public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
 
         public LoginWindow()
         {
@@ -34,7 +35,7 @@ namespace ContactManager
 
             try
             {
-                var jsonString = File.ReadAllText("C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json");
+                var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
 
                 List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
 
@@ -70,6 +71,16 @@ namespace ContactManager
             {
                 passwordTextBox.PasswordChar = '*';
             }
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
+
+        private void LoginWindow_Load(object sender, EventArgs e)
+        {
         }
     }
 }

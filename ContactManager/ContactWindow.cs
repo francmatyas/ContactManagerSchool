@@ -65,7 +65,7 @@ namespace ContactManager
 
         private void ContactSave()
         {
-            var jsonString = File.ReadAllText("C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json");
+            var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
             Accounts.Clear();
             Accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
 
@@ -79,8 +79,8 @@ namespace ContactManager
             }
 
 
-            string jsonNewString = JsonConvert.SerializeObject(Accounts);
-            File.WriteAllText(@"C:/Users/franc/source/repos/ContactManager/ContactManager/jsonFile.json", jsonNewString);
+            string jsonNewString = JsonConvert.SerializeObject(Accounts, Formatting.Indented);
+            File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
         }
 
         private void ContactWindow_Load(object sender, EventArgs e)
@@ -202,6 +202,14 @@ namespace ContactManager
             createCancelContact.Hide();
             createSubmitContact.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                colorButton.BackColor = colorDialog1.Color;
+            }
+        }
     }
 
 
@@ -210,5 +218,7 @@ namespace ContactManager
         public int Id { get; set; }
         public string Name { get; set; }
         public Contact Contact { get; set; }
+
+
     }
 }
