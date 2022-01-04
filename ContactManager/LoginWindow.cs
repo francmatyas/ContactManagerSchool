@@ -35,7 +35,7 @@ namespace ContactManager
 
             try
             {
-                var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
+                var jsonString = File.ReadAllText(ContactsFile);
 
                 List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
 

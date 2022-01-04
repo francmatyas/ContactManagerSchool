@@ -9,7 +9,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 0,
+        "Color": "#000"
       },
       {
         "FirstName": "Jind�ich",
@@ -17,7 +20,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 1,
+        "Color": "#000"
       },
       {
         "FirstName": "�imon",
@@ -25,7 +31,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 2,
+        "Color": "#000"
       },
       {
         "FirstName": "Otakar",
@@ -33,7 +42,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 3,
+        "Color": "#000"
       },
       {
         "FirstName": "Tom�",
@@ -41,7 +53,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 4,
+        "Color": "#000"
       }
     ]
   },
@@ -55,7 +70,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 0,
+        "Color": "#000"
       },
       {
         "FirstName": "Klement",
@@ -63,7 +81,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 1,
+        "Color": "#000"
       },
       {
         "FirstName": "Otakar",
@@ -71,7 +92,10 @@
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
-        "Note": ""
+        "Note": "",
+        "Favourite": false,
+        "ID": 2,
+        "Color": "#000"
       }
     ]
   },

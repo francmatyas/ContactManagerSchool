@@ -54,13 +54,21 @@ namespace ContactManager
         
         private void GridContactLoad()
         {
-            ContactLoad();
+            //ContactLoad();
             var source = new BindingSource();
-            source.DataSource = People;
+            source.DataSource = loggedAccount.Contacts;
 
             contactsGrid.DataSource = source;
-            contactsGrid.Columns["Id"].Visible = false;
-            contactsGrid.Columns["Contact"].Visible = false;
+            contactsGrid.Columns["ID"].Visible = false;
+            contactsGrid.Columns["Birthday"].Visible = false;
+            contactsGrid.Columns["Email"].Visible = false;
+            contactsGrid.Columns["PhoneNumber"].Visible = false;
+            contactsGrid.Columns["Note"].Visible = false;
+            contactsGrid.Columns["Favourite"].Visible = false;
+            contactsGrid.Columns["Color"].Visible = false;
+
+            Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
+
         }
 
         private void ContactSave()
@@ -93,10 +101,20 @@ namespace ContactManager
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            groupBox1.Text = contactsGrid.SelectedCells[0].Value.ToString();
 
+            Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+
+            groupBox1.Text = contact.FirstName + " " + contact.SecondName;
+
+            firstNameBox.Text = contact.FirstName;
+            secondNameBox.Text = contact.SecondName;
+            birthdayBox.Text = contact.Birthday;
+            emailBox.Text = contact.Email;
+            phoneNumberBox.Text = contact.PhoneNumber.ToString();
+
+            /*
             int contactIndex = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
-            
+
             foreach (var person in People)
             {
                 if (person.Id == contactIndex)
@@ -108,7 +126,8 @@ namespace ContactManager
                     phoneNumberBox.Text = person.Contact.PhoneNumber.ToString();
                 }
             }
-            
+            */
+
         }
 
         private void azSort_Click(object sender, EventArgs e)
@@ -178,16 +197,23 @@ namespace ContactManager
 
             if (firstNameBox.Text.Length > 0)
             {
-                Contact contact = new()
+                List<int> idList = new List<int>();
+                foreach (var contact  in loggedAccount.Contacts)
+                {
+                    idList.Add(contact.ID);
+                }
+                Contact newContact = new()
                 {
                     FirstName = firstNameBox.Text,
                     SecondName = secondNameBox.Text,
                     Birthday = birthdayBox.Text,
                     Email = emailBox.Text,
-                    PhoneNumber = Int32.Parse(phoneNumberBox.Text)
+                    PhoneNumber = Int32.Parse(phoneNumberBox.Text),
+                    Favourite = false,
+                    ID = idList.Max() + 1
                 };
 
-                loggedAccount.Contacts.Add(contact);
+                loggedAccount.Contacts.Add(newContact);
                 ContactSave();
                 contactsGrid.Rows.Clear();
                 GridContactLoad();
