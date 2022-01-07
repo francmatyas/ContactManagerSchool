@@ -29,12 +29,14 @@ namespace ContactManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.createCancelContact = new System.Windows.Forms.Button();
             this.createSubmitContact = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.colorButton = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.favoriteCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.phoneNumberBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,15 +65,15 @@ namespace ContactManager
             this.groupBox1.Controls.Add(this.createSubmitContact);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(221, 3);
+            this.groupBox1.Location = new System.Drawing.Point(172, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(471, 426);
+            this.groupBox1.Size = new System.Drawing.Size(520, 426);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // createCancelContact
             // 
-            this.createCancelContact.Location = new System.Drawing.Point(309, 397);
+            this.createCancelContact.Location = new System.Drawing.Point(358, 397);
             this.createCancelContact.Name = "createCancelContact";
             this.createCancelContact.Size = new System.Drawing.Size(75, 23);
             this.createCancelContact.TabIndex = 13;
@@ -82,7 +84,7 @@ namespace ContactManager
             // 
             // createSubmitContact
             // 
-            this.createSubmitContact.Location = new System.Drawing.Point(390, 397);
+            this.createSubmitContact.Location = new System.Drawing.Point(439, 397);
             this.createSubmitContact.Name = "createSubmitContact";
             this.createSubmitContact.Size = new System.Drawing.Size(75, 23);
             this.createSubmitContact.TabIndex = 12;
@@ -94,7 +96,7 @@ namespace ContactManager
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.colorButton);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.favoriteCheckBox);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.phoneNumberBox);
             this.groupBox2.Controls.Add(this.label2);
@@ -124,17 +126,18 @@ namespace ContactManager
             this.colorButton.UseVisualStyleBackColor = true;
             this.colorButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // checkBox1
+            // favoriteCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.checkBox1.Location = new System.Drawing.Point(6, 201);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(79, 19);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Favourite";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.favoriteCheckBox.AutoSize = true;
+            this.favoriteCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.favoriteCheckBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.favoriteCheckBox.Location = new System.Drawing.Point(6, 201);
+            this.favoriteCheckBox.Name = "favoriteCheckBox";
+            this.favoriteCheckBox.Size = new System.Drawing.Size(72, 19);
+            this.favoriteCheckBox.TabIndex = 13;
+            this.favoriteCheckBox.Text = "Favorite";
+            this.favoriteCheckBox.UseVisualStyleBackColor = true;
+            this.favoriteCheckBox.CheckedChanged += new System.EventHandler(this.favoriteCheckBox_CheckedChanged);
             // 
             // label1
             // 
@@ -233,7 +236,7 @@ namespace ContactManager
             // 
             // zaSort
             // 
-            this.zaSort.Location = new System.Drawing.Point(185, 12);
+            this.zaSort.Location = new System.Drawing.Point(136, 12);
             this.zaSort.Name = "zaSort";
             this.zaSort.Size = new System.Drawing.Size(30, 23);
             this.zaSort.TabIndex = 3;
@@ -243,7 +246,7 @@ namespace ContactManager
             // 
             // azSort
             // 
-            this.azSort.Location = new System.Drawing.Point(155, 12);
+            this.azSort.Location = new System.Drawing.Point(106, 12);
             this.azSort.Name = "azSort";
             this.azSort.Size = new System.Drawing.Size(30, 23);
             this.azSort.TabIndex = 4;
@@ -253,9 +256,9 @@ namespace ContactManager
             // 
             // deleteContact
             // 
-            this.deleteContact.Location = new System.Drawing.Point(122, 406);
+            this.deleteContact.Location = new System.Drawing.Point(89, 406);
             this.deleteContact.Name = "deleteContact";
-            this.deleteContact.Size = new System.Drawing.Size(93, 23);
+            this.deleteContact.Size = new System.Drawing.Size(76, 23);
             this.deleteContact.TabIndex = 5;
             this.deleteContact.Text = "Delete";
             this.deleteContact.UseVisualStyleBackColor = true;
@@ -265,7 +268,7 @@ namespace ContactManager
             // 
             this.createContact.Location = new System.Drawing.Point(12, 406);
             this.createContact.Name = "createContact";
-            this.createContact.Size = new System.Drawing.Size(104, 23);
+            this.createContact.Size = new System.Drawing.Size(71, 23);
             this.createContact.TabIndex = 6;
             this.createContact.Text = "Create";
             this.createContact.UseVisualStyleBackColor = true;
@@ -276,14 +279,29 @@ namespace ContactManager
             this.contactsGrid.AllowUserToAddRows = false;
             this.contactsGrid.AllowUserToDeleteRows = false;
             this.contactsGrid.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.contactsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.contactsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.contactsGrid.ColumnHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.contactsGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.contactsGrid.Location = new System.Drawing.Point(12, 36);
             this.contactsGrid.Name = "contactsGrid";
             this.contactsGrid.ReadOnly = true;
             this.contactsGrid.RowHeadersVisible = false;
             this.contactsGrid.RowTemplate.Height = 25;
-            this.contactsGrid.Size = new System.Drawing.Size(203, 368);
+            this.contactsGrid.Size = new System.Drawing.Size(153, 368);
             this.contactsGrid.TabIndex = 0;
             this.contactsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.contactsGrid_CellClick);
             // 
@@ -334,7 +352,7 @@ namespace ContactManager
         private System.Windows.Forms.Button createCancelContact;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button colorButton;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox favoriteCheckBox;
         private System.Windows.Forms.DataGridView contactsGrid;
     }
 }

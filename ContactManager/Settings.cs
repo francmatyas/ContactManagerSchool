@@ -26,5 +26,10 @@ namespace ContactManager
                 LoginWindow.ContactsFile = selectedFile;
             }
         }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            fileLabel.Text = "File: " + LoginWindow.ContactsFile;
+        }
     }
 }

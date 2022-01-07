@@ -15,6 +15,7 @@ namespace ContactManager
     public partial class ContactWindow : Form
     {
         private Account loggedAccount = LoginWindow.Account;
+        private Contact selectedContact;
 
         private List<Person> People = new List<Person>();
         private List<Account> Accounts = new List<Account>();
@@ -59,13 +60,24 @@ namespace ContactManager
             source.DataSource = loggedAccount.Contacts;
 
             contactsGrid.DataSource = source;
+            contactsGrid.Columns["FullName"].HeaderText = "Name";
+            contactsGrid.Columns["Favorite"].HeaderText = "⭐";
+            contactsGrid.Columns["FullName"].Width = 125;
+            contactsGrid.Columns["Favorite"].Width = 25;
+            contactsGrid.Columns["FirstName"].Visible = false;
+            contactsGrid.Columns["SecondName"].Visible = false;
             contactsGrid.Columns["ID"].Visible = false;
             contactsGrid.Columns["Birthday"].Visible = false;
             contactsGrid.Columns["Email"].Visible = false;
             contactsGrid.Columns["PhoneNumber"].Visible = false;
             contactsGrid.Columns["Note"].Visible = false;
-            contactsGrid.Columns["Favourite"].Visible = false;
             contactsGrid.Columns["Color"].Visible = false;
+
+            foreach (var row in contactsGrid.Rows)
+            {
+                // contactsGrid.Rows[row].DefaultCellStyle.BackColor.
+                // TODO;
+            }
 
             Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
 
@@ -103,6 +115,8 @@ namespace ContactManager
         {
 
             Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+            selectedContact = contact;
+            //selectedRowId = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
 
             groupBox1.Text = contact.FirstName + " " + contact.SecondName;
 
@@ -111,6 +125,7 @@ namespace ContactManager
             birthdayBox.Text = contact.Birthday;
             emailBox.Text = contact.Email;
             phoneNumberBox.Text = contact.PhoneNumber.ToString();
+            favoriteCheckBox.Checked = contact.Favorite;
 
             /*
             int contactIndex = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
@@ -151,11 +166,7 @@ namespace ContactManager
 
         private void createContact_Click(object sender, EventArgs e)
         {
-            firstNameBox.Text = "";
-            secondNameBox.Text = "";
-            birthdayBox.Text = "";
-            emailBox.Text = "";
-            phoneNumberBox.Text = "";
+            clearBoxes();
 
             createCancelContact.Show();
             createSubmitContact.Show();
@@ -181,11 +192,7 @@ namespace ContactManager
 
         private void createCancelContact_Click(object sender, EventArgs e)
         {
-            firstNameBox.Text = "";
-            secondNameBox.Text = "";
-            birthdayBox.Text = "";
-            emailBox.Text = "";
-            phoneNumberBox.Text = "";
+            clearBoxes();
 
             createCancelContact.Hide();
             createSubmitContact.Hide();
@@ -209,7 +216,7 @@ namespace ContactManager
                     Birthday = birthdayBox.Text,
                     Email = emailBox.Text,
                     PhoneNumber = Int32.Parse(phoneNumberBox.Text),
-                    Favourite = false,
+                    Favorite = false,
                     ID = idList.Max() + 1
                 };
 
@@ -219,11 +226,7 @@ namespace ContactManager
                 GridContactLoad();
             }
 
-            firstNameBox.Text = "";
-            secondNameBox.Text = "";
-            birthdayBox.Text = "";
-            emailBox.Text = "";
-            phoneNumberBox.Text = "";
+            clearBoxes();
 
             createCancelContact.Hide();
             createSubmitContact.Hide();
@@ -233,8 +236,26 @@ namespace ContactManager
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                colorButton.BackColor = colorDialog1.Color;
+                selectedContact.Color = colorDialog1.Color;
+                contactsGrid.CurrentRow.DefaultCellStyle.BackColor = selectedContact.Color;
             }
+        }
+
+        private void favoriteCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            selectedContact.Favorite = favoriteCheckBox.Checked;
+            contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+            
+        }
+
+        private void clearBoxes()
+        {
+            firstNameBox.Text = "";
+            secondNameBox.Text = "";
+            birthdayBox.Text = "";
+            emailBox.Text = "";
+            phoneNumberBox.Text = "";
+            favoriteCheckBox.Checked = false;
         }
     }
 
