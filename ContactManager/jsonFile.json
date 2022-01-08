@@ -13,7 +13,8 @@
         "Note": "",
         "Favorite": true,
         "ID": 0,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": true
       },
       {
         "FirstName": "Jind�ich",
@@ -25,7 +26,8 @@
         "Note": "",
         "Favorite": false,
         "ID": 1,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": false
       },
       {
         "FirstName": "�imon",
@@ -37,7 +39,8 @@
         "Note": "",
         "Favorite": true,
         "ID": 2,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": false
       },
       {
         "FirstName": "Otakar",
@@ -49,7 +52,8 @@
         "Note": "",
         "Favorite": false,
         "ID": 3,
-        "Color": "#000"
+        "Color": "Red",
+        "Deleted": false
       },
       {
         "FirstName": "Tom�",
@@ -61,7 +65,8 @@
         "Note": "",
         "Favorite": false,
         "ID": 4,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": true
       }
     ]
   },
@@ -79,7 +84,8 @@
         "Note": "",
         "Favorite": false,
         "ID": 0,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": false
       },
       {
         "FirstName": "Klement",
@@ -91,7 +97,8 @@
         "Note": "",
         "Favorite": false,
         "ID": 1,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": false
       },
       {
         "FirstName": "Otakar",
@@ -103,7 +110,8 @@
         "Note": "",
         "Favorite": false,
         "ID": 2,
-        "Color": "#000"
+        "Color": "White",
+        "Deleted": false
       }
     ]
   },

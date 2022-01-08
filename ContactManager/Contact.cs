@@ -20,5 +20,6 @@ namespace ContactManager
         //public DateTime Created { get; set; }
         public int ID { get; set; }
         public Color Color { get; set; }
+        public bool Deleted { get; set; }
     }
 }

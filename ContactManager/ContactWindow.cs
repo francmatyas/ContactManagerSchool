@@ -18,7 +18,6 @@ namespace ContactManager
         private Contact selectedContact;
 
         private List<Person> People = new List<Person>();
-        private List<Account> Accounts = new List<Account>();
 
         public ContactWindow()
         {
@@ -51,13 +50,22 @@ namespace ContactManager
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
-        
-        
+
+
         private void GridContactLoad()
         {
             //ContactLoad();
             var source = new BindingSource();
-            source.DataSource = loggedAccount.Contacts;
+            List<Contact> gridContacts = new List<Contact>();
+
+            foreach (var contact in loggedAccount.Contacts)
+            {
+                if (!contact.Deleted)
+                {
+                    gridContacts.Add(contact);
+                }
+            }
+            source.DataSource = gridContacts;
 
             contactsGrid.DataSource = source;
             contactsGrid.Columns["FullName"].HeaderText = "Name";
@@ -72,23 +80,25 @@ namespace ContactManager
             contactsGrid.Columns["PhoneNumber"].Visible = false;
             contactsGrid.Columns["Note"].Visible = false;
             contactsGrid.Columns["Color"].Visible = false;
+            contactsGrid.Columns["Deleted"].Visible = false;
 
-            foreach (var row in contactsGrid.Rows)
+            
+            for (int i = 0; i < gridContacts.Count; i++)
             {
-                // contactsGrid.Rows[row].DefaultCellStyle.BackColor.
-                // TODO;
+                Contact contact = contactsGrid.Rows[i].DataBoundItem as Contact;
+                contactsGrid.Rows[i].DefaultCellStyle.BackColor = contact.Color;
             }
 
-            Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
-
+            //Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
+            
         }
 
         private void ContactSave()
         {
-            var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
-            Accounts.Clear();
-            Accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
+            List<Account> Accounts = new List<Account>();
 
+            var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
+            Accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
 
             for (int i = 0; i < Accounts.Count; i++)
             {
@@ -97,7 +107,6 @@ namespace ContactManager
                     Accounts[i] = loggedAccount;
                 }
             }
-
 
             string jsonNewString = JsonConvert.SerializeObject(Accounts, Formatting.Indented);
             File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
@@ -174,7 +183,13 @@ namespace ContactManager
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
+            selectedContact.Deleted = true;
+            MessageBox.Show(text: selectedContact.FullName + selectedContact.Deleted);
+            contactsGrid.Rows.Clear();
+            ContactSave();
+            GridContactLoad();
 
+            /*
             for (int i = 0; i < People.Count; i++)
             {
                 if (People[i].Id == Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value
@@ -188,6 +203,7 @@ namespace ContactManager
 
                 }
             }
+            */
         }
 
         private void createCancelContact_Click(object sender, EventArgs e)
@@ -217,6 +233,8 @@ namespace ContactManager
                     Email = emailBox.Text,
                     PhoneNumber = Int32.Parse(phoneNumberBox.Text),
                     Favorite = false,
+                    Color = Color.White,
+                    Deleted = false,
                     ID = idList.Max() + 1
                 };
 
