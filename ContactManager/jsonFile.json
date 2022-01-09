@@ -14,7 +14,7 @@
         "Favorite": true,
         "ID": 0,
         "Color": "White",
-        "Deleted": true
+        "Deleted": false
       },
       {
         "FirstName": "Jind�ich",
@@ -24,7 +24,7 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
         "Note": "",
-        "Favorite": false,
+        "Favorite": true,
         "ID": 1,
         "Color": "White",
         "Deleted": false
@@ -66,7 +66,7 @@
         "Favorite": false,
         "ID": 4,
         "Color": "White",
-        "Deleted": true
+        "Deleted": false
       }
     ]
   },

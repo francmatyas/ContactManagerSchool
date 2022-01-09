@@ -124,7 +124,7 @@ namespace ContactManager
             this.colorButton.TabIndex = 14;
             this.colorButton.Text = "Color";
             this.colorButton.UseVisualStyleBackColor = true;
-            this.colorButton.Click += new System.EventHandler(this.button1_Click);
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
             // 
             // favoriteCheckBox
             // 

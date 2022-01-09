@@ -17,14 +17,12 @@ namespace ContactManager
         private Account loggedAccount = LoginWindow.Account;
         private Contact selectedContact;
 
-        private List<Person> People = new List<Person>();
-
         public ContactWindow()
         {
             InitializeComponent();
         }
 
-
+        /*
         private void ContactLoad()
         {
             try
@@ -50,11 +48,11 @@ namespace ContactManager
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
         }
-
+        */
 
         private void GridContactLoad()
         {
-            //ContactLoad();
+            contactsGrid.Rows.Clear();
             var source = new BindingSource();
             List<Contact> gridContacts = new List<Contact>();
 
@@ -115,8 +113,6 @@ namespace ContactManager
         private void ContactWindow_Load(object sender, EventArgs e)
         {
             contactsGrid.MultiSelect = false;
-            ContactLoad();
-            contactsGrid.Rows.Clear();
             GridContactLoad();
         }
 
@@ -125,7 +121,6 @@ namespace ContactManager
 
             Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
             selectedContact = contact;
-            //selectedRowId = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
 
             groupBox1.Text = contact.FirstName + " " + contact.SecondName;
 
@@ -135,22 +130,6 @@ namespace ContactManager
             emailBox.Text = contact.Email;
             phoneNumberBox.Text = contact.PhoneNumber.ToString();
             favoriteCheckBox.Checked = contact.Favorite;
-
-            /*
-            int contactIndex = Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value.ToString());
-
-            foreach (var person in People)
-            {
-                if (person.Id == contactIndex)
-                {
-                    firstNameBox.Text = person.Contact.FirstName;
-                    secondNameBox.Text = person.Contact.SecondName;
-                    birthdayBox.Text = person.Contact.Birthday;
-                    emailBox.Text = person.Contact.Email;
-                    phoneNumberBox.Text = person.Contact.PhoneNumber.ToString();
-                }
-            }
-            */
 
         }
 
@@ -175,7 +154,7 @@ namespace ContactManager
 
         private void createContact_Click(object sender, EventArgs e)
         {
-            clearBoxes();
+            ClearBoxes();
 
             createCancelContact.Show();
             createSubmitContact.Show();
@@ -184,31 +163,14 @@ namespace ContactManager
         private void deleteContact_Click(object sender, EventArgs e)
         {
             selectedContact.Deleted = true;
-            MessageBox.Show(text: selectedContact.FullName + selectedContact.Deleted);
-            contactsGrid.Rows.Clear();
             ContactSave();
             GridContactLoad();
 
-            /*
-            for (int i = 0; i < People.Count; i++)
-            {
-                if (People[i].Id == Int32.Parse(contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].Cells[0].Value
-                    .ToString()))
-                {
-                    loggedAccount.Contacts.Remove(People[i].Contact);
-                    People.Remove(People[i]);
-                    ContactSave();
-                    contactsGrid.Rows.Clear();
-                    GridContactLoad();
-
-                }
-            }
-            */
         }
 
         private void createCancelContact_Click(object sender, EventArgs e)
         {
-            clearBoxes();
+            ClearBoxes();
 
             createCancelContact.Hide();
             createSubmitContact.Hide();
@@ -225,10 +187,12 @@ namespace ContactManager
                 {
                     idList.Add(contact.ID);
                 }
+
                 Contact newContact = new()
                 {
                     FirstName = firstNameBox.Text,
                     SecondName = secondNameBox.Text,
+                    FullName = firstNameBox.Text + " " + secondNameBox.Text,
                     Birthday = birthdayBox.Text,
                     Email = emailBox.Text,
                     PhoneNumber = Int32.Parse(phoneNumberBox.Text),
@@ -244,19 +208,10 @@ namespace ContactManager
                 GridContactLoad();
             }
 
-            clearBoxes();
+            ClearBoxes();
 
             createCancelContact.Hide();
             createSubmitContact.Hide();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (colorDialog1.ShowDialog() == DialogResult.OK)
-            {
-                selectedContact.Color = colorDialog1.Color;
-                contactsGrid.CurrentRow.DefaultCellStyle.BackColor = selectedContact.Color;
-            }
         }
 
         private void favoriteCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -266,7 +221,7 @@ namespace ContactManager
             
         }
 
-        private void clearBoxes()
+        private void ClearBoxes()
         {
             firstNameBox.Text = "";
             secondNameBox.Text = "";
@@ -275,15 +230,14 @@ namespace ContactManager
             phoneNumberBox.Text = "";
             favoriteCheckBox.Checked = false;
         }
-    }
 
-
-    public class Person
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Contact Contact { get; set; }
-
-
+        private void colorButton_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                selectedContact.Color = colorDialog1.Color;
+                contactsGrid.CurrentRow.DefaultCellStyle.BackColor = selectedContact.Color;
+            }
+        }
     }
 }
