@@ -13,7 +13,7 @@
         "Note": "",
         "Favorite": true,
         "ID": 0,
-        "Color": "White",
+        "Color": "255, 128, 128",
         "Deleted": false
       },
       {
@@ -24,13 +24,13 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
         "Note": "",
-        "Favorite": true,
+        "Favorite": false,
         "ID": 1,
-        "Color": "White",
+        "Color": "64, 0, 128",
         "Deleted": false
       },
       {
-        "FirstName": "�imon",
+        "FirstName": "Šimon",
         "SecondName": "Plech��",
         "FullName": "�imon Plech��",
         "Birthday": "25.2.1993",
@@ -39,7 +39,7 @@
         "Note": "",
         "Favorite": true,
         "ID": 2,
-        "Color": "White",
+        "Color": "Red",
         "Deleted": false
       },
       {
@@ -52,7 +52,7 @@
         "Note": "",
         "Favorite": false,
         "ID": 3,
-        "Color": "Red",
+        "Color": "White",
         "Deleted": false
       },
       {
@@ -63,9 +63,9 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
         "Note": "",
-        "Favorite": false,
+        "Favorite": true,
         "ID": 4,
-        "Color": "White",
+        "Color": "Yellow",
         "Deleted": false
       }
     ]

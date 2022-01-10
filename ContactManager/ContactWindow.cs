@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,41 +23,13 @@ namespace ContactManager
             InitializeComponent();
         }
 
-        /*
-        private void ContactLoad()
-        {
-            try
-            {
-                People.Clear();
-
-                int i = 0;
-                foreach (var contact in loggedAccount.Contacts)
-                {
-                    Person person = new Person();
-                    person.Id = i;
-                    person.Name = contact.FirstName + " " + contact.SecondName;
-                    person.Contact = contact;
-
-                    People.Add(person);
-
-                    i++;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
-            }
-        }
-        */
-
-        private void GridContactLoad()
+        private void GridContactLoad(List<Contact> contacts)
         {
             contactsGrid.Rows.Clear();
             var source = new BindingSource();
             List<Contact> gridContacts = new List<Contact>();
 
-            foreach (var contact in loggedAccount.Contacts)
+            foreach (var contact in contacts)
             {
                 if (!contact.Deleted)
                 {
@@ -77,15 +50,19 @@ namespace ContactManager
             contactsGrid.Columns["Email"].Visible = false;
             contactsGrid.Columns["PhoneNumber"].Visible = false;
             contactsGrid.Columns["Note"].Visible = false;
-            contactsGrid.Columns["Color"].Visible = false;
+            contactsGrid.Columns["Color"].Width = 1;
             contactsGrid.Columns["Deleted"].Visible = false;
 
-            
             for (int i = 0; i < gridContacts.Count; i++)
             {
                 Contact contact = contactsGrid.Rows[i].DataBoundItem as Contact;
-                contactsGrid.Rows[i].DefaultCellStyle.BackColor = contact.Color;
+                contactsGrid.Rows[i].Cells["Color"].Style.BackColor = contact.Color;
+                contactsGrid.Rows[i].Cells["Color"].Style.ForeColor = contact.Color;
+                contactsGrid.Rows[i].Cells["Color"].Style.SelectionForeColor = contact.Color;
+                contactsGrid.Rows[i].Cells["Color"].Style.SelectionBackColor = contact.Color;
             }
+
+            contactsGrid.ClearSelection();
 
             //Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
             
@@ -113,7 +90,8 @@ namespace ContactManager
         private void ContactWindow_Load(object sender, EventArgs e)
         {
             contactsGrid.MultiSelect = false;
-            GridContactLoad();
+            GridContactLoad(loggedAccount.Contacts);
+            sortPicker.SelectedItem = sortPicker.Items[0];
         }
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -133,38 +111,21 @@ namespace ContactManager
 
         }
 
-        private void azSort_Click(object sender, EventArgs e)
-        {
-            string[][] contactList = new string[contactsGrid.RowCount][];
-            for (int i = 0; i < contactsGrid.RowCount; i++)
-            {
-                contactList[i][0] = contactsGrid.Rows[i].Cells[0].Value.ToString();
-                contactList[i][1] = contactsGrid.Rows[i].Cells[1].Value.ToString();
-                //TODO
-            }
-
-            MessageBox.Show(contactList[2][1]);
-
-        }
-
-        private void zaSort_Click(object sender, EventArgs e)
-        {
-            //TODO
-        }
-
         private void createContact_Click(object sender, EventArgs e)
         {
             ClearBoxes();
 
             createCancelContact.Show();
             createSubmitContact.Show();
+            colorButton.Hide();
+            favoriteCheckBox.Hide();
         }
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
             selectedContact.Deleted = true;
             ContactSave();
-            GridContactLoad();
+            GridContactLoad(loggedAccount.Contacts);
 
         }
 
@@ -174,6 +135,8 @@ namespace ContactManager
 
             createCancelContact.Hide();
             createSubmitContact.Hide();
+            colorButton.Show();
+            favoriteCheckBox.Show();
         }
 
         private void createSubmitContact_Click(object sender, EventArgs e)
@@ -205,13 +168,15 @@ namespace ContactManager
                 loggedAccount.Contacts.Add(newContact);
                 ContactSave();
                 contactsGrid.Rows.Clear();
-                GridContactLoad();
+                GridContactLoad(loggedAccount.Contacts);
             }
 
             ClearBoxes();
 
             createCancelContact.Hide();
             createSubmitContact.Hide();
+            colorButton.Show();
+            favoriteCheckBox.Show();
         }
 
         private void favoriteCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -235,9 +200,95 @@ namespace ContactManager
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                selectedContact.Color = colorDialog1.Color;
-                contactsGrid.CurrentRow.DefaultCellStyle.BackColor = selectedContact.Color;
+
+                if (selectedContact != null)
+                {
+                    selectedContact.Color = colorDialog1.Color;
+                    contactsGrid.CurrentRow.Cells["Color"].Style.BackColor = selectedContact.Color;
+                    contactsGrid.CurrentRow.Cells["Color"].Style.ForeColor = selectedContact.Color;
+                    contactsGrid.CurrentRow.Cells["Color"].Style.SelectionForeColor = selectedContact.Color;
+                    contactsGrid.CurrentRow.Cells["Color"].Style.SelectionBackColor = selectedContact.Color;
+                }
             }
+        }
+
+        private void ContactWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ContactSave();
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+        }
+
+        private void sortPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (sortPicker.SelectedIndex)
+            {
+                case 0:
+                    GridContactLoad(loggedAccount.Contacts);
+                    break;
+
+                case 1:
+                    GridContactLoad(SortAZ());
+                    break;
+
+                case 2:
+                    Dictionary<Contact, string> contactDictionaryZA = new Dictionary<Contact, string>();
+
+                    foreach (var contact in loggedAccount.Contacts)
+                    {
+                        contactDictionaryZA.Add(contact, contact.FullName);
+                    }
+
+                    var itemsZA = from pair in contactDictionaryZA orderby pair.Value descending select pair;
+                    List<Contact> contactsZA = new List<Contact>();
+
+                    foreach (var item in itemsZA)
+                    {
+                        contactsZA.Add(item.Key);
+                    }
+                    GridContactLoad(contactsZA);
+                    break;
+
+                case 3:
+                    List<Contact> contacts = SortAZ();
+                    List<Contact> contactsFav = new List<Contact>();
+
+                    foreach (var contact in contacts)
+                    {
+                        if (contact.Favorite)
+                        {
+                            contactsFav.Add(contact);
+                        }
+                    }
+                    foreach (var contact in contacts)
+                    {
+                        if (!contact.Favorite)
+                        {
+                            contactsFav.Add(contact);
+                        }
+                    }
+                    GridContactLoad(contactsFav);
+                    break;
+            }
+        }
+        private List<Contact> SortAZ ()
+        {
+            Dictionary<Contact, string> contactDictionaryAZ = new Dictionary<Contact, string>();
+
+            foreach (var contact in loggedAccount.Contacts)
+            {
+                contactDictionaryAZ.Add(contact, contact.FullName);
+            }
+
+            var itemsAZ = from pair in contactDictionaryAZ orderby pair.Value ascending select pair;
+            List<Contact> contactsAZ = new List<Contact>();
+
+            foreach (var item in itemsAZ)
+            {
+                contactsAZ.Add(item.Key);
+            }
+
+            return contactsAZ;
         }
     }
 }

@@ -47,9 +47,8 @@ namespace ContactManager
             this.secondNameBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.firstNameBox = new System.Windows.Forms.TextBox();
+            this.sortPicker = new System.Windows.Forms.ComboBox();
             this.contactsLabel = new System.Windows.Forms.Label();
-            this.zaSort = new System.Windows.Forms.Button();
-            this.azSort = new System.Windows.Forms.Button();
             this.deleteContact = new System.Windows.Forms.Button();
             this.createContact = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -65,9 +64,9 @@ namespace ContactManager
             this.groupBox1.Controls.Add(this.createSubmitContact);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(172, 3);
+            this.groupBox1.Location = new System.Drawing.Point(174, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(520, 426);
+            this.groupBox1.Size = new System.Drawing.Size(518, 426);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -224,6 +223,20 @@ namespace ContactManager
             this.firstNameBox.Size = new System.Drawing.Size(250, 25);
             this.firstNameBox.TabIndex = 6;
             // 
+            // sortPicker
+            // 
+            this.sortPicker.FormattingEnabled = true;
+            this.sortPicker.Items.AddRange(new object[] {
+            "None",
+            "A-Z",
+            "Z-A",
+            "Favorite"});
+            this.sortPicker.Location = new System.Drawing.Point(89, 12);
+            this.sortPicker.Name = "sortPicker";
+            this.sortPicker.Size = new System.Drawing.Size(81, 23);
+            this.sortPicker.TabIndex = 15;
+            this.sortPicker.SelectedIndexChanged += new System.EventHandler(this.sortPicker_SelectedIndexChanged);
+            // 
             // contactsLabel
             // 
             this.contactsLabel.AutoSize = true;
@@ -233,26 +246,6 @@ namespace ContactManager
             this.contactsLabel.Size = new System.Drawing.Size(61, 17);
             this.contactsLabel.TabIndex = 2;
             this.contactsLabel.Text = "Contacts";
-            // 
-            // zaSort
-            // 
-            this.zaSort.Location = new System.Drawing.Point(136, 12);
-            this.zaSort.Name = "zaSort";
-            this.zaSort.Size = new System.Drawing.Size(30, 23);
-            this.zaSort.TabIndex = 3;
-            this.zaSort.Text = "ZA";
-            this.zaSort.UseVisualStyleBackColor = true;
-            this.zaSort.Click += new System.EventHandler(this.zaSort_Click);
-            // 
-            // azSort
-            // 
-            this.azSort.Location = new System.Drawing.Point(106, 12);
-            this.azSort.Name = "azSort";
-            this.azSort.Size = new System.Drawing.Size(30, 23);
-            this.azSort.TabIndex = 4;
-            this.azSort.Text = "AZ";
-            this.azSort.UseVisualStyleBackColor = true;
-            this.azSort.Click += new System.EventHandler(this.azSort_Click);
             // 
             // deleteContact
             // 
@@ -301,7 +294,7 @@ namespace ContactManager
             this.contactsGrid.ReadOnly = true;
             this.contactsGrid.RowHeadersVisible = false;
             this.contactsGrid.RowTemplate.Height = 25;
-            this.contactsGrid.Size = new System.Drawing.Size(153, 368);
+            this.contactsGrid.Size = new System.Drawing.Size(158, 368);
             this.contactsGrid.TabIndex = 0;
             this.contactsGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.contactsGrid_CellClick);
             // 
@@ -310,15 +303,15 @@ namespace ContactManager
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 441);
+            this.Controls.Add(this.sortPicker);
             this.Controls.Add(this.createContact);
             this.Controls.Add(this.deleteContact);
-            this.Controls.Add(this.azSort);
-            this.Controls.Add(this.zaSort);
             this.Controls.Add(this.contactsLabel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.contactsGrid);
             this.Name = "ContactWindow";
             this.Text = "Contact Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ContactWindow_FormClosing);
             this.Load += new System.EventHandler(this.ContactWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -354,5 +347,6 @@ namespace ContactManager
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.CheckBox favoriteCheckBox;
         private System.Windows.Forms.DataGridView contactsGrid;
+        private System.Windows.Forms.ComboBox sortPicker;
     }
 }

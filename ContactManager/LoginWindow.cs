@@ -46,12 +46,21 @@ namespace ContactManager
                         Account = account;
                         ContactWindow contactWindow = new ContactWindow();
                         contactWindow.Show();
+                        this.Hide();
                     }
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
+
+                if (MessageBox.Show(text: "Error: Database file not found. \n Select file in Settings.") ==
+                    DialogResult.OK)
+                {
+                    Settings settings = new Settings();
+                    settings.ShowDialog();
+                }
+                
             }
         }
 
