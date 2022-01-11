@@ -36,6 +36,8 @@ namespace ContactManager
             try
             {
                 var jsonString = File.ReadAllText(ContactsFile);
+                byte[] bytes = Encoding.Default.GetBytes(jsonString);
+                jsonString = Encoding.UTF8.GetString(bytes);
 
                 List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
 
@@ -90,6 +92,11 @@ namespace ContactManager
 
         private void LoginWindow_Load(object sender, EventArgs e)
         {
+        }
+
+        private void LoginWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

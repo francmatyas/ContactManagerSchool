@@ -5,8 +5,8 @@
     "Contacts": [
       {
         "FirstName": "Bruno",
-        "SecondName": "H��bal",
-        "FullName": "Bruno H��bal",
+        "SecondName": "Hýbal",
+        "FullName": "Bruno Hýbal",
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
@@ -17,9 +17,9 @@
         "Deleted": false
       },
       {
-        "FirstName": "Jind�ich",
+        "FirstName": "Jindřich",
         "SecondName": "Fischer",
-        "FullName": "Jind�ich Fischer",
+        "FullName": "Jindřich Fischer",
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
@@ -31,8 +31,8 @@
       },
       {
         "FirstName": "Šimon",
-        "SecondName": "Plech��",
-        "FullName": "�imon Plech��",
+        "SecondName": "Plechý",
+        "FullName": "Šimon Plechý",
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
@@ -44,8 +44,8 @@
       },
       {
         "FirstName": "Otakar",
-        "SecondName": "�i�ka",
-        "FullName": "Otakar �i�ka",
+        "SecondName": "Žižka",
+        "FullName": "Otakar Žižka",
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
@@ -56,9 +56,9 @@
         "Deleted": false
       },
       {
-        "FirstName": "Tom�",
-        "SecondName": "Pracha�",
-        "FullName": "Tom� Pracha�",
+        "FirstName": "Tomáš",
+        "SecondName": "Prachač",
+        "FullName": "Tomáš Prachač",
         "Birthday": "25.2.1993",
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,

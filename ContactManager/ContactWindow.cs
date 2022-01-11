@@ -61,7 +61,6 @@ namespace ContactManager
                 contactsGrid.Rows[i].Cells["Color"].Style.SelectionForeColor = contact.Color;
                 contactsGrid.Rows[i].Cells["Color"].Style.SelectionBackColor = contact.Color;
             }
-
             contactsGrid.ClearSelection();
 
             //Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;

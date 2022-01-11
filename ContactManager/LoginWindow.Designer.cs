@@ -155,6 +155,7 @@ namespace ContactManager
             this.Controls.Add(this.createAccount);
             this.Name = "LoginWindow";
             this.Text = "Contact Manager";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginWindow_FormClosed);
             this.Load += new System.EventHandler(this.LoginWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
