@@ -67,6 +67,19 @@
         "ID": 4,
         "Color": "Yellow",
         "Deleted": false
+      },
+      {
+        "FirstName": "Jan",
+        "SecondName": "Holý",
+        "FullName": "Jan Holý",
+        "Birthday": "adad",
+        "Email": "test",
+        "PhoneNumber": 2142,
+        "Note": null,
+        "Favorite": false,
+        "ID": 5,
+        "Color": "128, 255, 0",
+        "Deleted": false
       }
     ]
   },

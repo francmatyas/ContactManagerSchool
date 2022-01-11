@@ -34,132 +34,256 @@ namespace ContactManager
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.cancelLogin = new System.Windows.Forms.Button();
             this.createAccount = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
-            this.usernameLabel = new System.Windows.Forms.Label();
             this.settingsButton = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.iconBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.clearFieldsButton = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // loginLogin
             // 
-            this.loginLogin.Location = new System.Drawing.Point(126, 103);
+            this.loginLogin.BackColor = System.Drawing.Color.Navy;
+            this.loginLogin.FlatAppearance.BorderSize = 0;
+            this.loginLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginLogin.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.loginLogin.ForeColor = System.Drawing.Color.White;
+            this.loginLogin.Location = new System.Drawing.Point(30, 323);
             this.loginLogin.Name = "loginLogin";
-            this.loginLogin.Size = new System.Drawing.Size(108, 23);
+            this.loginLogin.Size = new System.Drawing.Size(206, 32);
             this.loginLogin.TabIndex = 0;
-            this.loginLogin.Text = "Login";
-            this.loginLogin.UseVisualStyleBackColor = true;
+            this.loginLogin.Text = "LOG IN";
+            this.loginLogin.UseVisualStyleBackColor = false;
             this.loginLogin.Click += new System.EventHandler(this.loginLogin_Click);
             // 
             // usernameTextBox
             // 
-            this.usernameTextBox.Location = new System.Drawing.Point(78, 22);
+            this.usernameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.usernameTextBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.usernameTextBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.usernameTextBox.Location = new System.Drawing.Point(55, 188);
             this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(156, 23);
+            this.usernameTextBox.Size = new System.Drawing.Size(181, 18);
             this.usernameTextBox.TabIndex = 1;
+            this.usernameTextBox.Text = "Username";
+            this.usernameTextBox.Click += new System.EventHandler(this.usernameTextBox_Click);
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(78, 51);
+            this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.passwordTextBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.passwordTextBox.ForeColor = System.Drawing.Color.DarkGray;
+            this.passwordTextBox.Location = new System.Drawing.Point(55, 235);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(156, 23);
+            this.passwordTextBox.Size = new System.Drawing.Size(181, 18);
             this.passwordTextBox.TabIndex = 2;
+            this.passwordTextBox.Text = "Password";
+            this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
             // 
             // cancelLogin
             // 
-            this.cancelLogin.Location = new System.Drawing.Point(12, 103);
+            this.cancelLogin.BackColor = System.Drawing.Color.Transparent;
+            this.cancelLogin.FlatAppearance.BorderSize = 0;
+            this.cancelLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.cancelLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelLogin.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cancelLogin.ForeColor = System.Drawing.Color.Navy;
+            this.cancelLogin.Location = new System.Drawing.Point(30, 361);
             this.cancelLogin.Name = "cancelLogin";
-            this.cancelLogin.Size = new System.Drawing.Size(108, 23);
+            this.cancelLogin.Size = new System.Drawing.Size(206, 32);
             this.cancelLogin.TabIndex = 3;
-            this.cancelLogin.Text = "Cancel";
-            this.cancelLogin.UseVisualStyleBackColor = true;
+            this.cancelLogin.Text = "Exit";
+            this.cancelLogin.UseVisualStyleBackColor = false;
             this.cancelLogin.Click += new System.EventHandler(this.cancelLogin_Click);
             // 
             // createAccount
             // 
-            this.createAccount.Location = new System.Drawing.Point(24, 150);
+            this.createAccount.FlatAppearance.BorderSize = 0;
+            this.createAccount.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.createAccount.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.createAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.createAccount.ForeColor = System.Drawing.Color.Navy;
+            this.createAccount.Location = new System.Drawing.Point(12, 418);
             this.createAccount.Name = "createAccount";
-            this.createAccount.Size = new System.Drawing.Size(187, 23);
+            this.createAccount.Size = new System.Drawing.Size(109, 23);
             this.createAccount.TabIndex = 4;
-            this.createAccount.Text = "Create account";
+            this.createAccount.Text = "New account";
             this.createAccount.UseVisualStyleBackColor = true;
             this.createAccount.Click += new System.EventHandler(this.createAccount_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.showPasswordCheckBox);
-            this.groupBox1.Controls.Add(this.passwordLabel);
-            this.groupBox1.Controls.Add(this.usernameLabel);
-            this.groupBox1.Controls.Add(this.usernameTextBox);
-            this.groupBox1.Controls.Add(this.passwordTextBox);
-            this.groupBox1.Controls.Add(this.cancelLogin);
-            this.groupBox1.Controls.Add(this.loginLogin);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox1.Size = new System.Drawing.Size(247, 132);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Login";
             // 
             // showPasswordCheckBox
             // 
             this.showPasswordCheckBox.AutoSize = true;
-            this.showPasswordCheckBox.Location = new System.Drawing.Point(105, 78);
+            this.showPasswordCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.showPasswordCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.showPasswordCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showPasswordCheckBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.showPasswordCheckBox.ForeColor = System.Drawing.Color.Navy;
+            this.showPasswordCheckBox.Location = new System.Drawing.Point(139, 268);
             this.showPasswordCheckBox.Name = "showPasswordCheckBox";
             this.showPasswordCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.showPasswordCheckBox.Size = new System.Drawing.Size(108, 19);
+            this.showPasswordCheckBox.Size = new System.Drawing.Size(109, 19);
             this.showPasswordCheckBox.TabIndex = 7;
             this.showPasswordCheckBox.Text = "Show password";
-            this.showPasswordCheckBox.UseVisualStyleBackColor = true;
+            this.showPasswordCheckBox.UseVisualStyleBackColor = false;
             this.showPasswordCheckBox.CheckedChanged += new System.EventHandler(this.showPasswordCheckBox_CheckedChanged);
-            // 
-            // passwordLabel
-            // 
-            this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(12, 54);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(60, 15);
-            this.passwordLabel.TabIndex = 5;
-            this.passwordLabel.Text = "Password:";
-            // 
-            // usernameLabel
-            // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(12, 25);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(63, 15);
-            this.usernameLabel.TabIndex = 4;
-            this.usernameLabel.Text = "Username:";
             // 
             // settingsButton
             // 
-            this.settingsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.settingsButton.Location = new System.Drawing.Point(217, 150);
+            this.settingsButton.FlatAppearance.BorderSize = 0;
+            this.settingsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settingsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.settingsButton.ForeColor = System.Drawing.Color.Navy;
+            this.settingsButton.Location = new System.Drawing.Point(165, 418);
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(23, 23);
+            this.settingsButton.Size = new System.Drawing.Size(99, 23);
             this.settingsButton.TabIndex = 6;
-            this.settingsButton.Text = "⚙️";
+            this.settingsButton.Text = "Settings";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // iconBox
+            // 
+            this.iconBox.Image = global::ContactManager.Properties.Resources.contacts;
+            this.iconBox.Location = new System.Drawing.Point(94, 38);
+            this.iconBox.Name = "iconBox";
+            this.iconBox.Size = new System.Drawing.Size(71, 70);
+            this.iconBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconBox.TabIndex = 7;
+            this.iconBox.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Bauhaus 93", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(68, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 39);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "LOG IN";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ContactManager.Properties.Resources.account;
+            this.pictureBox1.Location = new System.Drawing.Point(30, 186);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::ContactManager.Properties.Resources.padlock;
+            this.pictureBox2.Location = new System.Drawing.Point(30, 233);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Navy;
+            this.panel1.Location = new System.Drawing.Point(30, 209);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(206, 2);
+            this.panel1.TabIndex = 11;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Navy;
+            this.panel2.Location = new System.Drawing.Point(30, 256);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(206, 2);
+            this.panel2.TabIndex = 12;
+            // 
+            // clearFieldsButton
+            // 
+            this.clearFieldsButton.BackColor = System.Drawing.Color.Transparent;
+            this.clearFieldsButton.FlatAppearance.BorderSize = 0;
+            this.clearFieldsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.clearFieldsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearFieldsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.clearFieldsButton.ForeColor = System.Drawing.Color.Navy;
+            this.clearFieldsButton.Location = new System.Drawing.Point(14, 264);
+            this.clearFieldsButton.Name = "clearFieldsButton";
+            this.clearFieldsButton.Size = new System.Drawing.Size(77, 23);
+            this.clearFieldsButton.TabIndex = 13;
+            this.clearFieldsButton.Text = "Clear Fields";
+            this.clearFieldsButton.UseVisualStyleBackColor = false;
+            this.clearFieldsButton.Click += new System.EventHandler(this.clearFieldsButton_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::ContactManager.Properties.Resources.add_contact;
+            this.pictureBox3.Location = new System.Drawing.Point(4, 420);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 14;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::ContactManager.Properties.Resources.setting;
+            this.pictureBox4.Location = new System.Drawing.Point(242, 420);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 15;
+            this.pictureBox4.TabStop = false;
             // 
             // LoginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 179);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(265, 444);
+            this.Controls.Add(this.showPasswordCheckBox);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.clearFieldsButton);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.loginLogin);
+            this.Controls.Add(this.cancelLogin);
+            this.Controls.Add(this.iconBox);
             this.Controls.Add(this.settingsButton);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.createAccount);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LoginWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contact Manager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginWindow_FormClosed);
             this.Load += new System.EventHandler(this.LoginWindow_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -170,11 +294,17 @@ namespace ContactManager
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button cancelLogin;
         private System.Windows.Forms.Button createAccount;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label passwordLabel;
-        private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.CheckBox showPasswordCheckBox;
         private System.Windows.Forms.Button settingsButton;
+        private System.Windows.Forms.PictureBox iconBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button clearFieldsButton;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 

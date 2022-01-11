@@ -92,11 +92,35 @@ namespace ContactManager
 
         private void LoginWindow_Load(object sender, EventArgs e)
         {
+            passwordTextBox.AutoSize = false;
+            passwordTextBox.Height = 25;
+            usernameTextBox.AutoSize = false;
+            usernameTextBox.Height = 25;
         }
 
         private void LoginWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void usernameTextBox_Click(object sender, EventArgs e)
+        {
+            usernameTextBox.SelectAll();
+            usernameTextBox.ForeColor = Color.Black;
+        }
+
+        private void passwordTextBox_Click(object sender, EventArgs e)
+        {
+            passwordTextBox.SelectAll();
+            passwordTextBox.ForeColor = Color.Black;
+        }
+
+        private void clearFieldsButton_Click(object sender, EventArgs e)
+        {
+            usernameTextBox.Text = "Username";
+            usernameTextBox.ForeColor = Color.DarkGray;
+            passwordTextBox.Text = "Password";
+            passwordTextBox.ForeColor = Color.DarkGray;
         }
     }
 }
