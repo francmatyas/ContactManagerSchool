@@ -89,7 +89,7 @@ namespace ContactManager
             this.passwordTextBox.Location = new System.Drawing.Point(55, 235);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(151, 18);
+            this.passwordTextBox.Size = new System.Drawing.Size(158, 18);
             this.passwordTextBox.TabIndex = 2;
             this.passwordTextBox.Text = "Password";
             this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
@@ -239,14 +239,14 @@ namespace ContactManager
             // 
             // showPassToggleButton
             // 
-            this.showPassToggleButton.Location = new System.Drawing.Point(208, 237);
-            this.showPassToggleButton.MinimumSize = new System.Drawing.Size(25, 16);
+            this.showPassToggleButton.Location = new System.Drawing.Point(211, 238);
+            this.showPassToggleButton.MinimumSize = new System.Drawing.Size(25, 15);
             this.showPassToggleButton.Name = "showPassToggleButton";
             this.showPassToggleButton.OffBackColor = System.Drawing.Color.Navy;
             this.showPassToggleButton.OffToggleColor = System.Drawing.Color.DarkGray;
             this.showPassToggleButton.OnBackColor = System.Drawing.Color.Navy;
             this.showPassToggleButton.OnToggleColor = System.Drawing.Color.DarkBlue;
-            this.showPassToggleButton.Size = new System.Drawing.Size(28, 16);
+            this.showPassToggleButton.Size = new System.Drawing.Size(25, 15);
             this.showPassToggleButton.SolidStyle = false;
             this.showPassToggleButton.TabIndex = 18;
             this.showPassToggleButton.UseVisualStyleBackColor = true;
