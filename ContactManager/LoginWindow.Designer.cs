@@ -34,7 +34,6 @@ namespace ContactManager
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.cancelLogin = new System.Windows.Forms.Button();
             this.createAccount = new System.Windows.Forms.Button();
-            this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.settingsButton = new System.Windows.Forms.Button();
             this.iconBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@ namespace ContactManager
             this.clearFieldsButton = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.showPassToggleButton = new ContactManager.Custom_Design.ToggleButton();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -56,6 +56,8 @@ namespace ContactManager
             // 
             this.loginLogin.BackColor = System.Drawing.Color.Navy;
             this.loginLogin.FlatAppearance.BorderSize = 0;
+            this.loginLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MidnightBlue;
+            this.loginLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkBlue;
             this.loginLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginLogin.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.loginLogin.ForeColor = System.Drawing.Color.White;
@@ -87,7 +89,7 @@ namespace ContactManager
             this.passwordTextBox.Location = new System.Drawing.Point(55, 235);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(181, 18);
+            this.passwordTextBox.Size = new System.Drawing.Size(151, 18);
             this.passwordTextBox.TabIndex = 2;
             this.passwordTextBox.Text = "Password";
             this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
@@ -96,7 +98,8 @@ namespace ContactManager
             // 
             this.cancelLogin.BackColor = System.Drawing.Color.Transparent;
             this.cancelLogin.FlatAppearance.BorderSize = 0;
-            this.cancelLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.cancelLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gainsboro;
+            this.cancelLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.cancelLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelLogin.Font = new System.Drawing.Font("Cooper Black", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cancelLogin.ForeColor = System.Drawing.Color.Navy;
@@ -111,7 +114,7 @@ namespace ContactManager
             // createAccount
             // 
             this.createAccount.FlatAppearance.BorderSize = 0;
-            this.createAccount.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.createAccount.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.createAccount.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.createAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -124,26 +127,10 @@ namespace ContactManager
             this.createAccount.UseVisualStyleBackColor = true;
             this.createAccount.Click += new System.EventHandler(this.createAccount_Click);
             // 
-            // showPasswordCheckBox
-            // 
-            this.showPasswordCheckBox.AutoSize = true;
-            this.showPasswordCheckBox.BackColor = System.Drawing.Color.Transparent;
-            this.showPasswordCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.showPasswordCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.showPasswordCheckBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.showPasswordCheckBox.ForeColor = System.Drawing.Color.Navy;
-            this.showPasswordCheckBox.Location = new System.Drawing.Point(139, 268);
-            this.showPasswordCheckBox.Name = "showPasswordCheckBox";
-            this.showPasswordCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.showPasswordCheckBox.Size = new System.Drawing.Size(109, 19);
-            this.showPasswordCheckBox.TabIndex = 7;
-            this.showPasswordCheckBox.Text = "Show password";
-            this.showPasswordCheckBox.UseVisualStyleBackColor = false;
-            this.showPasswordCheckBox.CheckedChanged += new System.EventHandler(this.showPasswordCheckBox_CheckedChanged);
-            // 
             // settingsButton
             // 
             this.settingsButton.FlatAppearance.BorderSize = 0;
+            this.settingsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.settingsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settingsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -217,6 +204,7 @@ namespace ContactManager
             // 
             this.clearFieldsButton.BackColor = System.Drawing.Color.Transparent;
             this.clearFieldsButton.FlatAppearance.BorderSize = 0;
+            this.clearFieldsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.clearFieldsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.clearFieldsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearFieldsButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -249,13 +237,28 @@ namespace ContactManager
             this.pictureBox4.TabIndex = 15;
             this.pictureBox4.TabStop = false;
             // 
+            // showPassToggleButton
+            // 
+            this.showPassToggleButton.Location = new System.Drawing.Point(208, 237);
+            this.showPassToggleButton.MinimumSize = new System.Drawing.Size(25, 16);
+            this.showPassToggleButton.Name = "showPassToggleButton";
+            this.showPassToggleButton.OffBackColor = System.Drawing.Color.Navy;
+            this.showPassToggleButton.OffToggleColor = System.Drawing.Color.DarkGray;
+            this.showPassToggleButton.OnBackColor = System.Drawing.Color.Navy;
+            this.showPassToggleButton.OnToggleColor = System.Drawing.Color.DarkBlue;
+            this.showPassToggleButton.Size = new System.Drawing.Size(28, 16);
+            this.showPassToggleButton.SolidStyle = false;
+            this.showPassToggleButton.TabIndex = 18;
+            this.showPassToggleButton.UseVisualStyleBackColor = true;
+            this.showPassToggleButton.CheckedChanged += new System.EventHandler(this.showPassToggleButton_CheckedChanged);
+            // 
             // LoginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(265, 444);
-            this.Controls.Add(this.showPasswordCheckBox);
+            this.Controls.Add(this.showPassToggleButton);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.clearFieldsButton);
@@ -294,7 +297,6 @@ namespace ContactManager
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button cancelLogin;
         private System.Windows.Forms.Button createAccount;
-        private System.Windows.Forms.CheckBox showPasswordCheckBox;
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.PictureBox iconBox;
         private System.Windows.Forms.Label label1;
@@ -305,6 +307,7 @@ namespace ContactManager
         private System.Windows.Forms.Button clearFieldsButton;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private Custom_Design.ToggleButton showPassToggleButton;
     }
 }
 

@@ -72,18 +72,6 @@ namespace ContactManager
             createAccountWindow.Show();
         }
 
-        private void showPasswordCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (showPasswordCheckBox.CheckState == CheckState.Checked)
-            {
-                passwordTextBox.PasswordChar = '\0';
-            }
-            else
-            {
-                passwordTextBox.PasswordChar = '*';
-            }
-        }
-
         private void settingsButton_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
@@ -121,6 +109,18 @@ namespace ContactManager
             usernameTextBox.ForeColor = Color.DarkGray;
             passwordTextBox.Text = "Password";
             passwordTextBox.ForeColor = Color.DarkGray;
+        }
+
+        private void showPassToggleButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (showPassToggleButton.CheckState == CheckState.Checked)
+            {
+                passwordTextBox.PasswordChar = '\0';
+            }
+            else
+            {
+                passwordTextBox.PasswordChar = '*';
+            }
         }
     }
 }
