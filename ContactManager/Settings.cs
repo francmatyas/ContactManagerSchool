@@ -17,8 +17,8 @@ namespace ContactManager
         public Color ReturnContentColor { get; set; }
         public Color ReturnBackColor { get; set; }
 
-        
-        Color _contentColor = Color.Navy;
+
+        private Color _contentColor;
         public Color ContentColor
         {
             get
@@ -53,7 +53,33 @@ namespace ContactManager
         private void Settings_Load(object sender, EventArgs e)
         {
             fileLabel.Text = "File: " + LoginWindow.ContactsFile;
-            ContentColorChange(ContentColor);
+
+            switch (LoginWindow.ContentColor.Name)
+            {
+                case "Navy":
+                {
+                    blueToggleButton1.Checked = true;
+                    break;
+                }
+                case "SeaGreen":
+                {
+                    greenToggleButton1.Checked = true;
+                    break;
+                }
+                case "DarkOrange":
+                {
+                    orangeToggleButton1.Checked = true;
+                    break;
+                }
+                default:
+                {
+                    customColorToggleButton1.Checked = true;
+                    customColorToggleButton1.OnBackColor = LoginWindow.ContentColor;
+                    customColorPanel.BackColor = LoginWindow.ContentColor;
+                    break;
+                }
+            }
+            ContentColorChange(LoginWindow.ContentColor);
         }
 
         private void dataTypeToggleButton_CheckedChanged(object sender, EventArgs e)
@@ -105,7 +131,6 @@ namespace ContactManager
         {
             if (customColorToggleButton1.Checked)
             {
-                customColorToggleButton1.OnBackColor = customColorPanel.BackColor;
                 ContentColor = customColorPanel.BackColor;
                 blueToggleButton1.Checked = false;
                 greenToggleButton1.Checked = false;
@@ -115,7 +140,6 @@ namespace ContactManager
         public void ContentColorChange(Color contentColor)
         {
             SettingsContentColor(contentColor);
-            //LoginWindow.ContactColor = contentColor;
         }
 
         public void SettingsContentColor(Color contentColor)
@@ -133,6 +157,7 @@ namespace ContactManager
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 customColorPanel.BackColor = colorDialog1.Color;
+                customColorToggleButton1.OnBackColor = colorDialog1.Color;
             }
 
             customColorToggleButton1.Checked = false;

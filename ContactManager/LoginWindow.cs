@@ -17,7 +17,7 @@ namespace ContactManager
     {
         public static Account Account;
         public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
-        public Color ContentColor = Color.Navy;
+        public static Color ContentColor = Color.Navy;
         public Color BackColorMode = Color.White;
 
         public LoginWindow()
@@ -48,6 +48,7 @@ namespace ContactManager
                     if (account.Username == username && account.Password == password)
                     {
                         Account = account;
+                        ContentColor = Account.ContentColor;
                         ContactWindow contactWindow = new ContactWindow();
                         contactWindow.Show();
                         this.Hide();
