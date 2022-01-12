@@ -60,6 +60,7 @@
             this.bluePanel = new System.Windows.Forms.Panel();
             this.greenToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.blueToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
+            this.confirmButton = new System.Windows.Forms.Button();
             this.JSONPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -219,7 +220,7 @@
             // darkModeToggleButton
             // 
             this.darkModeToggleButton.AutoSize = true;
-            this.darkModeToggleButton.Location = new System.Drawing.Point(15, 227);
+            this.darkModeToggleButton.Location = new System.Drawing.Point(15, 219);
             this.darkModeToggleButton.MinimumSize = new System.Drawing.Size(40, 20);
             this.darkModeToggleButton.Name = "darkModeToggleButton";
             this.darkModeToggleButton.OffBackColor = System.Drawing.Color.Gray;
@@ -233,9 +234,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 209);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(14, 200);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 15);
+            this.label5.Size = new System.Drawing.Size(76, 17);
             this.label5.TabIndex = 15;
             this.label5.Text = "Dark mode";
             // 
@@ -244,7 +246,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(348, 238);
+            this.label6.Location = new System.Drawing.Point(0, 2);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 17);
             this.label6.TabIndex = 16;
@@ -256,7 +258,7 @@
             this.label7.BackColor = System.Drawing.Color.White;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(6, 7);
+            this.label7.Location = new System.Drawing.Point(6, 23);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 15);
             this.label7.TabIndex = 17;
@@ -266,7 +268,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(6, 28);
+            this.label8.Location = new System.Drawing.Point(6, 44);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 15);
             this.label8.TabIndex = 18;
@@ -276,7 +278,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(6, 49);
+            this.label9.Location = new System.Drawing.Point(6, 65);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 15);
             this.label9.TabIndex = 19;
@@ -286,7 +288,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(6, 71);
+            this.label10.Location = new System.Drawing.Point(6, 87);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 15);
             this.label10.TabIndex = 20;
@@ -295,6 +297,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.greenPanel);
+            this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.orangePanel);
             this.panel3.Controls.Add(this.customColorPanel);
             this.panel3.Controls.Add(this.orangeToggleButton1);
@@ -306,15 +309,15 @@
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.blueToggleButton1);
-            this.panel3.Location = new System.Drawing.Point(348, 258);
+            this.panel3.Location = new System.Drawing.Point(348, 202);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(144, 93);
+            this.panel3.Size = new System.Drawing.Size(144, 109);
             this.panel3.TabIndex = 21;
             // 
             // greenPanel
             // 
             this.greenPanel.BackColor = System.Drawing.Color.SeaGreen;
-            this.greenPanel.Location = new System.Drawing.Point(61, 28);
+            this.greenPanel.Location = new System.Drawing.Point(61, 44);
             this.greenPanel.Name = "greenPanel";
             this.greenPanel.Size = new System.Drawing.Size(15, 15);
             this.greenPanel.TabIndex = 23;
@@ -322,7 +325,7 @@
             // orangePanel
             // 
             this.orangePanel.BackColor = System.Drawing.Color.DarkOrange;
-            this.orangePanel.Location = new System.Drawing.Point(61, 49);
+            this.orangePanel.Location = new System.Drawing.Point(61, 65);
             this.orangePanel.Name = "orangePanel";
             this.orangePanel.Size = new System.Drawing.Size(15, 15);
             this.orangePanel.TabIndex = 24;
@@ -330,7 +333,7 @@
             // customColorPanel
             // 
             this.customColorPanel.BackColor = System.Drawing.Color.HotPink;
-            this.customColorPanel.Location = new System.Drawing.Point(61, 71);
+            this.customColorPanel.Location = new System.Drawing.Point(61, 87);
             this.customColorPanel.Name = "customColorPanel";
             this.customColorPanel.Size = new System.Drawing.Size(15, 15);
             this.customColorPanel.TabIndex = 25;
@@ -339,7 +342,7 @@
             // orangeToggleButton1
             // 
             this.orangeToggleButton1.AutoSize = true;
-            this.orangeToggleButton1.Location = new System.Drawing.Point(100, 49);
+            this.orangeToggleButton1.Location = new System.Drawing.Point(100, 65);
             this.orangeToggleButton1.MinimumSize = new System.Drawing.Size(30, 15);
             this.orangeToggleButton1.Name = "orangeToggleButton1";
             this.orangeToggleButton1.OffBackColor = System.Drawing.Color.Gray;
@@ -354,7 +357,7 @@
             // customColorToggleButton1
             // 
             this.customColorToggleButton1.AutoSize = true;
-            this.customColorToggleButton1.Location = new System.Drawing.Point(100, 71);
+            this.customColorToggleButton1.Location = new System.Drawing.Point(100, 87);
             this.customColorToggleButton1.MinimumSize = new System.Drawing.Size(30, 15);
             this.customColorToggleButton1.Name = "customColorToggleButton1";
             this.customColorToggleButton1.OffBackColor = System.Drawing.Color.Gray;
@@ -369,7 +372,7 @@
             // bluePanel
             // 
             this.bluePanel.BackColor = System.Drawing.Color.Navy;
-            this.bluePanel.Location = new System.Drawing.Point(61, 7);
+            this.bluePanel.Location = new System.Drawing.Point(61, 23);
             this.bluePanel.Name = "bluePanel";
             this.bluePanel.Size = new System.Drawing.Size(15, 15);
             this.bluePanel.TabIndex = 22;
@@ -377,7 +380,7 @@
             // greenToggleButton1
             // 
             this.greenToggleButton1.AutoSize = true;
-            this.greenToggleButton1.Location = new System.Drawing.Point(100, 28);
+            this.greenToggleButton1.Location = new System.Drawing.Point(100, 44);
             this.greenToggleButton1.MinimumSize = new System.Drawing.Size(30, 15);
             this.greenToggleButton1.Name = "greenToggleButton1";
             this.greenToggleButton1.OffBackColor = System.Drawing.Color.Gray;
@@ -392,7 +395,7 @@
             // blueToggleButton1
             // 
             this.blueToggleButton1.AutoSize = true;
-            this.blueToggleButton1.Location = new System.Drawing.Point(100, 7);
+            this.blueToggleButton1.Location = new System.Drawing.Point(100, 23);
             this.blueToggleButton1.MinimumSize = new System.Drawing.Size(30, 15);
             this.blueToggleButton1.Name = "blueToggleButton1";
             this.blueToggleButton1.OffBackColor = System.Drawing.Color.Gray;
@@ -404,14 +407,28 @@
             this.blueToggleButton1.UseVisualStyleBackColor = true;
             this.blueToggleButton1.CheckedChanged += new System.EventHandler(this.blueToggleButton1_CheckedChanged);
             // 
+            // confirmButton
+            // 
+            this.confirmButton.BackColor = System.Drawing.Color.Navy;
+            this.confirmButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.confirmButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.confirmButton.ForeColor = System.Drawing.Color.White;
+            this.confirmButton.Location = new System.Drawing.Point(14, 274);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(103, 37);
+            this.confirmButton.TabIndex = 22;
+            this.confirmButton.Text = "Confirm";
+            this.confirmButton.UseVisualStyleBackColor = false;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(507, 394);
+            this.ClientSize = new System.Drawing.Size(507, 324);
+            this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.darkModeToggleButton);
             this.Controls.Add(this.pictureBox2);
@@ -428,6 +445,7 @@
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.Load += new System.EventHandler(this.Settings_Load);
             this.JSONPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -476,5 +494,6 @@
         private System.Windows.Forms.Panel bluePanel;
         private Custom_Design.ToggleButton greenToggleButton1;
         private Custom_Design.ToggleButton blueToggleButton1;
+        private System.Windows.Forms.Button confirmButton;
     }
 }

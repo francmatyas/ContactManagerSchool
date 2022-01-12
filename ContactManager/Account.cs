@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace ContactManager
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public Color ContentColor { get; set; }
         public List<Contact> Contacts { get; set; }
     }
 }

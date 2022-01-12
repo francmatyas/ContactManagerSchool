@@ -2,6 +2,7 @@
   {
     "Username": "admin",
     "Password": "admin",
+    "ContentColor": "Navy",
     "Contacts": [
       {
         "FirstName": "Bruno",
@@ -86,6 +87,7 @@
   {
     "Username": "test",
     "Password": "test",
+    "ContentColor": "",
     "Contacts": [
       {
         "FirstName": "Vladislav",
@@ -131,6 +133,7 @@
   {
     "Username": "test2",
     "Password": "test2",
+    "ContentColor": "",
     "Contacts": null
   }
 ]

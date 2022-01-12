@@ -17,6 +17,8 @@ namespace ContactManager
     {
         public static Account Account;
         public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
+        public Color ContentColor = Color.Navy;
+        public Color BackColorMode = Color.White;
 
         public LoginWindow()
         {
@@ -62,7 +64,6 @@ namespace ContactManager
                     Settings settings = new Settings();
                     settings.ShowDialog();
                 }
-                
             }
         }
 
@@ -75,7 +76,11 @@ namespace ContactManager
         private void settingsButton_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
-            settings.ShowDialog();
+            if (settings.ShowDialog() == DialogResult.OK)
+            {
+                ContentColor = settings.ReturnContentColor;
+                LoginContentColor(ContentColor);
+            }
         }
 
         private void LoginWindow_Load(object sender, EventArgs e)
@@ -121,6 +126,22 @@ namespace ContactManager
             {
                 passwordTextBox.PasswordChar = '*';
             }
+        }
+
+        public void LoginContentColor(Color contentColor)
+        {
+            label1.ForeColor = contentColor;
+            panel1.BackColor = contentColor;
+            panel2.BackColor = contentColor;
+            clearFieldsButton.ForeColor = contentColor;
+            loginLogin.BackColor = contentColor;
+            cancelLogin.ForeColor = contentColor;
+            settingsButton.ForeColor = contentColor;
+            createAccount.ForeColor = contentColor;
+            showPassToggleButton.OffBackColor = contentColor;
+            showPassToggleButton.OnBackColor = contentColor;
+            loginLogin.FlatAppearance.MouseDownBackColor = contentColor;
+            loginLogin.FlatAppearance.MouseOverBackColor = contentColor;
         }
     }
 }
