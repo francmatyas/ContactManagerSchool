@@ -14,10 +14,12 @@ namespace ContactManager
 {
     public partial class Settings : Form
     {
-        public Color ReturnContentColor { get; set; }
+        public Color ReturnPrimaryContentColor { get; set; }
+        public Color ReturnSecondaryHContentColor { get; set; }
+        public Color ReturnSecondaryCContentColor { get; set; }
         public Color ReturnBackColor { get; set; }
 
-
+        /*
         private Color _contentColor;
         public Color ContentColor
         {
@@ -30,11 +32,11 @@ namespace ContactManager
                 if (value != _contentColor)
                 {
                     _contentColor = value;
-                    ContentColorChange(_contentColor);
+                    //ContentColorChange(_contentColor);
                 }
             }
         }
-
+        */
         public Settings()
         {
             InitializeComponent();
@@ -54,7 +56,7 @@ namespace ContactManager
         {
             fileLabel.Text = "File: " + LoginWindow.ContactsFile;
 
-            switch (LoginWindow.ContentColor.Name)
+            switch (LoginWindow.PrimaryContentColor.Name)
             {
                 case "Navy":
                 {
@@ -74,12 +76,12 @@ namespace ContactManager
                 default:
                 {
                     customColorToggleButton1.Checked = true;
-                    customColorToggleButton1.OnBackColor = LoginWindow.ContentColor;
-                    customColorPanel.BackColor = LoginWindow.ContentColor;
+                    customColorToggleButton1.OnBackColor = LoginWindow.PrimaryContentColor;
+                    customColorPanel.BackColor = LoginWindow.PrimaryContentColor;
                     break;
                 }
             }
-            ContentColorChange(LoginWindow.ContentColor);
+            SettingsContentColor(LoginWindow.PrimaryContentColor, LoginWindow.SecondaryHContentColor, LoginWindow.SecondaryCContentColor);
         }
 
         private void dataTypeToggleButton_CheckedChanged(object sender, EventArgs e)
@@ -98,7 +100,14 @@ namespace ContactManager
         {
             if (blueToggleButton1.Checked)
             {
-                ContentColor = Color.Navy;
+                //ContentColor = Color.Navy;
+
+                ReturnPrimaryContentColor = Color.Navy;
+                ReturnSecondaryHContentColor = Color.DarkBlue;
+                ReturnSecondaryCContentColor = Color.MidnightBlue;
+
+                SettingsContentColor(ReturnPrimaryContentColor, ReturnSecondaryHContentColor, ReturnSecondaryCContentColor);
+
                 greenToggleButton1.Checked = false;
                 orangeToggleButton1.Checked = false;
                 customColorToggleButton1.Checked = false;
@@ -109,7 +118,14 @@ namespace ContactManager
         {
             if (greenToggleButton1.Checked)
             {
-                ContentColor = Color.SeaGreen;
+                //ContentColor = Color.SeaGreen;
+
+                ReturnPrimaryContentColor = Color.SeaGreen;
+                ReturnSecondaryHContentColor = Color.MediumSeaGreen;
+                ReturnSecondaryCContentColor = Color.DarkGreen;
+
+                SettingsContentColor(ReturnPrimaryContentColor, ReturnSecondaryHContentColor, ReturnSecondaryCContentColor);
+
                 blueToggleButton1.Checked = false;
                 orangeToggleButton1.Checked = false;
                 customColorToggleButton1.Checked = false;
@@ -120,7 +136,14 @@ namespace ContactManager
         {
             if (orangeToggleButton1.Checked)
             {
-                ContentColor = Color.DarkOrange;
+                //ContentColor = Color.DarkOrange;
+
+                ReturnPrimaryContentColor = Color.DarkOrange;
+                ReturnSecondaryHContentColor = Color.Orange;
+                ReturnSecondaryCContentColor = Color.Chocolate;
+
+                SettingsContentColor(ReturnPrimaryContentColor, ReturnSecondaryHContentColor, ReturnSecondaryCContentColor);
+
                 blueToggleButton1.Checked = false;
                 greenToggleButton1.Checked = false;
                 customColorToggleButton1.Checked = false;
@@ -131,25 +154,32 @@ namespace ContactManager
         {
             if (customColorToggleButton1.Checked)
             {
-                ContentColor = customColorPanel.BackColor;
+                //ContentColor = customColorPanel.BackColor;
+
+                ReturnPrimaryContentColor = this.customColorPanel.BackColor;
+                ReturnSecondaryCContentColor = this.secondaryCCustomColorPanel.BackColor;
+                ReturnSecondaryHContentColor = this.secondaryHCustomColorPanel.BackColor;
+
+                SettingsContentColor(ReturnPrimaryContentColor, ReturnSecondaryHContentColor, ReturnSecondaryCContentColor);
+
                 blueToggleButton1.Checked = false;
                 greenToggleButton1.Checked = false;
                 orangeToggleButton1.Checked = false;
             }
         }
-        public void ContentColorChange(Color contentColor)
-        {
-            SettingsContentColor(contentColor);
-        }
 
-        public void SettingsContentColor(Color contentColor)
+        public void SettingsContentColor(Color primaryContentColor, Color secondaryHContentColor, Color secondaryCContentColor)
         {
-            this.label1.ForeColor = contentColor;
-            this.label2.ForeColor = contentColor;
-            this.label3.ForeColor = contentColor;
-            this.label4.ForeColor = contentColor;
-            this.loadFileButton.BackColor = contentColor;
-            this.confirmButton.BackColor = contentColor;
+            this.label1.ForeColor = primaryContentColor;
+            this.label2.ForeColor = primaryContentColor;
+            this.label3.ForeColor = primaryContentColor;
+            this.label4.ForeColor = primaryContentColor;
+            this.loadFileButton.BackColor = primaryContentColor;
+            this.loadFileButton.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+            this.loadFileButton.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
+            this.confirmButton.BackColor = primaryContentColor;
+            this.confirmButton.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+            this.confirmButton.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
         }
 
         private void customColorPanel_Click(object sender, EventArgs e)
@@ -162,6 +192,28 @@ namespace ContactManager
 
             customColorToggleButton1.Checked = false;
         }
+        private void secondaryHCustomColorPanel_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                secondaryHCustomColorPanel.BackColor = colorDialog1.Color;
+                customColorToggleButton1.OnBackColor = colorDialog1.Color;
+            }
+
+            customColorToggleButton1.Checked = false;
+        }
+
+        private void secondaryCCustomColorPanel_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                secondaryCCustomColorPanel.BackColor = colorDialog1.Color;
+                customColorToggleButton1.OnBackColor = colorDialog1.Color;
+            }
+
+            customColorToggleButton1.Checked = false;
+        }
+
 
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -169,7 +221,6 @@ namespace ContactManager
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            this.ReturnContentColor = ContentColor;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

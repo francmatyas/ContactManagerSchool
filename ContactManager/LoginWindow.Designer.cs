@@ -45,6 +45,7 @@ namespace ContactManager
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.showPassToggleButton = new ContactManager.Custom_Design.ToggleButton();
+            this.incorrectPassOrUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -252,12 +253,25 @@ namespace ContactManager
             this.showPassToggleButton.UseVisualStyleBackColor = true;
             this.showPassToggleButton.CheckedChanged += new System.EventHandler(this.showPassToggleButton_CheckedChanged);
             // 
+            // incorrectPassOrUser
+            // 
+            this.incorrectPassOrUser.AutoSize = true;
+            this.incorrectPassOrUser.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.incorrectPassOrUser.ForeColor = System.Drawing.Color.Red;
+            this.incorrectPassOrUser.Location = new System.Drawing.Point(30, 295);
+            this.incorrectPassOrUser.Name = "incorrectPassOrUser";
+            this.incorrectPassOrUser.Size = new System.Drawing.Size(208, 13);
+            this.incorrectPassOrUser.TabIndex = 19;
+            this.incorrectPassOrUser.Text = "The username or password is incorrect.";
+            this.incorrectPassOrUser.Visible = false;
+            // 
             // LoginWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(265, 444);
+            this.Controls.Add(this.incorrectPassOrUser);
             this.Controls.Add(this.showPassToggleButton);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
@@ -308,6 +322,7 @@ namespace ContactManager
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private Custom_Design.ToggleButton showPassToggleButton;
+        private System.Windows.Forms.Label incorrectPassOrUser;
     }
 }
 

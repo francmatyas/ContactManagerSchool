@@ -17,7 +17,11 @@ namespace ContactManager
     {
         public static Account Account;
         public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
-        public static Color ContentColor = Color.Navy;
+
+        public static Color PrimaryContentColor = Color.Navy;
+        public static Color SecondaryHContentColor = Color.DarkBlue;
+        public static Color SecondaryCContentColor = Color.MidnightBlue;
+
         public Color BackColorMode = Color.White;
 
         public LoginWindow()
@@ -48,10 +52,15 @@ namespace ContactManager
                     if (account.Username == username && account.Password == password)
                     {
                         Account = account;
-                        ContentColor = Account.ContentColor;
+                        PrimaryContentColor = Account.ContentColor;
+                        incorrectPassOrUser.Visible = false;
                         ContactWindow contactWindow = new ContactWindow();
                         contactWindow.Show();
                         this.Hide();
+                    }
+                    else
+                    {
+                        incorrectPassOrUser.Visible = true;
                     }
                 }
             }
@@ -79,8 +88,10 @@ namespace ContactManager
             Settings settings = new Settings();
             if (settings.ShowDialog() == DialogResult.OK)
             {
-                ContentColor = settings.ReturnContentColor;
-                LoginContentColor(ContentColor);
+                PrimaryContentColor = settings.ReturnPrimaryContentColor;
+                SecondaryCContentColor = settings.ReturnSecondaryCContentColor;
+                SecondaryHContentColor = settings.ReturnSecondaryHContentColor;
+                LoginContentColor(PrimaryContentColor, SecondaryHContentColor, SecondaryCContentColor);
             }
         }
 
@@ -115,6 +126,7 @@ namespace ContactManager
             usernameTextBox.ForeColor = Color.DarkGray;
             passwordTextBox.Text = "Password";
             passwordTextBox.ForeColor = Color.DarkGray;
+            incorrectPassOrUser.Visible = false;
         }
 
         private void showPassToggleButton_CheckedChanged(object sender, EventArgs e)
@@ -129,20 +141,23 @@ namespace ContactManager
             }
         }
 
-        public void LoginContentColor(Color contentColor)
+        public void LoginContentColor(Color primaryContentColor, Color secondaryHContentColor, Color secondaryCContentColor)
         {
-            label1.ForeColor = contentColor;
-            panel1.BackColor = contentColor;
-            panel2.BackColor = contentColor;
-            clearFieldsButton.ForeColor = contentColor;
-            loginLogin.BackColor = contentColor;
-            cancelLogin.ForeColor = contentColor;
-            settingsButton.ForeColor = contentColor;
-            createAccount.ForeColor = contentColor;
-            showPassToggleButton.OffBackColor = contentColor;
-            showPassToggleButton.OnBackColor = contentColor;
-            loginLogin.FlatAppearance.MouseDownBackColor = contentColor;
-            loginLogin.FlatAppearance.MouseOverBackColor = contentColor;
+            label1.ForeColor = primaryContentColor;
+            panel1.BackColor = primaryContentColor;
+            panel2.BackColor = primaryContentColor;
+            clearFieldsButton.ForeColor = primaryContentColor;
+
+            loginLogin.BackColor = primaryContentColor;
+            loginLogin.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+            loginLogin.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
+
+            cancelLogin.ForeColor = primaryContentColor;
+            settingsButton.ForeColor = primaryContentColor;
+            createAccount.ForeColor = primaryContentColor;
+            showPassToggleButton.OffBackColor = primaryContentColor;
+            showPassToggleButton.OnBackColor = primaryContentColor;
+            showPassToggleButton.OnToggleColor = primaryContentColor;
         }
     }
 }

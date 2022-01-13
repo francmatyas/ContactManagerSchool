@@ -52,7 +52,15 @@
             this.label10 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.secondaryCCustomColorPanel = new System.Windows.Forms.Panel();
+            this.secondaryHCustomColorPanel = new System.Windows.Forms.Panel();
+            this.secondaryCOrangePanel = new System.Windows.Forms.Panel();
+            this.secondaryHOrangePanel = new System.Windows.Forms.Panel();
+            this.secondaryCGreenPanel = new System.Windows.Forms.Panel();
+            this.secondaryHGreenPanel = new System.Windows.Forms.Panel();
+            this.secondaryCBluePanel = new System.Windows.Forms.Panel();
             this.greenPanel = new System.Windows.Forms.Panel();
+            this.secondaryHBluePanel = new System.Windows.Forms.Panel();
             this.orangePanel = new System.Windows.Forms.Panel();
             this.customColorPanel = new System.Windows.Forms.Panel();
             this.orangeToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
@@ -61,12 +69,15 @@
             this.greenToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.blueToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.confirmButton = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.JSONPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
+            this.secondaryCCustomColorPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -296,7 +307,16 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.secondaryCCustomColorPanel);
+            this.panel3.Controls.Add(this.secondaryHCustomColorPanel);
+            this.panel3.Controls.Add(this.secondaryCOrangePanel);
+            this.panel3.Controls.Add(this.secondaryHOrangePanel);
+            this.panel3.Controls.Add(this.secondaryCGreenPanel);
+            this.panel3.Controls.Add(this.secondaryHGreenPanel);
+            this.panel3.Controls.Add(this.secondaryCBluePanel);
             this.panel3.Controls.Add(this.greenPanel);
+            this.panel3.Controls.Add(this.secondaryHBluePanel);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.orangePanel);
             this.panel3.Controls.Add(this.customColorPanel);
@@ -311,8 +331,67 @@
             this.panel3.Controls.Add(this.blueToggleButton1);
             this.panel3.Location = new System.Drawing.Point(348, 202);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(144, 109);
+            this.panel3.Size = new System.Drawing.Size(144, 121);
             this.panel3.TabIndex = 21;
+            // 
+            // secondaryCCustomColorPanel
+            // 
+            this.secondaryCCustomColorPanel.BackColor = System.Drawing.Color.Indigo;
+            this.secondaryCCustomColorPanel.Controls.Add(this.label11);
+            this.secondaryCCustomColorPanel.Location = new System.Drawing.Point(86, 87);
+            this.secondaryCCustomColorPanel.Name = "secondaryCCustomColorPanel";
+            this.secondaryCCustomColorPanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryCCustomColorPanel.TabIndex = 26;
+            this.secondaryCCustomColorPanel.Click += new System.EventHandler(this.secondaryCCustomColorPanel_Click);
+            // 
+            // secondaryHCustomColorPanel
+            // 
+            this.secondaryHCustomColorPanel.BackColor = System.Drawing.Color.MediumOrchid;
+            this.secondaryHCustomColorPanel.Location = new System.Drawing.Point(78, 87);
+            this.secondaryHCustomColorPanel.Name = "secondaryHCustomColorPanel";
+            this.secondaryHCustomColorPanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryHCustomColorPanel.TabIndex = 26;
+            this.secondaryHCustomColorPanel.Click += new System.EventHandler(this.secondaryHCustomColorPanel_Click);
+            // 
+            // secondaryCOrangePanel
+            // 
+            this.secondaryCOrangePanel.BackColor = System.Drawing.Color.Chocolate;
+            this.secondaryCOrangePanel.Location = new System.Drawing.Point(86, 65);
+            this.secondaryCOrangePanel.Name = "secondaryCOrangePanel";
+            this.secondaryCOrangePanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryCOrangePanel.TabIndex = 25;
+            // 
+            // secondaryHOrangePanel
+            // 
+            this.secondaryHOrangePanel.BackColor = System.Drawing.Color.Orange;
+            this.secondaryHOrangePanel.Location = new System.Drawing.Point(78, 65);
+            this.secondaryHOrangePanel.Name = "secondaryHOrangePanel";
+            this.secondaryHOrangePanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryHOrangePanel.TabIndex = 25;
+            // 
+            // secondaryCGreenPanel
+            // 
+            this.secondaryCGreenPanel.BackColor = System.Drawing.Color.DarkGreen;
+            this.secondaryCGreenPanel.Location = new System.Drawing.Point(86, 44);
+            this.secondaryCGreenPanel.Name = "secondaryCGreenPanel";
+            this.secondaryCGreenPanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryCGreenPanel.TabIndex = 25;
+            // 
+            // secondaryHGreenPanel
+            // 
+            this.secondaryHGreenPanel.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.secondaryHGreenPanel.Location = new System.Drawing.Point(78, 44);
+            this.secondaryHGreenPanel.Name = "secondaryHGreenPanel";
+            this.secondaryHGreenPanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryHGreenPanel.TabIndex = 24;
+            // 
+            // secondaryCBluePanel
+            // 
+            this.secondaryCBluePanel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.secondaryCBluePanel.Location = new System.Drawing.Point(86, 23);
+            this.secondaryCBluePanel.Name = "secondaryCBluePanel";
+            this.secondaryCBluePanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryCBluePanel.TabIndex = 24;
             // 
             // greenPanel
             // 
@@ -321,6 +400,14 @@
             this.greenPanel.Name = "greenPanel";
             this.greenPanel.Size = new System.Drawing.Size(15, 15);
             this.greenPanel.TabIndex = 23;
+            // 
+            // secondaryHBluePanel
+            // 
+            this.secondaryHBluePanel.BackColor = System.Drawing.Color.DarkBlue;
+            this.secondaryHBluePanel.Location = new System.Drawing.Point(78, 23);
+            this.secondaryHBluePanel.Name = "secondaryHBluePanel";
+            this.secondaryHBluePanel.Size = new System.Drawing.Size(6, 15);
+            this.secondaryHBluePanel.TabIndex = 23;
             // 
             // orangePanel
             // 
@@ -332,7 +419,7 @@
             // 
             // customColorPanel
             // 
-            this.customColorPanel.BackColor = System.Drawing.Color.HotPink;
+            this.customColorPanel.BackColor = System.Drawing.Color.Purple;
             this.customColorPanel.Location = new System.Drawing.Point(61, 87);
             this.customColorPanel.Name = "customColorPanel";
             this.customColorPanel.Size = new System.Drawing.Size(15, 15);
@@ -362,7 +449,7 @@
             this.customColorToggleButton1.Name = "customColorToggleButton1";
             this.customColorToggleButton1.OffBackColor = System.Drawing.Color.Gray;
             this.customColorToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.customColorToggleButton1.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.customColorToggleButton1.OnBackColor = System.Drawing.Color.Purple;
             this.customColorToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.customColorToggleButton1.Size = new System.Drawing.Size(30, 15);
             this.customColorToggleButton1.TabIndex = 20;
@@ -421,6 +508,24 @@
             this.confirmButton.UseVisualStyleBackColor = false;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(0, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "label11";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1, 102);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 15);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Select custom color here.";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -455,6 +560,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.secondaryCCustomColorPanel.ResumeLayout(false);
+            this.secondaryCCustomColorPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,5 +602,15 @@
         private Custom_Design.ToggleButton greenToggleButton1;
         private Custom_Design.ToggleButton blueToggleButton1;
         private System.Windows.Forms.Button confirmButton;
+        private System.Windows.Forms.Panel secondaryHBluePanel;
+        private System.Windows.Forms.Panel secondaryCGreenPanel;
+        private System.Windows.Forms.Panel secondaryHGreenPanel;
+        private System.Windows.Forms.Panel secondaryCBluePanel;
+        private System.Windows.Forms.Panel secondaryCCustomColorPanel;
+        private System.Windows.Forms.Panel secondaryHCustomColorPanel;
+        private System.Windows.Forms.Panel secondaryCOrangePanel;
+        private System.Windows.Forms.Panel secondaryHOrangePanel;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }
