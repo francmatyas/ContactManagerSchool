@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
 
 namespace ContactManager
@@ -91,6 +92,18 @@ namespace ContactManager
             contactsGrid.MultiSelect = false;
             GridContactLoad(loggedAccount.Contacts);
             sortPicker.SelectedItem = sortPicker.Items[0];
+
+            this.firstNameBox.AutoSize = false;
+            this.firstNameBox.Height = 20;
+            this.secondNameBox.AutoSize = false;
+            this.secondNameBox.Height = 20;
+            this.birthdayBox.AutoSize = false;
+            this.birthdayBox.Height = 20;
+            this.emailBox.AutoSize = false;
+            this.emailBox.Height = 20;
+            this.phoneNumberBox.AutoSize = false;
+            this.phoneNumberBox.Height = 20;
+
         }
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -99,7 +112,7 @@ namespace ContactManager
             Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
             selectedContact = contact;
 
-            groupBox1.Text = contact.FirstName + " " + contact.SecondName;
+            //groupBox1.Text = contact.FirstName + " " + contact.SecondName;
 
             firstNameBox.Text = contact.FirstName;
             secondNameBox.Text = contact.SecondName;
@@ -180,9 +193,11 @@ namespace ContactManager
 
         private void favoriteCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            selectedContact.Favorite = favoriteCheckBox.Checked;
-            contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
-            
+            if (selectedContact != null)
+            {
+                selectedContact.Favorite = favoriteCheckBox.Checked;
+                contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+            }
         }
 
         private void ClearBoxes()
@@ -288,6 +303,10 @@ namespace ContactManager
             }
 
             return contactsAZ;
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -38,7 +38,7 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
         "Note": "",
-        "Favorite": true,
+        "Favorite": false,
         "ID": 2,
         "Color": "Red",
         "Deleted": false
