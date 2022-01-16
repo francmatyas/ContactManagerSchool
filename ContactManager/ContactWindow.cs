@@ -108,20 +108,17 @@ namespace ContactManager
 
         }
 
-        private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void SelectedContactToTable(int rowIndex)
         {
-
-            Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+            Contact contact = contactsGrid.Rows[rowIndex].DataBoundItem as Contact;
             selectedContact = contact;
-
-            //groupBox1.Text = contact.FirstName + " " + contact.SecondName;
 
             firstNameBox.Text = contact.FirstName;
             secondNameBox.Text = contact.SecondName;
             birthdayBox.Text = contact.Birthday;
             emailBox.Text = contact.Email;
             phoneNumberBox.Text = contact.PhoneNumber.ToString();
-            //favoriteCheckBox.Checked = contact.Favorite;
+
             if (selectedContact.Favorite)
             {
                 FavoriteEnablePicture();
@@ -130,7 +127,32 @@ namespace ContactManager
             {
                 FavoriteDisablePicture();
             }
+        }
 
+
+        private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //contactsGrid.SelectedCells[0].RowIndex
+            SelectedContactToTable(contactsGrid.SelectedCells[0].RowIndex);
+            /*
+            Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+            selectedContact = contact;
+
+            firstNameBox.Text = contact.FirstName;
+            secondNameBox.Text = contact.SecondName;
+            birthdayBox.Text = contact.Birthday;
+            emailBox.Text = contact.Email;
+            phoneNumberBox.Text = contact.PhoneNumber.ToString();
+
+            if (selectedContact.Favorite)
+            {
+                FavoriteEnablePicture();
+            }
+            else
+            {
+                FavoriteDisablePicture();
+            }
+            */
         }
 
         private void createContact_Click(object sender, EventArgs e)
@@ -354,6 +376,9 @@ namespace ContactManager
             colorButton.FlatAppearance.BorderColor = primaryContentColor;
             contactsLabel.ForeColor = primaryContentColor;
 
+            contactsGrid.AlternatingRowsDefaultCellStyle.SelectionForeColor = primaryContentColor;
+            contactsGrid.RowsDefaultCellStyle.SelectionForeColor = primaryContentColor;
+
             panel2.BackColor = primaryContentColor;
             panel3.BackColor = primaryContentColor;
             panel5.BackColor = primaryContentColor;
@@ -377,6 +402,22 @@ namespace ContactManager
         {
             searchBox.SelectAll();
             searchBox.ForeColor = Color.Black;
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            string searchInput = searchBox.Text;
+            contactsGrid.ClearSelection();
+
+            for (int i = 0; i < contactsGrid.Rows.Count; i++)
+            {
+                if (contactsGrid.Rows[i].Cells["FullName"].Value.ToString().ToLower().Contains(searchInput.ToLower()))
+                {
+                    contactsGrid.Rows[i].Selected = true;
+                    SelectedContactToTable(i);
+                }
+            }
+            
         }
     }
 }
