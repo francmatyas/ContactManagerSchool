@@ -54,6 +54,13 @@ namespace ContactManager
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.contactsGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.noteBox = new System.Windows.Forms.TextBox();
+            this.noteEditButton = new System.Windows.Forms.Button();
+            this.noteEditSubmit = new System.Windows.Forms.Button();
+            this.noteEditCancel = new System.Windows.Forms.Button();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
             this.favoriteEnabledPicture = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -87,6 +94,8 @@ namespace ContactManager
             label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.contactsGrid)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.favoriteEnabledPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.favoriteDisabledPicture)).BeginInit();
@@ -116,6 +125,7 @@ namespace ContactManager
             this.phoneNumberBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.phoneNumberBox.Location = new System.Drawing.Point(148, 111);
             this.phoneNumberBox.Name = "phoneNumberBox";
+            this.phoneNumberBox.ReadOnly = true;
             this.phoneNumberBox.Size = new System.Drawing.Size(200, 18);
             this.phoneNumberBox.TabIndex = 10;
             // 
@@ -127,6 +137,7 @@ namespace ContactManager
             this.emailBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.emailBox.Location = new System.Drawing.Point(148, 85);
             this.emailBox.Name = "emailBox";
+            this.emailBox.ReadOnly = true;
             this.emailBox.Size = new System.Drawing.Size(200, 18);
             this.emailBox.TabIndex = 9;
             // 
@@ -138,6 +149,7 @@ namespace ContactManager
             this.birthdayBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.birthdayBox.Location = new System.Drawing.Point(148, 59);
             this.birthdayBox.Name = "birthdayBox";
+            this.birthdayBox.ReadOnly = true;
             this.birthdayBox.Size = new System.Drawing.Size(200, 18);
             this.birthdayBox.TabIndex = 8;
             // 
@@ -149,6 +161,7 @@ namespace ContactManager
             this.secondNameBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.secondNameBox.Location = new System.Drawing.Point(148, 33);
             this.secondNameBox.Name = "secondNameBox";
+            this.secondNameBox.ReadOnly = true;
             this.secondNameBox.Size = new System.Drawing.Size(200, 18);
             this.secondNameBox.TabIndex = 7;
             // 
@@ -186,13 +199,16 @@ namespace ContactManager
             // colorButton
             // 
             this.colorButton.BackColor = System.Drawing.Color.White;
-            this.colorButton.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.colorButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.colorButton.FlatAppearance.BorderSize = 0;
+            this.colorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.colorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.colorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colorButton.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.colorButton.ForeColor = System.Drawing.Color.Navy;
-            this.colorButton.Location = new System.Drawing.Point(373, 159);
+            this.colorButton.Location = new System.Drawing.Point(25, 280);
             this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(75, 28);
+            this.colorButton.Size = new System.Drawing.Size(53, 28);
             this.colorButton.TabIndex = 14;
             this.colorButton.Text = "Color";
             this.colorButton.UseVisualStyleBackColor = false;
@@ -346,6 +362,13 @@ namespace ContactManager
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBox6);
+            this.panel1.Controls.Add(this.noteBox);
+            this.panel1.Controls.Add(this.noteEditButton);
+            this.panel1.Controls.Add(this.noteEditSubmit);
+            this.panel1.Controls.Add(this.noteEditCancel);
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.panel19);
             this.panel1.Controls.Add(this.createCancelContact);
             this.panel1.Controls.Add(this.createSubmitContact);
@@ -354,6 +377,95 @@ namespace ContactManager
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(451, 426);
             this.panel1.TabIndex = 16;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::ContactManager.Properties.Resources.color_palette;
+            this.pictureBox6.Location = new System.Drawing.Point(8, 283);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 33;
+            this.pictureBox6.TabStop = false;
+            // 
+            // noteBox
+            // 
+            this.noteBox.BackColor = System.Drawing.Color.White;
+            this.noteBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.noteBox.Location = new System.Drawing.Point(3, 177);
+            this.noteBox.Multiline = true;
+            this.noteBox.Name = "noteBox";
+            this.noteBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.noteBox.Size = new System.Drawing.Size(350, 100);
+            this.noteBox.TabIndex = 27;
+            this.noteBox.Text = "\r\n";
+            // 
+            // noteEditButton
+            // 
+            this.noteEditButton.FlatAppearance.BorderSize = 0;
+            this.noteEditButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.noteEditButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.noteEditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.noteEditButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.noteEditButton.ForeColor = System.Drawing.Color.Navy;
+            this.noteEditButton.Location = new System.Drawing.Point(278, 153);
+            this.noteEditButton.Name = "noteEditButton";
+            this.noteEditButton.Size = new System.Drawing.Size(75, 28);
+            this.noteEditButton.TabIndex = 32;
+            this.noteEditButton.Text = "Edit Note";
+            this.noteEditButton.UseVisualStyleBackColor = true;
+            this.noteEditButton.Click += new System.EventHandler(this.noteEditButton_Click);
+            // 
+            // noteEditSubmit
+            // 
+            this.noteEditSubmit.BackColor = System.Drawing.Color.Navy;
+            this.noteEditSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.noteEditSubmit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.noteEditSubmit.ForeColor = System.Drawing.Color.White;
+            this.noteEditSubmit.Location = new System.Drawing.Point(279, 277);
+            this.noteEditSubmit.Name = "noteEditSubmit";
+            this.noteEditSubmit.Size = new System.Drawing.Size(75, 28);
+            this.noteEditSubmit.TabIndex = 31;
+            this.noteEditSubmit.Text = "Submit";
+            this.noteEditSubmit.UseVisualStyleBackColor = false;
+            this.noteEditSubmit.Visible = false;
+            this.noteEditSubmit.Click += new System.EventHandler(this.noteEditSubmit_Click);
+            // 
+            // noteEditCancel
+            // 
+            this.noteEditCancel.BackColor = System.Drawing.Color.White;
+            this.noteEditCancel.FlatAppearance.BorderSize = 0;
+            this.noteEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.noteEditCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.noteEditCancel.ForeColor = System.Drawing.Color.Navy;
+            this.noteEditCancel.Location = new System.Drawing.Point(200, 277);
+            this.noteEditCancel.Name = "noteEditCancel";
+            this.noteEditCancel.Size = new System.Drawing.Size(75, 28);
+            this.noteEditCancel.TabIndex = 30;
+            this.noteEditCancel.Text = "Cancel";
+            this.noteEditCancel.UseVisualStyleBackColor = false;
+            this.noteEditCancel.Visible = false;
+            this.noteEditCancel.Click += new System.EventHandler(this.noteEditCancel_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::ContactManager.Properties.Resources.notes;
+            this.pictureBox5.Location = new System.Drawing.Point(8, 151);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 29;
+            this.pictureBox5.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(30, 153);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 17);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Note";
             // 
             // panel19
             // 
@@ -508,6 +620,7 @@ namespace ContactManager
             this.firstNameBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.firstNameBox.Location = new System.Drawing.Point(148, 7);
             this.firstNameBox.Name = "firstNameBox";
+            this.firstNameBox.ReadOnly = true;
             this.firstNameBox.Size = new System.Drawing.Size(200, 18);
             this.firstNameBox.TabIndex = 6;
             // 
@@ -683,6 +796,9 @@ namespace ContactManager
             this.Load += new System.EventHandler(this.ContactWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.contactsGrid)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.favoriteEnabledPicture)).EndInit();
@@ -700,19 +816,19 @@ namespace ContactManager
         }
 
         #endregion
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.Label contactsLabel;
         private System.Windows.Forms.TextBox phoneNumberBox;
         private System.Windows.Forms.TextBox emailBox;
         private System.Windows.Forms.TextBox birthdayBox;
         private System.Windows.Forms.TextBox secondNameBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        //private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button zaSort;
-        private System.Windows.Forms.Button azSort;
+        //private System.Windows.Forms.Button zaSort;
+        //private System.Windows.Forms.Button azSort;
         private System.Windows.Forms.Button deleteContact;
         private System.Windows.Forms.Button createContact;
         private System.Windows.Forms.Button createSubmitContact;
@@ -752,5 +868,12 @@ namespace ContactManager
         private System.Windows.Forms.PictureBox favoriteEnabledPicture;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox noteBox;
+        private System.Windows.Forms.Button noteEditSubmit;
+        private System.Windows.Forms.Button noteEditCancel;
+        private System.Windows.Forms.Button noteEditButton;
+        private System.Windows.Forms.PictureBox pictureBox6;
     }
 }

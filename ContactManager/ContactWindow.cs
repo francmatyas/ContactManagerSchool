@@ -118,6 +118,9 @@ namespace ContactManager
             birthdayBox.Text = contact.Birthday;
             emailBox.Text = contact.Email;
             phoneNumberBox.Text = contact.PhoneNumber.ToString();
+            noteBox.Text = contact.Note;
+            noteEditCancel.Hide();
+            noteEditSubmit.Hide();
 
             if (selectedContact.Favorite)
             {
@@ -132,37 +135,67 @@ namespace ContactManager
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //contactsGrid.SelectedCells[0].RowIndex
-            SelectedContactToTable(contactsGrid.SelectedCells[0].RowIndex);
-            /*
-            Contact contact = contactsGrid.Rows[contactsGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
-            selectedContact = contact;
-
-            firstNameBox.Text = contact.FirstName;
-            secondNameBox.Text = contact.SecondName;
-            birthdayBox.Text = contact.Birthday;
-            emailBox.Text = contact.Email;
-            phoneNumberBox.Text = contact.PhoneNumber.ToString();
-
-            if (selectedContact.Favorite)
+            try
             {
-                FavoriteEnablePicture();
+                SelectedContactToTable(contactsGrid.SelectedCells[0].RowIndex);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
+
+        private void CreateContactFormActions(bool action)
+        {
+            if (action)
+            {
+                ClearBoxes();
+
+                createCancelContact.Show();
+                createSubmitContact.Show();
+                colorButton.Hide();
+                favoriteDisabledPicture.Hide();
+                favoriteEnabledPicture.Hide();
+                noteEditButton.Hide();
+                createContact.Hide();
+                deleteContact.Hide();
+
+                firstNameBox.ReadOnly = false;
+                secondNameBox.ReadOnly = false;
+                birthdayBox.ReadOnly = false;
+                emailBox.ReadOnly = false;
+                phoneNumberBox.ReadOnly = false;
+                noteBox.ReadOnly = false;
             }
             else
             {
-                FavoriteDisablePicture();
+                ClearBoxes();
+
+                contactsGrid.Rows[0].Selected = true;
+                SelectedContactToTable(0);
+
+                createCancelContact.Hide();
+                createSubmitContact.Hide();
+                colorButton.Show();
+                favoriteDisabledPicture.Show();
+                favoriteEnabledPicture.Show();
+                noteEditButton.Show();
+                createContact.Show();
+                deleteContact.Show();
+
+                firstNameBox.ReadOnly = true;
+                secondNameBox.ReadOnly = true;
+                birthdayBox.ReadOnly = true;
+                emailBox.ReadOnly = true;
+                phoneNumberBox.ReadOnly = true;
+                noteBox.ReadOnly = true;
             }
-            */
         }
+
 
         private void createContact_Click(object sender, EventArgs e)
         {
-            ClearBoxes();
-
-            createCancelContact.Show();
-            createSubmitContact.Show();
-            colorButton.Hide();
-            //favoriteCheckBox.Hide();
+            CreateContactFormActions(true);
         }
 
         private void deleteContact_Click(object sender, EventArgs e)
@@ -175,12 +208,7 @@ namespace ContactManager
 
         private void createCancelContact_Click(object sender, EventArgs e)
         {
-            ClearBoxes();
-
-            createCancelContact.Hide();
-            createSubmitContact.Hide();
-            colorButton.Show();
-            //favoriteCheckBox.Show();
+            CreateContactFormActions(false);
         }
 
         private void createSubmitContact_Click(object sender, EventArgs e)
@@ -204,6 +232,7 @@ namespace ContactManager
                     Email = emailBox.Text,
                     PhoneNumber = long.Parse(phoneNumberBox.Text),
                     Favorite = false,
+                    Note = noteBox.Text,
                     Color = Color.White,
                     Deleted = false,
                     ID = idList.Max() + 1
@@ -213,14 +242,8 @@ namespace ContactManager
                 ContactSave();
                 contactsGrid.Rows.Clear();
                 GridContactLoad(loggedAccount.Contacts);
+                CreateContactFormActions(false);
             }
-
-            ClearBoxes();
-
-            createCancelContact.Hide();
-            createSubmitContact.Hide();
-            colorButton.Show();
-            //favoriteCheckBox.Show();
         }
         private void FavoriteEnablePicture()
         {
@@ -262,7 +285,7 @@ namespace ContactManager
             birthdayBox.Text = "";
             emailBox.Text = "";
             phoneNumberBox.Text = "";
-            //favoriteCheckBox.Checked = false;
+            noteBox.Text = "";
         }
 
         private void colorButton_Click(object sender, EventArgs e)
@@ -375,6 +398,12 @@ namespace ContactManager
             colorButton.ForeColor = primaryContentColor;
             colorButton.FlatAppearance.BorderColor = primaryContentColor;
             contactsLabel.ForeColor = primaryContentColor;
+            noteEditButton.ForeColor = primaryContentColor;
+            noteEditCancel.ForeColor = primaryContentColor;
+
+            noteEditSubmit.BackColor = primaryContentColor;
+            noteEditSubmit.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+            noteEditSubmit.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
 
             contactsGrid.AlternatingRowsDefaultCellStyle.SelectionForeColor = primaryContentColor;
             contactsGrid.RowsDefaultCellStyle.SelectionForeColor = primaryContentColor;
@@ -418,6 +447,37 @@ namespace ContactManager
                 }
             }
             
+        }
+
+        private void noteEditCancel_Click(object sender, EventArgs e)
+        {
+            if (selectedContact != null && selectedContact.Note != null)
+            {
+                noteBox.Text = selectedContact.Note;
+            }
+
+            noteEditCancel.Hide();
+            noteEditSubmit.Hide();
+            noteBox.ReadOnly = true;
+        }
+
+        private void noteEditSubmit_Click(object sender, EventArgs e)
+        {
+            if (selectedContact != null)
+            {
+                selectedContact.Note = noteBox.Text;
+            }
+
+            noteEditCancel.Hide();
+            noteEditSubmit.Hide();
+            noteBox.ReadOnly = true;
+        }
+
+        private void noteEditButton_Click(object sender, EventArgs e)
+        {
+            noteEditCancel.Show();
+            noteEditSubmit.Show();
+            noteBox.ReadOnly = false;
         }
     }
 }
