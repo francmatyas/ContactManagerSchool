@@ -14,7 +14,7 @@ namespace ContactManager
         public string FullName { get; set; }
         public string Birthday { get; set; }
         public string Email { get; set; }
-        public int PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
         public string Note { get; set; }
         public bool Favorite { get; set; }
         //public DateTime Created { get; set; }

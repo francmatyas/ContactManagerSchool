@@ -14,7 +14,7 @@
         "Note": "",
         "Favorite": true,
         "ID": 0,
-        "Color": "255, 128, 128",
+        "Color": "255, 128, 255",
         "Deleted": false
       },
       {
@@ -38,7 +38,7 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
         "Note": "",
-        "Favorite": false,
+        "Favorite": true,
         "ID": 2,
         "Color": "Red",
         "Deleted": false
@@ -80,6 +80,19 @@
         "Favorite": false,
         "ID": 5,
         "Color": "128, 255, 0",
+        "Deleted": false
+      },
+      {
+        "FirstName": "Franta",
+        "SecondName": "Sádra",
+        "FullName": "Franta Sádra",
+        "Birthday": "20.4.2021",
+        "Email": "franta.sadra@gmail.com",
+        "PhoneNumber": 55153,
+        "Note": null,
+        "Favorite": true,
+        "ID": 7,
+        "Color": "Fuchsia",
         "Deleted": false
       }
     ]

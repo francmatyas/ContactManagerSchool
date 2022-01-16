@@ -42,7 +42,7 @@ namespace ContactManager
             contactsGrid.DataSource = source;
             contactsGrid.Columns["FullName"].HeaderText = "Name";
             contactsGrid.Columns["Favorite"].HeaderText = "⭐";
-            contactsGrid.Columns["FullName"].Width = 125;
+            contactsGrid.Columns["FullName"].Width = 150;
             contactsGrid.Columns["Favorite"].Width = 25;
             contactsGrid.Columns["FirstName"].Visible = false;
             contactsGrid.Columns["SecondName"].Visible = false;
@@ -104,6 +104,8 @@ namespace ContactManager
             this.phoneNumberBox.AutoSize = false;
             this.phoneNumberBox.Height = 20;
 
+            ContactWinContentColor(LoginWindow.PrimaryContentColor, LoginWindow.SecondaryHContentColor, LoginWindow.SecondaryCContentColor);
+
         }
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -119,7 +121,15 @@ namespace ContactManager
             birthdayBox.Text = contact.Birthday;
             emailBox.Text = contact.Email;
             phoneNumberBox.Text = contact.PhoneNumber.ToString();
-            favoriteCheckBox.Checked = contact.Favorite;
+            //favoriteCheckBox.Checked = contact.Favorite;
+            if (selectedContact.Favorite)
+            {
+                FavoriteEnablePicture();
+            }
+            else
+            {
+                FavoriteDisablePicture();
+            }
 
         }
 
@@ -130,7 +140,7 @@ namespace ContactManager
             createCancelContact.Show();
             createSubmitContact.Show();
             colorButton.Hide();
-            favoriteCheckBox.Hide();
+            //favoriteCheckBox.Hide();
         }
 
         private void deleteContact_Click(object sender, EventArgs e)
@@ -148,7 +158,7 @@ namespace ContactManager
             createCancelContact.Hide();
             createSubmitContact.Hide();
             colorButton.Show();
-            favoriteCheckBox.Show();
+            //favoriteCheckBox.Show();
         }
 
         private void createSubmitContact_Click(object sender, EventArgs e)
@@ -170,7 +180,7 @@ namespace ContactManager
                     FullName = firstNameBox.Text + " " + secondNameBox.Text,
                     Birthday = birthdayBox.Text,
                     Email = emailBox.Text,
-                    PhoneNumber = Int32.Parse(phoneNumberBox.Text),
+                    PhoneNumber = long.Parse(phoneNumberBox.Text),
                     Favorite = false,
                     Color = Color.White,
                     Deleted = false,
@@ -188,16 +198,39 @@ namespace ContactManager
             createCancelContact.Hide();
             createSubmitContact.Hide();
             colorButton.Show();
-            favoriteCheckBox.Show();
+            //favoriteCheckBox.Show();
         }
-
-        private void favoriteCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void FavoriteEnablePicture()
         {
+            favoriteDisabledPicture.Visible = false;
+            favoriteEnabledPicture.Visible = true;
+
             if (selectedContact != null)
             {
-                selectedContact.Favorite = favoriteCheckBox.Checked;
+                selectedContact.Favorite = true;
                 contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
             }
+        }
+
+        private void favoriteDisabledPicture_Click(object sender, EventArgs e)
+        {
+            FavoriteEnablePicture();
+        }
+        private void FavoriteDisablePicture()
+        {
+            favoriteEnabledPicture.Visible = false;
+            favoriteDisabledPicture.Visible = true;
+
+            if (selectedContact != null)
+            {
+                selectedContact.Favorite = false;
+                contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+            }
+        }
+
+        private void favoriteEnabledPicture_Click(object sender, EventArgs e)
+        {
+            FavoriteDisablePicture();
         }
 
         private void ClearBoxes()
@@ -207,7 +240,7 @@ namespace ContactManager
             birthdayBox.Text = "";
             emailBox.Text = "";
             phoneNumberBox.Text = "";
-            favoriteCheckBox.Checked = false;
+            //favoriteCheckBox.Checked = false;
         }
 
         private void colorButton_Click(object sender, EventArgs e)
@@ -305,8 +338,45 @@ namespace ContactManager
             return contactsAZ;
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
+        private void ContactWinContentColor(Color primaryContentColor, Color secondaryHContentColor, Color secondaryCContentColor)
         {
+            createContact.BackColor = primaryContentColor;
+            createContact.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
+            createContact.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+
+            createSubmitContact.BackColor = primaryContentColor;
+            createSubmitContact.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
+            createSubmitContact.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+
+            deleteContact.ForeColor = primaryContentColor;
+            createCancelContact.ForeColor = primaryContentColor;
+            colorButton.ForeColor = primaryContentColor;
+            colorButton.FlatAppearance.BorderColor = primaryContentColor;
+            contactsLabel.ForeColor = primaryContentColor;
+
+            panel2.BackColor = primaryContentColor;
+            panel3.BackColor = primaryContentColor;
+            panel5.BackColor = primaryContentColor;
+            panel6.BackColor = primaryContentColor;
+            panel7.BackColor = primaryContentColor;
+            panel8.BackColor = primaryContentColor;
+            panel9.BackColor = primaryContentColor;
+            panel11.BackColor = primaryContentColor;
+            panel12.BackColor = primaryContentColor;
+            panel13.BackColor = primaryContentColor;
+            panel14.BackColor = primaryContentColor;
+            panel15.BackColor = primaryContentColor;
+            panel16.BackColor = primaryContentColor;
+            panel17.BackColor = primaryContentColor;
+            panel18.BackColor = primaryContentColor;
+            panel21.BackColor = primaryContentColor;
+            panel22.BackColor = primaryContentColor;
+        }
+
+        private void searchBox_Click(object sender, EventArgs e)
+        {
+            searchBox.SelectAll();
+            searchBox.ForeColor = Color.Black;
         }
     }
 }

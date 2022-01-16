@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.fileLabel = new System.Windows.Forms.Label();
             this.loadFileButton = new System.Windows.Forms.Button();
@@ -52,7 +53,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.secondaryCCustomColorPanel = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.secondaryHCustomColorPanel = new System.Windows.Forms.Panel();
             this.secondaryCOrangePanel = new System.Windows.Forms.Panel();
             this.secondaryHOrangePanel = new System.Windows.Forms.Panel();
@@ -69,8 +72,6 @@
             this.greenToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.blueToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.confirmButton = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.JSONPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -334,6 +335,15 @@
             this.panel3.Size = new System.Drawing.Size(144, 121);
             this.panel3.TabIndex = 21;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1, 102);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 15);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Select custom color here.";
+            // 
             // secondaryCCustomColorPanel
             // 
             this.secondaryCCustomColorPanel.BackColor = System.Drawing.Color.Indigo;
@@ -343,6 +353,15 @@
             this.secondaryCCustomColorPanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryCCustomColorPanel.TabIndex = 26;
             this.secondaryCCustomColorPanel.Click += new System.EventHandler(this.secondaryCCustomColorPanel_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(0, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(44, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "label11";
             // 
             // secondaryHCustomColorPanel
             // 
@@ -508,24 +527,6 @@
             this.confirmButton.UseVisualStyleBackColor = false;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(0, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 15);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "label11";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1, 102);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(140, 15);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Select custom color here.";
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -545,6 +546,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.JSONPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";

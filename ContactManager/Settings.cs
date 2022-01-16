@@ -224,26 +224,5 @@ namespace ContactManager
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
-        /*
-        private void ContactSave()
-        {
-            List<Account> Accounts = new List<Account>();
-
-            var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
-            Accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
-
-            for (int i = 0; i < Accounts.Count; i++)
-            {
-                if (Accounts[i].Password == LoginWindow.Account.Password && Accounts[i].Username == LoginWindow.Account.Username)
-                {
-                    Accounts[i] = LoginWindow.Account;
-                }
-            }
-
-            string jsonNewString = JsonConvert.SerializeObject(Accounts, Formatting.Indented);
-            File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
-        }
-        */
     }
 }

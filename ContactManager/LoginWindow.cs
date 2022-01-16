@@ -52,7 +52,7 @@ namespace ContactManager
                     if (account.Username == username && account.Password == password)
                     {
                         Account = account;
-                        PrimaryContentColor = Account.ContentColor;
+                        //PrimaryContentColor = Account.ContentColor;
                         incorrectPassOrUser.Visible = false;
                         ContactWindow contactWindow = new ContactWindow();
                         contactWindow.Show();
