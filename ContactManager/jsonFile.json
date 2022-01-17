@@ -89,7 +89,7 @@
         "Birthday": "20.4.2021",
         "Email": "franta.sadra@gmail.com",
         "PhoneNumber": 55153,
-        "Note": "Test test\r\ntest",
+        "Note": "",
         "Favorite": true,
         "ID": 7,
         "Color": "Fuchsia",
@@ -142,11 +142,5 @@
         "Deleted": false
       }
     ]
-  },
-  {
-    "Username": "test2",
-    "Password": "test2",
-    "ContentColor": "",
-    "Contacts": null
   }
 ]

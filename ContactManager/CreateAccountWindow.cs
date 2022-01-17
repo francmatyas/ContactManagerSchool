@@ -40,7 +40,8 @@ namespace ContactManager
                 accounts.Add(new Account
                 {
                     Username = usernameCreate.Text,
-                    Password = passwordCreate.Text
+                    Password = passwordCreate.Text,
+                    Contacts = new List<Contact>()
                 });
 
                 string jsonNewString = JsonConvert.SerializeObject(accounts, Formatting.Indented);

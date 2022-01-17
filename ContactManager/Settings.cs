@@ -19,24 +19,6 @@ namespace ContactManager
         public Color ReturnSecondaryCContentColor { get; set; }
         public Color ReturnBackColor { get; set; }
 
-        /*
-        private Color _contentColor;
-        public Color ContentColor
-        {
-            get
-            {
-                return _contentColor;
-            }
-            set
-            {
-                if (value != _contentColor)
-                {
-                    _contentColor = value;
-                    //ContentColorChange(_contentColor);
-                }
-            }
-        }
-        */
         public Settings()
         {
             InitializeComponent();

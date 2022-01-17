@@ -29,7 +29,46 @@ namespace ContactManager
             contactsGrid.Rows.Clear();
             var source = new BindingSource();
             List<Contact> gridContacts = new List<Contact>();
+            
+            
+            if (contacts != null)
+            {
+                foreach (var contact in contacts)
+                {
+                    if (!contact.Deleted)
+                    {
+                        gridContacts.Add(contact);
+                    }
+                }
+                source.DataSource = gridContacts;
 
+                contactsGrid.DataSource = source;
+                contactsGrid.Columns["FullName"].HeaderText = "Name";
+                contactsGrid.Columns["Favorite"].HeaderText = "⭐";
+                contactsGrid.Columns["FullName"].Width = 150;
+                contactsGrid.Columns["Favorite"].Width = 25;
+                contactsGrid.Columns["FirstName"].Visible = false;
+                contactsGrid.Columns["SecondName"].Visible = false;
+                contactsGrid.Columns["ID"].Visible = false;
+                contactsGrid.Columns["Birthday"].Visible = false;
+                contactsGrid.Columns["Email"].Visible = false;
+                contactsGrid.Columns["PhoneNumber"].Visible = false;
+                contactsGrid.Columns["Note"].Visible = false;
+                contactsGrid.Columns["Color"].Width = 1;
+                contactsGrid.Columns["Deleted"].Visible = false;
+
+                for (int i = 0; i < gridContacts.Count; i++)
+                {
+                    Contact contact = contactsGrid.Rows[i].DataBoundItem as Contact;
+                    contactsGrid.Rows[i].Cells["Color"].Style.BackColor = contact.Color;
+                    contactsGrid.Rows[i].Cells["Color"].Style.ForeColor = contact.Color;
+                    contactsGrid.Rows[i].Cells["Color"].Style.SelectionForeColor = contact.Color;
+                    contactsGrid.Rows[i].Cells["Color"].Style.SelectionBackColor = contact.Color;
+                }
+                contactsGrid.ClearSelection();
+            }
+
+            /*
             foreach (var contact in contacts)
             {
                 if (!contact.Deleted)
@@ -63,9 +102,8 @@ namespace ContactManager
                 contactsGrid.Rows[i].Cells["Color"].Style.SelectionBackColor = contact.Color;
             }
             contactsGrid.ClearSelection();
-
             //Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
-            
+            */
         }
 
         private void ContactSave()
@@ -108,6 +146,7 @@ namespace ContactManager
 
         }
 
+
         private void SelectedContactToTable(int rowIndex)
         {
             Contact contact = contactsGrid.Rows[rowIndex].DataBoundItem as Contact;
@@ -145,6 +184,7 @@ namespace ContactManager
             }
         }
 
+
         private void CreateContactFormActions(bool action)
         {
             if (action)
@@ -154,6 +194,8 @@ namespace ContactManager
                 createCancelContact.Show();
                 createSubmitContact.Show();
                 colorButton.Hide();
+                colorPictureBox.Hide();
+                searchButton.Hide();
                 favoriteDisabledPicture.Hide();
                 favoriteEnabledPicture.Hide();
                 noteEditButton.Hide();
@@ -177,6 +219,8 @@ namespace ContactManager
                 createCancelContact.Hide();
                 createSubmitContact.Hide();
                 colorButton.Show();
+                colorPictureBox.Show();
+                searchButton.Show();
                 favoriteDisabledPicture.Show();
                 favoriteEnabledPicture.Show();
                 noteEditButton.Show();
@@ -198,6 +242,7 @@ namespace ContactManager
             CreateContactFormActions(true);
         }
 
+
         private void deleteContact_Click(object sender, EventArgs e)
         {
             selectedContact.Deleted = true;
@@ -206,10 +251,12 @@ namespace ContactManager
 
         }
 
+
         private void createCancelContact_Click(object sender, EventArgs e)
         {
             CreateContactFormActions(false);
         }
+
 
         private void createSubmitContact_Click(object sender, EventArgs e)
         {
@@ -218,9 +265,16 @@ namespace ContactManager
             if (firstNameBox.Text.Length > 0)
             {
                 List<int> idList = new List<int>();
-                foreach (var contact  in loggedAccount.Contacts)
+                if (loggedAccount.Contacts.Count > 0)
                 {
-                    idList.Add(contact.ID);
+                    foreach (var contact in loggedAccount.Contacts)
+                    {
+                        idList.Add(contact.ID);
+                    }
+                }
+                else
+                {
+                    idList.Add((int)0);
                 }
 
                 Contact newContact = new()
@@ -245,6 +299,8 @@ namespace ContactManager
                 CreateContactFormActions(false);
             }
         }
+
+
         private void FavoriteEnablePicture()
         {
             favoriteDisabledPicture.Visible = false;
@@ -261,6 +317,7 @@ namespace ContactManager
         {
             FavoriteEnablePicture();
         }
+
         private void FavoriteDisablePicture()
         {
             favoriteEnabledPicture.Visible = false;
@@ -288,6 +345,7 @@ namespace ContactManager
             noteBox.Text = "";
         }
 
+
         private void colorButton_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
@@ -304,12 +362,14 @@ namespace ContactManager
             }
         }
 
+
         private void ContactWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             ContactSave();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
+
 
         private void sortPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -363,6 +423,8 @@ namespace ContactManager
                     break;
             }
         }
+
+
         private List<Contact> SortAZ ()
         {
             Dictionary<Contact, string> contactDictionaryAZ = new Dictionary<Contact, string>();
@@ -382,6 +444,7 @@ namespace ContactManager
 
             return contactsAZ;
         }
+
 
         private void ContactWinContentColor(Color primaryContentColor, Color secondaryHContentColor, Color secondaryCContentColor)
         {
@@ -427,11 +490,13 @@ namespace ContactManager
             panel22.BackColor = primaryContentColor;
         }
 
+
         private void searchBox_Click(object sender, EventArgs e)
         {
             searchBox.SelectAll();
             searchBox.ForeColor = Color.Black;
         }
+
 
         private void searchButton_Click(object sender, EventArgs e)
         {
@@ -449,6 +514,7 @@ namespace ContactManager
             
         }
 
+
         private void noteEditCancel_Click(object sender, EventArgs e)
         {
             if (selectedContact != null && selectedContact.Note != null)
@@ -461,6 +527,7 @@ namespace ContactManager
             noteBox.ReadOnly = true;
         }
 
+
         private void noteEditSubmit_Click(object sender, EventArgs e)
         {
             if (selectedContact != null)
@@ -472,6 +539,7 @@ namespace ContactManager
             noteEditSubmit.Hide();
             noteBox.ReadOnly = true;
         }
+
 
         private void noteEditButton_Click(object sender, EventArgs e)
         {

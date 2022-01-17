@@ -16,7 +16,7 @@ namespace ContactManager
     public partial class LoginWindow : Form
     {
         public static Account Account;
-        public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
+        public static string ContactsFile = "jsonFile.json";//"C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
 
         public static Color PrimaryContentColor = Color.Navy;
         public static Color SecondaryHContentColor = Color.DarkBlue;
@@ -34,8 +34,8 @@ namespace ContactManager
             Application.Exit();
         }
 
-        private void loginLogin_Click(object sender, EventArgs e)
-        { 
+        private void Login()
+        {
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
 
@@ -75,6 +75,52 @@ namespace ContactManager
                     settings.ShowDialog();
                 }
             }
+        }
+
+        private void loginLogin_Click(object sender, EventArgs e)
+        { 
+            Login();
+            /*
+            string username = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
+
+            try
+            {
+                var jsonString = File.ReadAllText(ContactsFile);
+                byte[] bytes = Encoding.Default.GetBytes(jsonString);
+                jsonString = Encoding.UTF8.GetString(bytes);
+
+                List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
+
+                foreach (var account in accounts)
+                {
+                    if (account.Username == username && account.Password == password)
+                    {
+                        Account = account;
+                        //PrimaryContentColor = Account.ContentColor;
+                        incorrectPassOrUser.Visible = false;
+                        ContactWindow contactWindow = new ContactWindow();
+                        contactWindow.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        incorrectPassOrUser.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
+
+                if (MessageBox.Show(text: "Error: Database file not found. \n Select file in Settings.") ==
+                    DialogResult.OK)
+                {
+                    Settings settings = new Settings();
+                    settings.ShowDialog();
+                }
+            }
+            */
         }
 
         private void createAccount_Click(object sender, EventArgs e)
@@ -158,6 +204,14 @@ namespace ContactManager
             showPassToggleButton.OffBackColor = primaryContentColor;
             showPassToggleButton.OnBackColor = primaryContentColor;
             showPassToggleButton.OnToggleColor = primaryContentColor;
+        }
+
+        private void passwordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Login();
+            }
         }
     }
 }
