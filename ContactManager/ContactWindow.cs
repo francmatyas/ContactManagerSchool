@@ -56,6 +56,7 @@ namespace ContactManager
                 contactsGrid.Columns["Note"].Visible = false;
                 contactsGrid.Columns["Color"].Width = 1;
                 contactsGrid.Columns["Deleted"].Visible = false;
+                contactsGrid.Columns["Created"].Visible = false;
 
                 for (int i = 0; i < gridContacts.Count; i++)
                 {
@@ -169,6 +170,8 @@ namespace ContactManager
             {
                 FavoriteDisablePicture();
             }
+
+            createdDateLabel.Text = selectedContact.Created.Date.ToString("dd/MM/yyyy");
         }
 
 
@@ -199,8 +202,10 @@ namespace ContactManager
                 favoriteDisabledPicture.Hide();
                 favoriteEnabledPicture.Hide();
                 noteEditButton.Hide();
+                editNotePicture.Hide();
                 createContact.Hide();
                 deleteContact.Hide();
+                createdDateLabel.Hide();
 
                 firstNameBox.ReadOnly = false;
                 secondNameBox.ReadOnly = false;
@@ -224,8 +229,10 @@ namespace ContactManager
                 favoriteDisabledPicture.Show();
                 favoriteEnabledPicture.Show();
                 noteEditButton.Show();
+                editNotePicture.Show();
                 createContact.Show();
                 deleteContact.Show();
+                createdDateLabel.Show();
 
                 firstNameBox.ReadOnly = true;
                 secondNameBox.ReadOnly = true;
@@ -245,10 +252,18 @@ namespace ContactManager
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
-            selectedContact.Deleted = true;
-            ContactSave();
-            GridContactLoad(loggedAccount.Contacts);
-
+            if (MessageBox.Show("Are you sure, you want to delete this contact - " + selectedContact.FullName + "?",
+                    "Delete contact", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                selectedContact.Deleted = true;
+                ContactSave();
+                GridContactLoad(loggedAccount.Contacts);
+                if (loggedAccount.Contacts != null)
+                {
+                    contactsGrid.Rows[0].Selected = true;
+                    SelectedContactToTable(0);
+                }
+            }
         }
 
 
@@ -289,6 +304,7 @@ namespace ContactManager
                     Note = noteBox.Text,
                     Color = Color.White,
                     Deleted = false,
+                    Created = DateTime.Today,
                     ID = idList.Max() + 1
                 };
 
@@ -459,7 +475,6 @@ namespace ContactManager
             deleteContact.ForeColor = primaryContentColor;
             createCancelContact.ForeColor = primaryContentColor;
             colorButton.ForeColor = primaryContentColor;
-            colorButton.FlatAppearance.BorderColor = primaryContentColor;
             contactsLabel.ForeColor = primaryContentColor;
             noteEditButton.ForeColor = primaryContentColor;
             noteEditCancel.ForeColor = primaryContentColor;
@@ -546,6 +561,16 @@ namespace ContactManager
             noteEditCancel.Show();
             noteEditSubmit.Show();
             noteBox.ReadOnly = false;
+        }
+
+        private void contactEditButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

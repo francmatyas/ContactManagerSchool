@@ -17,7 +17,7 @@ namespace ContactManager
         public long PhoneNumber { get; set; }
         public string Note { get; set; }
         public bool Favorite { get; set; }
-        //public DateTime Created { get; set; }
+        public DateTime Created { get; set; }
         public int ID { get; set; }
         public Color Color { get; set; }
         public bool Deleted { get; set; }

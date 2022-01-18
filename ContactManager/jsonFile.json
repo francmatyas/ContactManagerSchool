@@ -13,6 +13,7 @@
         "PhoneNumber": 651564135,
         "Note": "Zbožňuje sport a klobásky.",
         "Favorite": true,
+        "Created": "0001-01-01T00:00:00",
         "ID": 0,
         "Color": "255, 128, 255",
         "Deleted": false
@@ -26,6 +27,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": true,
+        "Created": "0001-01-01T00:00:00",
         "ID": 1,
         "Color": "64, 0, 128",
         "Deleted": false
@@ -39,6 +41,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": true,
+        "Created": "0001-01-01T00:00:00",
         "ID": 2,
         "Color": "Red",
         "Deleted": false
@@ -52,6 +55,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": false,
+        "Created": "0001-01-01T00:00:00",
         "ID": 3,
         "Color": "0, 128, 255",
         "Deleted": false
@@ -65,6 +69,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": true,
+        "Created": "0001-01-01T00:00:00",
         "ID": 4,
         "Color": "Yellow",
         "Deleted": false
@@ -78,6 +83,7 @@
         "PhoneNumber": 2142,
         "Note": "",
         "Favorite": false,
+        "Created": "0001-01-01T00:00:00",
         "ID": 5,
         "Color": "128, 255, 0",
         "Deleted": false
@@ -91,6 +97,7 @@
         "PhoneNumber": 55153,
         "Note": "",
         "Favorite": true,
+        "Created": "0001-01-01T00:00:00",
         "ID": 7,
         "Color": "Fuchsia",
         "Deleted": false
@@ -111,6 +118,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": false,
+        "Created": "0001-01-01T00:00:00",
         "ID": 0,
         "Color": "White",
         "Deleted": false
@@ -124,6 +132,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": false,
+        "Created": "0001-01-01T00:00:00",
         "ID": 1,
         "Color": "White",
         "Deleted": false
@@ -137,6 +146,7 @@
         "PhoneNumber": 651564135,
         "Note": "",
         "Favorite": false,
+        "Created": "0001-01-01T00:00:00",
         "ID": 2,
         "Color": "White",
         "Deleted": false

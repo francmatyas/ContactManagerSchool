@@ -16,7 +16,7 @@ namespace ContactManager
     public partial class LoginWindow : Form
     {
         public static Account Account;
-        public static string ContactsFile = "jsonFile.json";//"C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
+        public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/jsonFile.json";
 
         public static Color PrimaryContentColor = Color.Navy;
         public static Color SecondaryHContentColor = Color.DarkBlue;

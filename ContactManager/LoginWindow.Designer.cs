@@ -132,6 +132,7 @@ namespace ContactManager
             // 
             // settingsButton
             // 
+            this.settingsButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.settingsButton.FlatAppearance.BorderSize = 0;
             this.settingsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.settingsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
