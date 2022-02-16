@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -178,7 +179,7 @@ namespace ContactManager
 
             firstNameBox.Text = contact.FirstName;
             secondNameBox.Text = contact.SecondName;
-            birthdayBox.Text = contact.Birthday;
+            birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
             emailBox.Text = contact.Email;
             phoneNumberBox.Text = contact.PhoneNumber.ToString();
             noteBox.Text = contact.Note;
@@ -194,7 +195,7 @@ namespace ContactManager
                 FavoriteDisablePicture();
             }
 
-            createdDateLabel.Text = selectedContact.Created.Date.ToString("dd/MM/yyyy");
+            createdDateLabel.Text = selectedContact.Created.Date.ToString("dd.MM.yyyy");
         }
 
 
@@ -246,6 +247,59 @@ namespace ContactManager
 
                 createCancelContact.Hide();
                 createSubmitContact.Hide();
+                colorButton.Show();
+                colorPictureBox.Show();
+                searchButton.Show();
+                favoriteDisabledPicture.Show();
+                favoriteEnabledPicture.Show();
+                noteEditButton.Show();
+                editNotePicture.Show();
+                createContact.Show();
+                deleteContact.Show();
+                createdDateLabel.Show();
+
+                firstNameBox.ReadOnly = true;
+                secondNameBox.ReadOnly = true;
+                birthdayBox.ReadOnly = true;
+                emailBox.ReadOnly = true;
+                phoneNumberBox.ReadOnly = true;
+                noteBox.ReadOnly = true;
+            }
+        }
+
+        private void EditContactFormActions(bool action)
+        {
+            if (action)
+            {
+                editCancelContact.Show();
+                editSubmitContact.Show();
+                colorButton.Hide();
+                colorPictureBox.Hide();
+                searchButton.Hide();
+                favoriteDisabledPicture.Hide();
+                favoriteEnabledPicture.Hide();
+                noteEditButton.Hide();
+                editNotePicture.Hide();
+                createContact.Hide();
+                deleteContact.Hide();
+                createdDateLabel.Hide();
+
+                firstNameBox.ReadOnly = false;
+                secondNameBox.ReadOnly = false;
+                birthdayBox.ReadOnly = false;
+                emailBox.ReadOnly = false;
+                phoneNumberBox.ReadOnly = false;
+                noteBox.ReadOnly = false;
+            }
+            else
+            {
+                ClearBoxes();
+
+                contactsGrid.Rows[0].Selected = true;
+                SelectedContactToTable(0);
+
+                editCancelContact.Hide();
+                editSubmitContact.Hide();
                 colorButton.Show();
                 colorPictureBox.Show();
                 searchButton.Show();
@@ -320,7 +374,7 @@ namespace ContactManager
                     FirstName = firstNameBox.Text,
                     SecondName = secondNameBox.Text,
                     FullName = firstNameBox.Text + " " + secondNameBox.Text,
-                    Birthday = birthdayBox.Text,
+                    Birthday = DateTime.ParseExact(birthdayBox.Text, "dd.MM.yyyy", null),
                     Email = emailBox.Text,
                     PhoneNumber = long.Parse(phoneNumberBox.Text),
                     Favorite = false,
@@ -501,6 +555,13 @@ namespace ContactManager
             contactsLabel.ForeColor = primaryContentColor;
             noteEditButton.ForeColor = primaryContentColor;
             noteEditCancel.ForeColor = primaryContentColor;
+            contactEditButton.ForeColor = primaryContentColor;
+            settingsButton.ForeColor = primaryContentColor;
+            editCancelContact.ForeColor = primaryContentColor;
+
+            editSubmitContact.BackColor = primaryContentColor;
+            editSubmitContact.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
+            editSubmitContact.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
 
             noteEditSubmit.BackColor = primaryContentColor;
             noteEditSubmit.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
@@ -588,7 +649,7 @@ namespace ContactManager
 
         private void contactEditButton_Click(object sender, EventArgs e)
         {
-
+            EditContactFormActions(true);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
@@ -612,6 +673,23 @@ namespace ContactManager
         {
             birthdayBox.Text = monthCalendar.SelectionStart.ToString("dd.MM.yyyy");
             monthCalendar.Visible = false;
+        }
+
+        private void editSubmitContact_Click(object sender, EventArgs e)
+        {
+            selectedContact.FirstName = firstNameBox.Text;
+            selectedContact.SecondName = secondNameBox.Text;
+            selectedContact.Birthday = DateTime.ParseExact(birthdayBox.Text, "dd.MM.yyyy", null);
+            selectedContact.Email = emailBox.Text;
+            selectedContact.PhoneNumber = Int32.Parse(phoneNumberBox.Text);
+
+            ContactSave();
+            EditContactFormActions(false);
+        }
+
+        private void editCancelContact_Click(object sender, EventArgs e)
+        {
+            EditContactFormActions(false);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ContactManager
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string FullName { get; set; }
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         public string Email { get; set; }
         public long PhoneNumber { get; set; }
         public string Note { get; set; }
