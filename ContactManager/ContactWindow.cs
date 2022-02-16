@@ -145,6 +145,29 @@ namespace ContactManager
 
             ContactWinContentColor(LoginWindow.PrimaryContentColor, LoginWindow.SecondaryHContentColor, LoginWindow.SecondaryCContentColor);
 
+            switch (LoginWindow.PreferredSort)
+            {
+                case "az":
+                {
+                    sortPicker.SelectedItem = "A-Z";
+                    break;
+                }
+                case "za":
+                {
+                    sortPicker.SelectedItem = "Z-A";
+                        break;
+                }
+                case "favorite":
+                {
+                    sortPicker.SelectedItem = "★";
+                        break;
+                }
+                default:
+                {
+                    sortPicker.SelectedItem = "None";
+                        break;
+                }
+            }
         }
 
 
@@ -571,6 +594,24 @@ namespace ContactManager
         private void settingsButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dateSelectButton_Click(object sender, EventArgs e)
+        {
+            if (monthCalendar.Visible)
+            {
+                monthCalendar.Visible = false;
+            }
+            else
+            {
+                monthCalendar.Visible = true;
+            }
+        }
+
+        private void monthCalendar_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            birthdayBox.Text = monthCalendar.SelectionStart.ToString("dd.MM.yyyy");
+            monthCalendar.Visible = false;
         }
     }
 }

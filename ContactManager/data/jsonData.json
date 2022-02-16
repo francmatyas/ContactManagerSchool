@@ -40,7 +40,7 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 651564135,
         "Note": "",
-        "Favorite": true,
+        "Favorite": false,
         "Created": "0001-01-01T00:00:00",
         "ID": 2,
         "Color": "Red",
@@ -101,6 +101,20 @@
         "ID": 7,
         "Color": "Fuchsia",
         "Deleted": false
+      },
+      {
+        "FirstName": "dfgd",
+        "SecondName": "dfgdfgdfg",
+        "FullName": "dfgd dfgdfgdfg",
+        "Birthday": "dfgdfg",
+        "Email": "dfgdfg",
+        "PhoneNumber": 475754,
+        "Note": "tfdhgdg",
+        "Favorite": false,
+        "Created": "2022-02-15T00:00:00+01:00",
+        "ID": 8,
+        "Color": "White",
+        "Deleted": true
       }
     ]
   },

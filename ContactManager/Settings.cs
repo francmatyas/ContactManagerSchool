@@ -63,6 +63,31 @@ namespace ContactManager
                     break;
                 }
             }
+
+            switch (LoginWindow.PreferredSort)
+            {
+                case "az":
+                {
+                    azSortToggleButton.Checked = true;
+                    break;
+                }
+                case "za":
+                {
+                    zaSortToggleButton.Checked = true;
+                    break;
+                }
+                case "favorite":
+                {
+                    favSortToggleButton.Checked = true;
+                    break;
+                }
+                default:
+                {
+                    noneSortToggleButton.Checked = true;
+                    break;
+                }
+            }
+
             SettingsContentColor(LoginWindow.PrimaryContentColor, LoginWindow.SecondaryHContentColor, LoginWindow.SecondaryCContentColor);
         }
 
@@ -205,6 +230,54 @@ namespace ContactManager
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void noneSortToggleButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (noneSortToggleButton.Checked)
+            {
+                LoginWindow.PreferredSort = "none";
+
+                azSortToggleButton.Checked = false;
+                zaSortToggleButton.Checked = false;
+                favSortToggleButton.Checked = false;
+            }
+        }
+
+        private void azSortToggleButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (azSortToggleButton.Checked)
+            {
+                LoginWindow.PreferredSort = "az";
+
+                noneSortToggleButton.Checked = false;
+                zaSortToggleButton.Checked = false;
+                favSortToggleButton.Checked = false;
+            }
+        }
+
+        private void zaSortToggleButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (zaSortToggleButton.Checked)
+            {
+                LoginWindow.PreferredSort = "za";
+
+                noneSortToggleButton.Checked = false;
+                azSortToggleButton.Checked = false;
+                favSortToggleButton.Checked = false;
+            }
+        }
+
+        private void favSortToggleButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (favSortToggleButton.Checked)
+            {
+                LoginWindow.PreferredSort = "favorite";
+
+                noneSortToggleButton.Checked = false;
+                azSortToggleButton.Checked = false;
+                zaSortToggleButton.Checked = false;
+            }
         }
     }
 }

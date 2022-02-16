@@ -72,6 +72,17 @@
             this.greenToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.blueToggleButton1 = new ContactManager.Custom_Design.ToggleButton();
             this.confirmButton = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.favSortToggleButton = new ContactManager.Custom_Design.ToggleButton();
+            this.zaSortToggleButton = new ContactManager.Custom_Design.ToggleButton();
+            this.azSortToggleButton = new ContactManager.Custom_Design.ToggleButton();
+            this.noneSortToggleButton = new ContactManager.Custom_Design.ToggleButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.JSONPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -79,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
             this.secondaryCCustomColorPanel.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -527,12 +539,145 @@
             this.confirmButton.UseVisualStyleBackColor = false;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(3, 2);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(93, 17);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "Preferred sort";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.favSortToggleButton);
+            this.panel6.Controls.Add(this.zaSortToggleButton);
+            this.panel6.Controls.Add(this.azSortToggleButton);
+            this.panel6.Controls.Add(this.noneSortToggleButton);
+            this.panel6.Controls.Add(this.label17);
+            this.panel6.Controls.Add(this.label16);
+            this.panel6.Controls.Add(this.label15);
+            this.panel6.Controls.Add(this.label14);
+            this.panel6.Controls.Add(this.label13);
+            this.panel6.Location = new System.Drawing.Point(247, 202);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(96, 121);
+            this.panel6.TabIndex = 24;
+            // 
+            // favSortToggleButton
+            // 
+            this.favSortToggleButton.AutoSize = true;
+            this.favSortToggleButton.Location = new System.Drawing.Point(51, 88);
+            this.favSortToggleButton.MinimumSize = new System.Drawing.Size(30, 15);
+            this.favSortToggleButton.Name = "favSortToggleButton";
+            this.favSortToggleButton.OffBackColor = System.Drawing.Color.Gray;
+            this.favSortToggleButton.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.favSortToggleButton.OnBackColor = System.Drawing.Color.LawnGreen;
+            this.favSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.favSortToggleButton.Size = new System.Drawing.Size(30, 15);
+            this.favSortToggleButton.TabIndex = 31;
+            this.favSortToggleButton.UseVisualStyleBackColor = true;
+            this.favSortToggleButton.CheckedChanged += new System.EventHandler(this.favSortToggleButton_CheckedChanged);
+            // 
+            // zaSortToggleButton
+            // 
+            this.zaSortToggleButton.AutoSize = true;
+            this.zaSortToggleButton.Location = new System.Drawing.Point(51, 66);
+            this.zaSortToggleButton.MinimumSize = new System.Drawing.Size(30, 15);
+            this.zaSortToggleButton.Name = "zaSortToggleButton";
+            this.zaSortToggleButton.OffBackColor = System.Drawing.Color.Gray;
+            this.zaSortToggleButton.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.zaSortToggleButton.OnBackColor = System.Drawing.Color.LawnGreen;
+            this.zaSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.zaSortToggleButton.Size = new System.Drawing.Size(30, 15);
+            this.zaSortToggleButton.TabIndex = 30;
+            this.zaSortToggleButton.UseVisualStyleBackColor = true;
+            this.zaSortToggleButton.CheckedChanged += new System.EventHandler(this.zaSortToggleButton_CheckedChanged);
+            // 
+            // azSortToggleButton
+            // 
+            this.azSortToggleButton.AutoSize = true;
+            this.azSortToggleButton.Location = new System.Drawing.Point(51, 43);
+            this.azSortToggleButton.MinimumSize = new System.Drawing.Size(30, 15);
+            this.azSortToggleButton.Name = "azSortToggleButton";
+            this.azSortToggleButton.OffBackColor = System.Drawing.Color.Gray;
+            this.azSortToggleButton.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.azSortToggleButton.OnBackColor = System.Drawing.Color.LawnGreen;
+            this.azSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.azSortToggleButton.Size = new System.Drawing.Size(30, 15);
+            this.azSortToggleButton.TabIndex = 29;
+            this.azSortToggleButton.UseVisualStyleBackColor = true;
+            this.azSortToggleButton.CheckedChanged += new System.EventHandler(this.azSortToggleButton_CheckedChanged);
+            // 
+            // noneSortToggleButton
+            // 
+            this.noneSortToggleButton.AutoSize = true;
+            this.noneSortToggleButton.Location = new System.Drawing.Point(51, 22);
+            this.noneSortToggleButton.MinimumSize = new System.Drawing.Size(30, 15);
+            this.noneSortToggleButton.Name = "noneSortToggleButton";
+            this.noneSortToggleButton.OffBackColor = System.Drawing.Color.Gray;
+            this.noneSortToggleButton.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.noneSortToggleButton.OnBackColor = System.Drawing.Color.LawnGreen;
+            this.noneSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.noneSortToggleButton.Size = new System.Drawing.Size(30, 15);
+            this.noneSortToggleButton.TabIndex = 28;
+            this.noneSortToggleButton.UseVisualStyleBackColor = true;
+            this.noneSortToggleButton.CheckedChanged += new System.EventHandler(this.noneSortToggleButton_CheckedChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(16, 87);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(17, 15);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "★";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(13, 65);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(27, 15);
+            this.label16.TabIndex = 26;
+            this.label16.Text = "Z-A";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 43);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(27, 15);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "A-Z";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(9, 22);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(36, 15);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "None";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.DarkGray;
+            this.panel7.Location = new System.Drawing.Point(344, 212);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(2, 100);
+            this.panel7.TabIndex = 25;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(507, 324);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label5);
@@ -564,6 +709,8 @@
             this.panel3.PerformLayout();
             this.secondaryCCustomColorPanel.ResumeLayout(false);
             this.secondaryCCustomColorPanel.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -614,5 +761,16 @@
         private System.Windows.Forms.Panel secondaryHOrangePanel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel6;
+        private Custom_Design.ToggleButton favSortToggleButton;
+        private Custom_Design.ToggleButton zaSortToggleButton;
+        private Custom_Design.ToggleButton azSortToggleButton;
+        private Custom_Design.ToggleButton noneSortToggleButton;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Panel panel7;
     }
 }

@@ -82,6 +82,7 @@ namespace ContactManager
             this.usernameTextBox.TabIndex = 1;
             this.usernameTextBox.Text = "Username";
             this.usernameTextBox.Click += new System.EventHandler(this.usernameTextBox_Click);
+            this.usernameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.usernameTextBox_KeyDown);
             // 
             // passwordTextBox
             // 
