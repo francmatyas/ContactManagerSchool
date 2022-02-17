@@ -59,6 +59,8 @@ namespace ContactManager
             this.panel15 = new System.Windows.Forms.Panel();
             this.passwordError = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.invalidUsernameError = new System.Windows.Forms.Label();
+            this.passwordShortError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -366,12 +368,38 @@ namespace ContactManager
             this.passwordError.Text = "Password does not match.";
             this.passwordError.Visible = false;
             // 
+            // invalidUsernameError
+            // 
+            this.invalidUsernameError.AutoSize = true;
+            this.invalidUsernameError.BackColor = System.Drawing.Color.Transparent;
+            this.invalidUsernameError.ForeColor = System.Drawing.Color.Red;
+            this.invalidUsernameError.Location = new System.Drawing.Point(75, 215);
+            this.invalidUsernameError.Name = "invalidUsernameError";
+            this.invalidUsernameError.Size = new System.Drawing.Size(100, 15);
+            this.invalidUsernameError.TabIndex = 22;
+            this.invalidUsernameError.Text = "Invalid username.";
+            this.invalidUsernameError.Visible = false;
+            // 
+            // passwordShortError
+            // 
+            this.passwordShortError.AutoSize = true;
+            this.passwordShortError.BackColor = System.Drawing.Color.Transparent;
+            this.passwordShortError.ForeColor = System.Drawing.Color.Red;
+            this.passwordShortError.Location = new System.Drawing.Point(65, 215);
+            this.passwordShortError.Name = "passwordShortError";
+            this.passwordShortError.Size = new System.Drawing.Size(122, 15);
+            this.passwordShortError.TabIndex = 23;
+            this.passwordShortError.Text = "Password is too short.";
+            this.passwordShortError.Visible = false;
+            // 
             // CreateAccountWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(265, 336);
+            this.Controls.Add(this.passwordShortError);
+            this.Controls.Add(this.invalidUsernameError);
             this.Controls.Add(this.passwordError);
             this.Controls.Add(this.panel15);
             this.Controls.Add(this.label3);
@@ -439,5 +467,7 @@ namespace ContactManager
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label passwordError;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label invalidUsernameError;
+        private System.Windows.Forms.Label passwordShortError;
     }
 }

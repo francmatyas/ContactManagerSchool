@@ -44,29 +44,52 @@ namespace ContactManager
                 {
                     passwordError.Hide();
                     usernameError.Hide();
+                    invalidUsernameError.Hide();
+                    passwordShortError.Hide();
                     usernameError.Show();
+                }
+                else if (!(usernameCreate.Text.Length > 0) || usernameCreate.Text == "Username")
+                {
+                    passwordError.Hide();
+                    usernameError.Hide();
+                    invalidUsernameError.Hide();
+                    passwordShortError.Hide();
+                    invalidUsernameError.Show();
                 }
                 else
                 {
-                    if (passwordCreate.Text == agPasswordCreate.Text)
-                    {
-                        accounts.Add(new Account
-                        {
-                            Username = usernameCreate.Text,
-                            Password = passwordCreate.Text,
-                            Contacts = new List<Contact>()
-                        });
-
-                        string jsonNewString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
-                        File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
-                        this.Hide();
-                        new LoginWindow().Show();
-                    }
-                    else
+                    if (!(passwordCreate.Text.Length > 0))
                     {
                         passwordError.Hide();
                         usernameError.Hide();
-                        passwordError.Show();
+                        invalidUsernameError.Hide();
+                        passwordShortError.Hide();
+                        passwordShortError.Show();
+                    }
+                    else
+                    {
+                        if (passwordCreate.Text == agPasswordCreate.Text)
+                        {
+                            accounts.Add(new Account
+                            {
+                                Username = usernameCreate.Text,
+                                Password = passwordCreate.Text,
+                                Contacts = new List<Contact>()
+                            });
+
+                            string jsonNewString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
+                            File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
+                            this.Hide();
+                            new LoginWindow().Show();
+                        }
+                        else
+                        {
+                            passwordError.Hide();
+                            usernameError.Hide();
+                            invalidUsernameError.Hide();
+                            passwordShortError.Hide();
+                            passwordError.Show();
+                        }
                     }
                 }
             }
