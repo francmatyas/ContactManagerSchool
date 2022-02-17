@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.fileLabel = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.secondaryCCustomColorPanel = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.secondaryHCustomColorPanel = new System.Windows.Forms.Panel();
             this.secondaryCOrangePanel = new System.Windows.Forms.Panel();
             this.secondaryHOrangePanel = new System.Windows.Forms.Panel();
@@ -83,13 +83,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.JSONPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
-            this.secondaryCCustomColorPanel.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,6 +116,7 @@
             this.loadFileButton.Size = new System.Drawing.Size(346, 42);
             this.loadFileButton.TabIndex = 1;
             this.loadFileButton.Text = "Load File";
+            this.toolTip.SetToolTip(this.loadFileButton, "Select path to contact data file");
             this.loadFileButton.UseVisualStyleBackColor = false;
             this.loadFileButton.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -346,6 +347,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(144, 121);
             this.panel3.TabIndex = 21;
+            this.toolTip.SetToolTip(this.panel3, "Select content color");
             // 
             // label12
             // 
@@ -355,25 +357,17 @@
             this.label12.Size = new System.Drawing.Size(140, 15);
             this.label12.TabIndex = 23;
             this.label12.Text = "Select custom color here.";
+            this.toolTip.SetToolTip(this.label12, "Click on rectangle to change color");
             // 
             // secondaryCCustomColorPanel
             // 
             this.secondaryCCustomColorPanel.BackColor = System.Drawing.Color.Indigo;
-            this.secondaryCCustomColorPanel.Controls.Add(this.label11);
             this.secondaryCCustomColorPanel.Location = new System.Drawing.Point(86, 87);
             this.secondaryCCustomColorPanel.Name = "secondaryCCustomColorPanel";
             this.secondaryCCustomColorPanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryCCustomColorPanel.TabIndex = 26;
+            this.toolTip.SetToolTip(this.secondaryCCustomColorPanel, "Secondary click color");
             this.secondaryCCustomColorPanel.Click += new System.EventHandler(this.secondaryCCustomColorPanel_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(0, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 15);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "label11";
             // 
             // secondaryHCustomColorPanel
             // 
@@ -382,6 +376,7 @@
             this.secondaryHCustomColorPanel.Name = "secondaryHCustomColorPanel";
             this.secondaryHCustomColorPanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryHCustomColorPanel.TabIndex = 26;
+            this.toolTip.SetToolTip(this.secondaryHCustomColorPanel, "Secondary hover color");
             this.secondaryHCustomColorPanel.Click += new System.EventHandler(this.secondaryHCustomColorPanel_Click);
             // 
             // secondaryCOrangePanel
@@ -391,6 +386,7 @@
             this.secondaryCOrangePanel.Name = "secondaryCOrangePanel";
             this.secondaryCOrangePanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryCOrangePanel.TabIndex = 25;
+            this.toolTip.SetToolTip(this.secondaryCOrangePanel, "Secondary click color");
             // 
             // secondaryHOrangePanel
             // 
@@ -399,6 +395,7 @@
             this.secondaryHOrangePanel.Name = "secondaryHOrangePanel";
             this.secondaryHOrangePanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryHOrangePanel.TabIndex = 25;
+            this.toolTip.SetToolTip(this.secondaryHOrangePanel, "Secondary hover color");
             // 
             // secondaryCGreenPanel
             // 
@@ -407,6 +404,7 @@
             this.secondaryCGreenPanel.Name = "secondaryCGreenPanel";
             this.secondaryCGreenPanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryCGreenPanel.TabIndex = 25;
+            this.toolTip.SetToolTip(this.secondaryCGreenPanel, "Secondary click color");
             // 
             // secondaryHGreenPanel
             // 
@@ -415,6 +413,7 @@
             this.secondaryHGreenPanel.Name = "secondaryHGreenPanel";
             this.secondaryHGreenPanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryHGreenPanel.TabIndex = 24;
+            this.toolTip.SetToolTip(this.secondaryHGreenPanel, "Secondary hover color");
             // 
             // secondaryCBluePanel
             // 
@@ -423,6 +422,7 @@
             this.secondaryCBluePanel.Name = "secondaryCBluePanel";
             this.secondaryCBluePanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryCBluePanel.TabIndex = 24;
+            this.toolTip.SetToolTip(this.secondaryCBluePanel, "Secondary click color");
             // 
             // greenPanel
             // 
@@ -431,6 +431,7 @@
             this.greenPanel.Name = "greenPanel";
             this.greenPanel.Size = new System.Drawing.Size(15, 15);
             this.greenPanel.TabIndex = 23;
+            this.toolTip.SetToolTip(this.greenPanel, "Primary content color");
             // 
             // secondaryHBluePanel
             // 
@@ -439,6 +440,7 @@
             this.secondaryHBluePanel.Name = "secondaryHBluePanel";
             this.secondaryHBluePanel.Size = new System.Drawing.Size(6, 15);
             this.secondaryHBluePanel.TabIndex = 23;
+            this.toolTip.SetToolTip(this.secondaryHBluePanel, "Secondary hover color");
             // 
             // orangePanel
             // 
@@ -447,6 +449,7 @@
             this.orangePanel.Name = "orangePanel";
             this.orangePanel.Size = new System.Drawing.Size(15, 15);
             this.orangePanel.TabIndex = 24;
+            this.toolTip.SetToolTip(this.orangePanel, "Primary content color");
             // 
             // customColorPanel
             // 
@@ -455,6 +458,7 @@
             this.customColorPanel.Name = "customColorPanel";
             this.customColorPanel.Size = new System.Drawing.Size(15, 15);
             this.customColorPanel.TabIndex = 25;
+            this.toolTip.SetToolTip(this.customColorPanel, "Primary content color");
             this.customColorPanel.Click += new System.EventHandler(this.customColorPanel_Click);
             // 
             // orangeToggleButton1
@@ -469,6 +473,7 @@
             this.orangeToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.orangeToggleButton1.Size = new System.Drawing.Size(30, 15);
             this.orangeToggleButton1.TabIndex = 19;
+            this.toolTip.SetToolTip(this.orangeToggleButton1, "Orange content color");
             this.orangeToggleButton1.UseVisualStyleBackColor = true;
             this.orangeToggleButton1.CheckedChanged += new System.EventHandler(this.orangeToggleButton1_CheckedChanged);
             // 
@@ -484,6 +489,7 @@
             this.customColorToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.customColorToggleButton1.Size = new System.Drawing.Size(30, 15);
             this.customColorToggleButton1.TabIndex = 20;
+            this.toolTip.SetToolTip(this.customColorToggleButton1, "Custom content color");
             this.customColorToggleButton1.UseVisualStyleBackColor = true;
             this.customColorToggleButton1.CheckedChanged += new System.EventHandler(this.customColorToggleButton1_CheckedChanged);
             // 
@@ -494,6 +500,7 @@
             this.bluePanel.Name = "bluePanel";
             this.bluePanel.Size = new System.Drawing.Size(15, 15);
             this.bluePanel.TabIndex = 22;
+            this.toolTip.SetToolTip(this.bluePanel, "Primary content color");
             // 
             // greenToggleButton1
             // 
@@ -507,6 +514,7 @@
             this.greenToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.greenToggleButton1.Size = new System.Drawing.Size(30, 15);
             this.greenToggleButton1.TabIndex = 18;
+            this.toolTip.SetToolTip(this.greenToggleButton1, "Green content color");
             this.greenToggleButton1.UseVisualStyleBackColor = true;
             this.greenToggleButton1.CheckedChanged += new System.EventHandler(this.greenToggleButton1_CheckedChanged);
             // 
@@ -522,6 +530,7 @@
             this.blueToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.blueToggleButton1.Size = new System.Drawing.Size(30, 15);
             this.blueToggleButton1.TabIndex = 0;
+            this.toolTip.SetToolTip(this.blueToggleButton1, "Blue content color");
             this.blueToggleButton1.UseVisualStyleBackColor = true;
             this.blueToggleButton1.CheckedChanged += new System.EventHandler(this.blueToggleButton1_CheckedChanged);
             // 
@@ -536,6 +545,7 @@
             this.confirmButton.Size = new System.Drawing.Size(103, 37);
             this.confirmButton.TabIndex = 22;
             this.confirmButton.Text = "Confirm";
+            this.toolTip.SetToolTip(this.confirmButton, "Confirm and save settings");
             this.confirmButton.UseVisualStyleBackColor = false;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
@@ -565,6 +575,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(96, 121);
             this.panel6.TabIndex = 24;
+            this.toolTip.SetToolTip(this.panel6, "Select preferred sorting");
             // 
             // favSortToggleButton
             // 
@@ -578,6 +589,7 @@
             this.favSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.favSortToggleButton.Size = new System.Drawing.Size(30, 15);
             this.favSortToggleButton.TabIndex = 31;
+            this.toolTip.SetToolTip(this.favSortToggleButton, "Sort contacts favorite first");
             this.favSortToggleButton.UseVisualStyleBackColor = true;
             this.favSortToggleButton.CheckedChanged += new System.EventHandler(this.favSortToggleButton_CheckedChanged);
             // 
@@ -593,6 +605,7 @@
             this.zaSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.zaSortToggleButton.Size = new System.Drawing.Size(30, 15);
             this.zaSortToggleButton.TabIndex = 30;
+            this.toolTip.SetToolTip(this.zaSortToggleButton, "Sort contacts from Z to A");
             this.zaSortToggleButton.UseVisualStyleBackColor = true;
             this.zaSortToggleButton.CheckedChanged += new System.EventHandler(this.zaSortToggleButton_CheckedChanged);
             // 
@@ -608,6 +621,7 @@
             this.azSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.azSortToggleButton.Size = new System.Drawing.Size(30, 15);
             this.azSortToggleButton.TabIndex = 29;
+            this.toolTip.SetToolTip(this.azSortToggleButton, "Sort contacts from A to Z");
             this.azSortToggleButton.UseVisualStyleBackColor = true;
             this.azSortToggleButton.CheckedChanged += new System.EventHandler(this.azSortToggleButton_CheckedChanged);
             // 
@@ -623,6 +637,7 @@
             this.noneSortToggleButton.OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.noneSortToggleButton.Size = new System.Drawing.Size(30, 15);
             this.noneSortToggleButton.TabIndex = 28;
+            this.toolTip.SetToolTip(this.noneSortToggleButton, "Default sorting");
             this.noneSortToggleButton.UseVisualStyleBackColor = true;
             this.noneSortToggleButton.CheckedChanged += new System.EventHandler(this.noneSortToggleButton_CheckedChanged);
             // 
@@ -707,8 +722,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.secondaryCCustomColorPanel.ResumeLayout(false);
-            this.secondaryCCustomColorPanel.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.ResumeLayout(false);
@@ -760,7 +773,6 @@
         private System.Windows.Forms.Panel secondaryCOrangePanel;
         private System.Windows.Forms.Panel secondaryHOrangePanel;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel6;
         private Custom_Design.ToggleButton favSortToggleButton;
@@ -772,5 +784,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

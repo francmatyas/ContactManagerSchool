@@ -29,6 +29,7 @@ namespace ContactManager
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginWindow));
             this.loginLogin = new System.Windows.Forms.Button();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
@@ -47,6 +48,7 @@ namespace ContactManager
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.showPassToggleButton = new ContactManager.Custom_Design.ToggleButton();
             this.incorrectPassOrUser = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -68,6 +70,7 @@ namespace ContactManager
             this.loginLogin.Size = new System.Drawing.Size(206, 32);
             this.loginLogin.TabIndex = 0;
             this.loginLogin.Text = "LOG IN";
+            this.toolTip.SetToolTip(this.loginLogin, "Click to log in");
             this.loginLogin.UseVisualStyleBackColor = false;
             this.loginLogin.Click += new System.EventHandler(this.loginLogin_Click);
             // 
@@ -81,6 +84,7 @@ namespace ContactManager
             this.usernameTextBox.Size = new System.Drawing.Size(181, 18);
             this.usernameTextBox.TabIndex = 1;
             this.usernameTextBox.Text = "Username";
+            this.toolTip.SetToolTip(this.usernameTextBox, "Your username");
             this.usernameTextBox.Click += new System.EventHandler(this.usernameTextBox_Click);
             this.usernameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.usernameTextBox_KeyDown);
             // 
@@ -95,6 +99,7 @@ namespace ContactManager
             this.passwordTextBox.Size = new System.Drawing.Size(158, 18);
             this.passwordTextBox.TabIndex = 2;
             this.passwordTextBox.Text = "Password";
+            this.toolTip.SetToolTip(this.passwordTextBox, "Your password");
             this.passwordTextBox.Click += new System.EventHandler(this.passwordTextBox_Click);
             this.passwordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passwordTextBox_KeyDown);
             // 
@@ -112,6 +117,7 @@ namespace ContactManager
             this.cancelLogin.Size = new System.Drawing.Size(206, 32);
             this.cancelLogin.TabIndex = 3;
             this.cancelLogin.Text = "Exit";
+            this.toolTip.SetToolTip(this.cancelLogin, "Click to exit");
             this.cancelLogin.UseVisualStyleBackColor = false;
             this.cancelLogin.Click += new System.EventHandler(this.cancelLogin_Click);
             // 
@@ -128,6 +134,7 @@ namespace ContactManager
             this.createAccount.Size = new System.Drawing.Size(109, 23);
             this.createAccount.TabIndex = 4;
             this.createAccount.Text = "New account";
+            this.toolTip.SetToolTip(this.createAccount, "Create a new account");
             this.createAccount.UseVisualStyleBackColor = true;
             this.createAccount.Click += new System.EventHandler(this.createAccount_Click);
             // 
@@ -145,6 +152,7 @@ namespace ContactManager
             this.settingsButton.Size = new System.Drawing.Size(99, 23);
             this.settingsButton.TabIndex = 6;
             this.settingsButton.Text = "Settings";
+            this.toolTip.SetToolTip(this.settingsButton, "Open app settings");
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
@@ -219,6 +227,7 @@ namespace ContactManager
             this.clearFieldsButton.Size = new System.Drawing.Size(77, 23);
             this.clearFieldsButton.TabIndex = 13;
             this.clearFieldsButton.Text = "Clear Fields";
+            this.toolTip.SetToolTip(this.clearFieldsButton, "Clear all fields");
             this.clearFieldsButton.UseVisualStyleBackColor = false;
             this.clearFieldsButton.Click += new System.EventHandler(this.clearFieldsButton_Click);
             // 
@@ -254,6 +263,7 @@ namespace ContactManager
             this.showPassToggleButton.Size = new System.Drawing.Size(25, 15);
             this.showPassToggleButton.SolidStyle = false;
             this.showPassToggleButton.TabIndex = 18;
+            this.toolTip.SetToolTip(this.showPassToggleButton, "Show password");
             this.showPassToggleButton.UseVisualStyleBackColor = true;
             this.showPassToggleButton.CheckedChanged += new System.EventHandler(this.showPassToggleButton_CheckedChanged);
             // 
@@ -328,6 +338,7 @@ namespace ContactManager
         private System.Windows.Forms.PictureBox pictureBox4;
         private Custom_Design.ToggleButton showPassToggleButton;
         private System.Windows.Forms.Label incorrectPassOrUser;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

@@ -29,6 +29,7 @@ namespace ContactManager
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.submitCreate = new System.Windows.Forms.Button();
             this.cancelCreate = new System.Windows.Forms.Button();
             this.agPasswordCreate = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@ namespace ContactManager
             this.label3 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.passwordError = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -80,6 +82,7 @@ namespace ContactManager
             this.submitCreate.Size = new System.Drawing.Size(206, 32);
             this.submitCreate.TabIndex = 0;
             this.submitCreate.Text = "Submit";
+            this.toolTip.SetToolTip(this.submitCreate, "Create new contact");
             this.submitCreate.UseVisualStyleBackColor = false;
             this.submitCreate.Click += new System.EventHandler(this.submitCreate_Click);
             // 
@@ -109,6 +112,7 @@ namespace ContactManager
             this.agPasswordCreate.Size = new System.Drawing.Size(180, 18);
             this.agPasswordCreate.TabIndex = 4;
             this.agPasswordCreate.Text = "Password";
+            this.toolTip.SetToolTip(this.agPasswordCreate, "Confirm password");
             this.agPasswordCreate.Click += new System.EventHandler(this.agPasswordCreate_Click);
             // 
             // passwordCreate
@@ -122,6 +126,7 @@ namespace ContactManager
             this.passwordCreate.Size = new System.Drawing.Size(180, 18);
             this.passwordCreate.TabIndex = 3;
             this.passwordCreate.Text = "Password";
+            this.toolTip.SetToolTip(this.passwordCreate, "New password");
             this.passwordCreate.Click += new System.EventHandler(this.passwordCreate_Click);
             // 
             // usernameCreate
@@ -134,6 +139,7 @@ namespace ContactManager
             this.usernameCreate.Size = new System.Drawing.Size(180, 18);
             this.usernameCreate.TabIndex = 2;
             this.usernameCreate.Text = "Username";
+            this.toolTip.SetToolTip(this.usernameCreate, "New username");
             this.usernameCreate.Click += new System.EventHandler(this.usernameCreate_Click);
             // 
             // pictureBox1
@@ -302,6 +308,7 @@ namespace ContactManager
             this.showPasswordToggle.Size = new System.Drawing.Size(25, 15);
             this.showPasswordToggle.SolidStyle = false;
             this.showPasswordToggle.TabIndex = 16;
+            this.toolTip.SetToolTip(this.showPasswordToggle, "Show password");
             this.showPasswordToggle.UseVisualStyleBackColor = true;
             this.showPasswordToggle.CheckedChanged += new System.EventHandler(this.showPasswordToggle_CheckedChanged);
             // 
@@ -386,6 +393,7 @@ namespace ContactManager
             this.Name = "CreateAccountWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contact Manager";
+            this.Load += new System.EventHandler(this.CreateAccountWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -430,5 +438,6 @@ namespace ContactManager
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label passwordError;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

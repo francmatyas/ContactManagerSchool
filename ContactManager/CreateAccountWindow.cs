@@ -29,36 +29,47 @@ namespace ContactManager
             try
             {
                 var jsonString = File.ReadAllText(LoginWindow.ContactsFile);
-                
+
                 accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
             }
-
-            if (passwordCreate.Text == agPasswordCreate.Text)
+            finally
             {
-                accounts.Add(new Account
+                List<string> usernames = DumpAllUsernames();
+
+                if (usernames.Contains(usernameCreate.Text))
                 {
-                    Username = usernameCreate.Text,
-                    Password = passwordCreate.Text,
-                    Contacts = new List<Contact>()
-                });
+                    passwordError.Hide();
+                    usernameError.Hide();
+                    usernameError.Show();
+                }
+                else
+                {
+                    if (passwordCreate.Text == agPasswordCreate.Text)
+                    {
+                        accounts.Add(new Account
+                        {
+                            Username = usernameCreate.Text,
+                            Password = passwordCreate.Text,
+                            Contacts = new List<Contact>()
+                        });
 
-                string jsonNewString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
-                File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
-                this.Hide();
-                new LoginWindow().Show();
+                        string jsonNewString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
+                        File.WriteAllText(LoginWindow.ContactsFile, jsonNewString);
+                        this.Hide();
+                        new LoginWindow().Show();
+                    }
+                    else
+                    {
+                        passwordError.Hide();
+                        usernameError.Hide();
+                        passwordError.Show();
+                    }
+                }
             }
-
-            else
-            {
-                passwordError.Hide();
-                usernameError.Hide();
-                passwordError.Show();
-            }
-            
         }
 
         private void showPasswordToggle_CheckedChanged(object sender, EventArgs e)
@@ -91,6 +102,40 @@ namespace ContactManager
         {
             agPasswordCreate.SelectAll();
             agPasswordCreate.ForeColor = Color.Black;
+        }
+
+        private void CreateWinContentColor(Color primaryContentColor, Color secondaryHContentColor, Color secondaryCContentColor)
+        {
+            submitCreate.BackColor = primaryContentColor;
+            submitCreate.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
+            submitCreate.FlatAppearance.MouseDownBackColor = secondaryCContentColor;
+
+            cancelCreate.ForeColor = primaryContentColor;
+            label3.ForeColor = primaryContentColor;
+            label1.ForeColor = primaryContentColor;
+            showPasswordToggle.OffBackColor = primaryContentColor;
+            showPasswordToggle.OnBackColor = primaryContentColor;
+            showPasswordToggle.OnToggleColor = secondaryCContentColor;
+
+            panel1.BackColor = primaryContentColor;
+            panel5.BackColor = primaryContentColor;
+            panel10.BackColor = primaryContentColor;
+            panel15.BackColor = primaryContentColor;
+        }
+
+        private void CreateAccountWindow_Load(object sender, EventArgs e)
+        {
+            CreateWinContentColor(LoginWindow.PrimaryContentColor, LoginWindow.SecondaryHContentColor, LoginWindow.SecondaryCContentColor);
+        }
+
+        private List<string> DumpAllUsernames()
+        {
+            List<string> usernames = new List<string>();
+            foreach (var account in accounts)
+            {
+                usernames.Add(account.Username);
+            }
+            return usernames;
         }
     }
 }

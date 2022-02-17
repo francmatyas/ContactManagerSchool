@@ -20,6 +20,10 @@ namespace ContactManager
         private Account loggedAccount = LoginWindow.Account;
         private Contact selectedContact;
 
+        private bool ContactEdit = false;
+        private bool ContactCreate = false;
+        private bool ContactNoteEdit = false;
+
         public ContactWindow()
         {
             InitializeComponent();
@@ -69,43 +73,6 @@ namespace ContactManager
                 }
                 contactsGrid.ClearSelection();
             }
-
-            /*
-            foreach (var contact in contacts)
-            {
-                if (!contact.Deleted)
-                {
-                    gridContacts.Add(contact);
-                }
-            }
-            source.DataSource = gridContacts;
-
-            contactsGrid.DataSource = source;
-            contactsGrid.Columns["FullName"].HeaderText = "Name";
-            contactsGrid.Columns["Favorite"].HeaderText = "⭐";
-            contactsGrid.Columns["FullName"].Width = 150;
-            contactsGrid.Columns["Favorite"].Width = 25;
-            contactsGrid.Columns["FirstName"].Visible = false;
-            contactsGrid.Columns["SecondName"].Visible = false;
-            contactsGrid.Columns["ID"].Visible = false;
-            contactsGrid.Columns["Birthday"].Visible = false;
-            contactsGrid.Columns["Email"].Visible = false;
-            contactsGrid.Columns["PhoneNumber"].Visible = false;
-            contactsGrid.Columns["Note"].Visible = false;
-            contactsGrid.Columns["Color"].Width = 1;
-            contactsGrid.Columns["Deleted"].Visible = false;
-
-            for (int i = 0; i < gridContacts.Count; i++)
-            {
-                Contact contact = contactsGrid.Rows[i].DataBoundItem as Contact;
-                contactsGrid.Rows[i].Cells["Color"].Style.BackColor = contact.Color;
-                contactsGrid.Rows[i].Cells["Color"].Style.ForeColor = contact.Color;
-                contactsGrid.Rows[i].Cells["Color"].Style.SelectionForeColor = contact.Color;
-                contactsGrid.Rows[i].Cells["Color"].Style.SelectionBackColor = contact.Color;
-            }
-            contactsGrid.ClearSelection();
-            //Contact testContact = contactsGrid.Rows[0].DataBoundItem as Contact;
-            */
         }
 
         private void ContactSave()
@@ -132,6 +99,8 @@ namespace ContactManager
             contactsGrid.MultiSelect = false;
             GridContactLoad(loggedAccount.Contacts);
             sortPicker.SelectedItem = sortPicker.Items[0];
+
+            SelectedContactToTable(0);
 
             this.firstNameBox.AutoSize = false;
             this.firstNameBox.Height = 20;
@@ -174,35 +143,73 @@ namespace ContactManager
 
         private void SelectedContactToTable(int rowIndex)
         {
-            Contact contact = contactsGrid.Rows[rowIndex].DataBoundItem as Contact;
-            selectedContact = contact;
-
-            firstNameBox.Text = contact.FirstName;
-            secondNameBox.Text = contact.SecondName;
-            birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
-            emailBox.Text = contact.Email;
-            phoneNumberBox.Text = contact.PhoneNumber.ToString();
-            noteBox.Text = contact.Note;
-            noteEditCancel.Hide();
-            noteEditSubmit.Hide();
-
-            if (selectedContact.Favorite)
+            try
             {
-                FavoriteEnablePicture();
+                if (!(ContactEdit || ContactCreate || ContactNoteEdit))
+                {
+                    Contact contact = contactsGrid.Rows[rowIndex].DataBoundItem as Contact;
+                    selectedContact = contact;
+
+                    firstNameBox.Text = contact.FirstName;
+                    secondNameBox.Text = contact.SecondName;
+                    birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
+                    emailBox.Text = contact.Email;
+                    phoneNumberBox.Text = contact.PhoneNumber.ToString();
+                    noteBox.Text = contact.Note;
+                    noteEditCancel.Hide();
+                    noteEditSubmit.Hide();
+
+                    if (contact.Favorite)
+                    {
+                        FavoriteEnablePicture();
+                    }
+                    else
+                    {
+                        FavoriteDisablePicture();
+                    }
+
+                    createdDateLabel.Text = selectedContact.Created.Date.ToString("dd.MM.yyyy");
+                }
             }
-            else
+            catch (Exception e)
             {
-                FavoriteDisablePicture();
+                Console.WriteLine(e);
             }
 
-            createdDateLabel.Text = selectedContact.Created.Date.ToString("dd.MM.yyyy");
+            /*
+            if (!(ContactEdit || ContactCreate || ContactNoteEdit))
+            {
+                Contact contact = contactsGrid.Rows[rowIndex].DataBoundItem as Contact;
+                selectedContact = contact;
+
+                firstNameBox.Text = contact.FirstName;
+                secondNameBox.Text = contact.SecondName;
+                birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
+                emailBox.Text = contact.Email;
+                phoneNumberBox.Text = contact.PhoneNumber.ToString();
+                noteBox.Text = contact.Note;
+                noteEditCancel.Hide();
+                noteEditSubmit.Hide();
+
+                if (selectedContact.Favorite)
+                {
+                    FavoriteEnablePicture();
+                }
+                else
+                {
+                    FavoriteDisablePicture();
+                }
+
+                createdDateLabel.Text = selectedContact.Created.Date.ToString("dd.MM.yyyy");
+            }
+            */
         }
 
 
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-            {
+            { 
                 SelectedContactToTable(contactsGrid.SelectedCells[0].RowIndex);
             }
             catch (Exception exception)
@@ -220,6 +227,7 @@ namespace ContactManager
 
                 createCancelContact.Show();
                 createSubmitContact.Show();
+                dateSelectButton.Show();
                 colorButton.Hide();
                 colorPictureBox.Hide();
                 searchButton.Hide();
@@ -247,6 +255,7 @@ namespace ContactManager
 
                 createCancelContact.Hide();
                 createSubmitContact.Hide();
+                dateSelectButton.Hide();
                 colorButton.Show();
                 colorPictureBox.Show();
                 searchButton.Show();
@@ -273,6 +282,7 @@ namespace ContactManager
             {
                 editCancelContact.Show();
                 editSubmitContact.Show();
+                dateSelectButton.Show();
                 colorButton.Hide();
                 colorPictureBox.Hide();
                 searchButton.Hide();
@@ -300,6 +310,7 @@ namespace ContactManager
 
                 editCancelContact.Hide();
                 editSubmitContact.Hide();
+                dateSelectButton.Hide();
                 colorButton.Show();
                 colorPictureBox.Show();
                 searchButton.Show();
@@ -324,6 +335,7 @@ namespace ContactManager
         private void createContact_Click(object sender, EventArgs e)
         {
             CreateContactFormActions(true);
+            ContactCreate = true;
         }
 
 
@@ -337,7 +349,6 @@ namespace ContactManager
                 GridContactLoad(loggedAccount.Contacts);
                 if (loggedAccount.Contacts != null)
                 {
-                    contactsGrid.Rows[0].Selected = true;
                     SelectedContactToTable(0);
                 }
             }
@@ -347,6 +358,8 @@ namespace ContactManager
         private void createCancelContact_Click(object sender, EventArgs e)
         {
             CreateContactFormActions(false);
+            SelectedContactToTable(0);
+            ContactCreate = false;
         }
 
 
@@ -390,6 +403,7 @@ namespace ContactManager
                 contactsGrid.Rows.Clear();
                 GridContactLoad(loggedAccount.Contacts);
                 CreateContactFormActions(false);
+                ContactCreate = false;
             }
         }
 
@@ -401,8 +415,11 @@ namespace ContactManager
 
             if (selectedContact != null)
             {
-                selectedContact.Favorite = true;
-                contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+                if (!(ContactEdit || ContactCreate || ContactNoteEdit))
+                {
+                    selectedContact.Favorite = true;
+                    contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+                }
             }
         }
 
@@ -418,8 +435,11 @@ namespace ContactManager
 
             if (selectedContact != null)
             {
-                selectedContact.Favorite = false;
-                contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+                if (!(ContactEdit || ContactCreate || ContactNoteEdit))
+                {
+                    selectedContact.Favorite = false;
+                    contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
+                }
             }
         }
 
@@ -624,6 +644,7 @@ namespace ContactManager
             noteEditCancel.Hide();
             noteEditSubmit.Hide();
             noteBox.ReadOnly = true;
+            ContactNoteEdit = false;
         }
 
 
@@ -637,6 +658,7 @@ namespace ContactManager
             noteEditCancel.Hide();
             noteEditSubmit.Hide();
             noteBox.ReadOnly = true;
+            ContactNoteEdit = false;
         }
 
 
@@ -645,11 +667,13 @@ namespace ContactManager
             noteEditCancel.Show();
             noteEditSubmit.Show();
             noteBox.ReadOnly = false;
+            ContactNoteEdit = true;
         }
 
         private void contactEditButton_Click(object sender, EventArgs e)
         {
             EditContactFormActions(true);
+            ContactEdit = true;
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
@@ -685,11 +709,14 @@ namespace ContactManager
 
             ContactSave();
             EditContactFormActions(false);
+            ContactEdit = false;
         }
 
         private void editCancelContact_Click(object sender, EventArgs e)
         {
             EditContactFormActions(false);
+            SelectedContactToTable(0);
+            ContactEdit = false;
         }
     }
 }
