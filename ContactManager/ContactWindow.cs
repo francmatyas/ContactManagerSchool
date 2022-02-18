@@ -3,11 +3,14 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
@@ -152,9 +155,28 @@ namespace ContactManager
 
                     firstNameBox.Text = contact.FirstName;
                     secondNameBox.Text = contact.SecondName;
-                    birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
+
+                    // Podmínky pro vkládání do TextBoxu jako reakce na IntegrityCheck
+
+                    if (contact.Birthday.Ticks != 0)
+                    {
+                        birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
+                    }
+                    else
+                    {
+                        birthdayBox.Text = "";
+                    }
                     emailBox.Text = contact.Email;
-                    phoneNumberBox.Text = contact.PhoneNumber.ToString();
+                    if (contact.PhoneNumber != -1)
+                    {
+                        phoneNumberBox.Text = contact.PhoneNumber.ToString();
+
+                    }
+                    else
+                    {
+                        phoneNumberBox.Text = "";
+                    }
+
                     noteBox.Text = contact.Note;
                     noteEditCancel.Hide();
                     noteEditSubmit.Hide();
@@ -175,34 +197,6 @@ namespace ContactManager
             {
                 Console.WriteLine(e);
             }
-
-            /*
-            if (!(ContactEdit || ContactCreate || ContactNoteEdit))
-            {
-                Contact contact = contactsGrid.Rows[rowIndex].DataBoundItem as Contact;
-                selectedContact = contact;
-
-                firstNameBox.Text = contact.FirstName;
-                secondNameBox.Text = contact.SecondName;
-                birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
-                emailBox.Text = contact.Email;
-                phoneNumberBox.Text = contact.PhoneNumber.ToString();
-                noteBox.Text = contact.Note;
-                noteEditCancel.Hide();
-                noteEditSubmit.Hide();
-
-                if (selectedContact.Favorite)
-                {
-                    FavoriteEnablePicture();
-                }
-                else
-                {
-                    FavoriteDisablePicture();
-                }
-
-                createdDateLabel.Text = selectedContact.Created.Date.ToString("dd.MM.yyyy");
-            }
-            */
         }
 
 
@@ -365,10 +359,11 @@ namespace ContactManager
 
         private void createSubmitContact_Click(object sender, EventArgs e)
         {
-            //TODO integrity check
+            // Kontrola, jestli je je zadané jméno. 
 
             if (firstNameBox.Text.Length > 0)
             {
+                // Tvorba nového ID, najde největší a nové je o 1 větší, pokud nenajde začne jedničkou.
                 List<int> idList = new List<int>();
                 if (loggedAccount.Contacts.Count > 0)
                 {
@@ -382,14 +377,15 @@ namespace ContactManager
                     idList.Add((int)0);
                 }
 
+                // Vytvoří nový kontakt podle classy Contact
                 Contact newContact = new()
                 {
                     FirstName = firstNameBox.Text,
                     SecondName = secondNameBox.Text,
                     FullName = firstNameBox.Text + " " + secondNameBox.Text,
-                    Birthday = DateTime.ParseExact(birthdayBox.Text, "dd.MM.yyyy", null),
-                    Email = emailBox.Text,
-                    PhoneNumber = long.Parse(phoneNumberBox.Text),
+                    Birthday = DateTime.ParseExact(BirthdayIntegrityCheck(birthdayBox.Text), "dd.MM.yyyy", null), //birthday
+                    Email = EmailIntegrityCheck(emailBox.Text),//email,
+                    PhoneNumber = PhoneNumberIntegrityCheck(phoneNumberBox.Text),
                     Favorite = false,
                     Note = noteBox.Text,
                     Color = Color.White,
@@ -717,6 +713,65 @@ namespace ContactManager
             EditContactFormActions(false);
             SelectedContactToTable(0);
             ContactEdit = false;
+        }
+
+        // Kontrola validního data narození
+        private string BirthdayIntegrityCheck(string birthday)
+        {
+            if (string.IsNullOrEmpty(birthday))
+            {
+                return DateTime.MinValue.ToString("dd.MM.yyyy");
+            }
+            else
+            {
+                DateTime temp;
+                //return DateTime.TryParse(birthday, out temp);
+                if (DateTime.TryParse(birthday, out temp))
+                {
+                    return birthday;
+                }
+                else
+                {
+                    return DateTime.MinValue.ToString("dd.MM.yyyy");
+                }
+            }
+        }
+
+        // Kontrola validního emailu pomocí regexu https://www.c-sharpcorner.com/blogs/validate-email-address-in-c-sharp1
+        private string EmailIntegrityCheck(string email)
+        {
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            //return match.Success;
+            if (match.Success)
+            {
+                return email;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        // Kontrola validního lefoního čísla
+        private long PhoneNumberIntegrityCheck(string phoneNumberString)
+        {
+            long phoneNumber;
+            if (long.TryParse(phoneNumberString, out phoneNumber))
+            {
+                if (long.Parse(phoneNumberString) > 0)
+                {
+                    return phoneNumber;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }

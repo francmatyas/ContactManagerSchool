@@ -150,20 +150,6 @@
         "ID": 2,
         "Color": "White",
         "Deleted": false
-      },
-      {
-        "FirstName": "dfg",
-        "SecondName": "dfg",
-        "FullName": "dfg dfg",
-        "Birthday": "0001-01-01T00:00:00",
-        "Email": "dfg",
-        "PhoneNumber": 74,
-        "Note": "",
-        "Favorite": false,
-        "Created": "2022-02-16T00:00:00+01:00",
-        "ID": 3,
-        "Color": "White",
-        "Deleted": true
       }
     ]
   }
