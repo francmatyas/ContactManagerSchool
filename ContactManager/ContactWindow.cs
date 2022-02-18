@@ -157,7 +157,6 @@ namespace ContactManager
                     secondNameBox.Text = contact.SecondName;
 
                     // Podmínky pro vkládání do TextBoxu jako reakce na IntegrityCheck
-
                     if (contact.Birthday.Ticks != 0)
                     {
                         birthdayBox.Text = contact.Birthday.Date.ToString("dd.MM.yyyy");
@@ -361,9 +360,10 @@ namespace ContactManager
         {
             // Kontrola, jestli je je zadané jméno. 
 
-            if (firstNameBox.Text.Length > 0)
+            if (!string.IsNullOrEmpty(firstNameBox.Text))
             {
                 // Tvorba nového ID, najde největší a nové je o 1 větší, pokud nenajde začne jedničkou.
+
                 List<int> idList = new List<int>();
                 if (loggedAccount.Contacts.Count > 0)
                 {
@@ -383,8 +383,8 @@ namespace ContactManager
                     FirstName = firstNameBox.Text,
                     SecondName = secondNameBox.Text,
                     FullName = firstNameBox.Text + " " + secondNameBox.Text,
-                    Birthday = DateTime.ParseExact(BirthdayIntegrityCheck(birthdayBox.Text), "dd.MM.yyyy", null), //birthday
-                    Email = EmailIntegrityCheck(emailBox.Text),//email,
+                    Birthday = DateTime.ParseExact(BirthdayIntegrityCheck(birthdayBox.Text), "dd.MM.yyyy", null),
+                    Email = EmailIntegrityCheck(emailBox.Text),
                     PhoneNumber = PhoneNumberIntegrityCheck(phoneNumberBox.Text),
                     Favorite = false,
                     Note = noteBox.Text,
@@ -418,6 +418,7 @@ namespace ContactManager
                 }
             }
         }
+
 
         private void favoriteDisabledPicture_Click(object sender, EventArgs e)
         {
@@ -697,13 +698,19 @@ namespace ContactManager
 
         private void editSubmitContact_Click(object sender, EventArgs e)
         {
-            selectedContact.FirstName = firstNameBox.Text;
-            selectedContact.SecondName = secondNameBox.Text;
-            selectedContact.Birthday = DateTime.ParseExact(birthdayBox.Text, "dd.MM.yyyy", null);
-            selectedContact.Email = emailBox.Text;
-            selectedContact.PhoneNumber = Int32.Parse(phoneNumberBox.Text);
+            // Editace kontaktu využívá metody IntegrityCheck
+            if (!string.IsNullOrEmpty(firstNameBox.Text))
+            {
+                selectedContact.FirstName = firstNameBox.Text;
+                selectedContact.SecondName = secondNameBox.Text;
+                selectedContact.FullName = firstNameBox.Text + " " + secondNameBox.Text;
+                selectedContact.Birthday = DateTime.ParseExact(BirthdayIntegrityCheck(birthdayBox.Text), "dd.MM.yyyy", null);
+                selectedContact.Email = EmailIntegrityCheck(emailBox.Text);
+                selectedContact.PhoneNumber = PhoneNumberIntegrityCheck(phoneNumberBox.Text);
 
-            ContactSave();
+                ContactSave();
+            }
+            
             EditContactFormActions(false);
             ContactEdit = false;
         }
