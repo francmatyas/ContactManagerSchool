@@ -128,7 +128,7 @@
         "Created": "2022-02-19T00:00:00+01:00",
         "ID": 9,
         "Color": "White",
-        "Deleted": false
+        "Deleted": true
       },
       {
         "FirstName": "gh",
@@ -141,6 +141,20 @@
         "Favorite": false,
         "Created": "2022-02-19T00:00:00+01:00",
         "ID": 10,
+        "Color": "White",
+        "Deleted": false
+      },
+      {
+        "FirstName": "bn",
+        "SecondName": "nb",
+        "FullName": "bn nb",
+        "Birthday": "0001-01-01T00:00:00",
+        "Email": "",
+        "PhoneNumber": -1,
+        "Note": "",
+        "Favorite": false,
+        "Created": "2022-02-19T00:00:00+01:00",
+        "ID": 11,
         "Color": "White",
         "Deleted": false
       }
