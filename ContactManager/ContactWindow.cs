@@ -324,13 +324,11 @@ namespace ContactManager
             }
         }
 
-
         private void createContact_Click(object sender, EventArgs e)
         {
             CreateContactFormActions(true);
             ContactCreate = true;
         }
-
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
@@ -347,7 +345,6 @@ namespace ContactManager
             }
         }
 
-
         private void createCancelContact_Click(object sender, EventArgs e)
         {
             CreateContactFormActions(false);
@@ -359,30 +356,15 @@ namespace ContactManager
         private void createSubmitContact_Click(object sender, EventArgs e)
         {
             // Kontrola, jestli je je zadané jméno. 
-
             if (!string.IsNullOrEmpty(firstNameBox.Text))
             {
-                // Tvorba nového ID, najde největší a nové je o 1 větší, pokud nenajde začne jedničkou.
-
-                List<int> idList = new List<int>();
-                if (loggedAccount.Contacts.Count > 0)
-                {
-                    foreach (var contact in loggedAccount.Contacts)
-                    {
-                        idList.Add(contact.ID);
-                    }
-                }
-                else
-                {
-                    idList.Add((int)0);
-                }
-
+                
                 Contact newContact = new()
                 {
                     FirstName = firstNameBox.Text,
                     SecondName = secondNameBox.Text,
                     FullName = firstNameBox.Text + " " + secondNameBox.Text,
-                    Birthday = DateTime.ParseExact(BirthdayIntegrityCheck(birthdayBox.Text), "dd.MM.yyyy", null),
+                    Birthday = BirthdayIntegrityCheck(birthdayBox.Text),
                     Email = EmailIntegrityCheck(emailBox.Text),
                     PhoneNumber = PhoneNumberIntegrityCheck(phoneNumberBox.Text),
                     Favorite = false,
@@ -390,9 +372,8 @@ namespace ContactManager
                     Color = Color.White,
                     Deleted = false,
                     Created = DateTime.Today,
-                    ID = idList.Max() + 1
+                    ID = GetNewID(loggedAccount)
                 };
-                
 
                 loggedAccount.Contacts.Add(newContact);
                 ContactSave();
@@ -402,7 +383,6 @@ namespace ContactManager
                 ContactCreate = false;
             }
         }
-
 
         private void FavoriteEnablePicture()
         {
@@ -418,7 +398,6 @@ namespace ContactManager
                 }
             }
         }
-
 
         private void favoriteDisabledPicture_Click(object sender, EventArgs e)
         {
@@ -630,7 +609,6 @@ namespace ContactManager
             
         }
 
-
         private void noteEditCancel_Click(object sender, EventArgs e)
         {
             if (selectedContact != null && selectedContact.Note != null)
@@ -644,7 +622,6 @@ namespace ContactManager
             ContactNoteEdit = false;
         }
 
-
         private void noteEditSubmit_Click(object sender, EventArgs e)
         {
             if (selectedContact != null)
@@ -657,7 +634,6 @@ namespace ContactManager
             noteBox.ReadOnly = true;
             ContactNoteEdit = false;
         }
-
 
         private void noteEditButton_Click(object sender, EventArgs e)
         {
@@ -704,7 +680,7 @@ namespace ContactManager
                 selectedContact.FirstName = firstNameBox.Text;
                 selectedContact.SecondName = secondNameBox.Text;
                 selectedContact.FullName = firstNameBox.Text + " " + secondNameBox.Text;
-                selectedContact.Birthday = DateTime.ParseExact(BirthdayIntegrityCheck(birthdayBox.Text), "dd.MM.yyyy", null);
+                selectedContact.Birthday = BirthdayIntegrityCheck(birthdayBox.Text);
                 selectedContact.Email = EmailIntegrityCheck(emailBox.Text);
                 selectedContact.PhoneNumber = PhoneNumberIntegrityCheck(phoneNumberBox.Text);
 
@@ -722,24 +698,43 @@ namespace ContactManager
             ContactEdit = false;
         }
 
-        // Kontrola validního data narození
-        private string BirthdayIntegrityCheck(string birthday)
+        // Tvorba nového ID, najde největší a nové je o 1 větší, pokud nenajde začne jedničkou.
+        private int GetNewID(Account loggetAccount)
         {
-            if (string.IsNullOrEmpty(birthday))
+            List<int> idList = new List<int>();
+            if (loggedAccount.Contacts != null)
             {
-                return DateTime.MinValue.ToString("dd.MM.yyyy");
+                foreach (var contact in loggedAccount.Contacts)
+                {
+                    idList.Add(contact.ID);
+                }
             }
             else
             {
-                DateTime temp;
+                idList.Add((int)0);
+            }
+
+            return idList.Max() + 1;
+        }
+
+        // Kontrola validního data narození
+        private DateTime BirthdayIntegrityCheck(string birthday)
+        {
+            if (string.IsNullOrEmpty(birthday))
+            {
+                return DateTime.MinValue;
+            }
+            else
+            {
+                DateTime parsedBirthday;
                 //return DateTime.TryParse(birthday, out temp);
-                if (DateTime.TryParse(birthday, out temp))
+                if (DateTime.TryParse(birthday, out parsedBirthday))
                 {
-                    return birthday;
+                    return parsedBirthday;
                 }
                 else
                 {
-                    return DateTime.MinValue.ToString("dd.MM.yyyy");
+                    return DateTime.MinValue;
                 }
             }
         }
