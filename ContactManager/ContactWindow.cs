@@ -376,6 +376,18 @@ namespace ContactManager
                 {
                     idList.Add((int)0);
                 }
+                /*
+                // ZAvolá konstruktor class Contact.cs
+                loggedAccount.Contacts.Add(new Contact(
+                    loggedAccount,
+                    firstNameBox.Text,
+                    secondNameBox.Text,
+                    birthdayBox.Text,
+                    emailBox.Text,
+                    phoneNumberBox.Text,
+                    noteBox.Text));
+                */
+                
 
                 // Vytvoří nový kontakt podle classy Contact
                 Contact newContact = new()
@@ -393,6 +405,7 @@ namespace ContactManager
                     Created = DateTime.Today,
                     ID = idList.Max() + 1
                 };
+                
 
                 loggedAccount.Contacts.Add(newContact);
                 ContactSave();
