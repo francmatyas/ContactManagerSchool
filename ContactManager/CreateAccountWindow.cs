@@ -17,7 +17,6 @@ namespace ContactManager
             InitializeComponent();
         }
 
-
         private void cancelCreate_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -154,9 +153,16 @@ namespace ContactManager
         private List<string> DumpAllUsernames()
         {
             List<string> usernames = new List<string>();
-            foreach (var account in accounts)
+            try
             {
-                usernames.Add(account.Username);
+                foreach (var account in accounts)
+                {
+                    usernames.Add(account.Username);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
             return usernames;
         }

@@ -16,8 +16,8 @@ namespace ContactManager
     public partial class LoginWindow : Form
     {
         public static Account Account;
-        public static string ContactsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/data/jsonData.json";
-        public static string SettingsFile = "C:/Users/franc/Source/Repos/GhastyCZ/ContactManagerSchool/ContactManager/data/localSettings.json";
+        public static string ContactsFile = "contactData.json";
+        public static string SettingsFile = "localSettings.json";
 
         public static Color PrimaryContentColor = Color.Navy;
         public static Color SecondaryHContentColor = Color.DarkBlue;
@@ -39,44 +39,67 @@ namespace ContactManager
 
         private void LoadSettings()
         {
-            try
+
+            if (File.Exists(SettingsFile))
             {
-                var jsonString = File.ReadAllText(SettingsFile);
-                byte[] bytes = Encoding.Default.GetBytes(jsonString);
-                jsonString = Encoding.UTF8.GetString(bytes);
-
-                LocalSettings localSettings = JsonConvert.DeserializeObject<LocalSettings>(jsonString);
-
-                if (localSettings.PrimaryContentColor != null)
+                try
                 {
-                    PrimaryContentColor = localSettings.PrimaryContentColor;
-                }
+                    var jsonString = File.ReadAllText(SettingsFile);
+                    byte[] bytes = Encoding.Default.GetBytes(jsonString);
+                    jsonString = Encoding.UTF8.GetString(bytes);
 
-                if (localSettings.SecondaryHContentColor != null)
+                    LocalSettings localSettings = JsonConvert.DeserializeObject<LocalSettings>(jsonString);
+
+                    if (localSettings.PrimaryContentColor != null)
+                    {
+                        PrimaryContentColor = localSettings.PrimaryContentColor;
+                    }
+                    if (localSettings.SecondaryHContentColor != null)
+                    {
+                        SecondaryHContentColor = localSettings.SecondaryHContentColor;
+                    }
+                    if (localSettings.SecondaryCContentColor != null)
+                    {
+                        SecondaryCContentColor = localSettings.SecondaryCContentColor;
+                    }
+                    if (localSettings.DataFile != null)
+                    {
+                        ContactsFile = localSettings.DataFile;
+                    }
+                    if (localSettings.PreferredSort != null)
+                    {
+                        PreferredSort = localSettings.PreferredSort;
+                    }
+                }
+                catch (Exception e)
                 {
-                    SecondaryHContentColor = localSettings.SecondaryHContentColor;
+                    Console.WriteLine(e);
                 }
-
-                if (localSettings.SecondaryCContentColor != null)
-                {
-                    SecondaryCContentColor = localSettings.SecondaryCContentColor;
-                }
-
-                if (localSettings.DataFile != null)
-                {
-                    ContactsFile = localSettings.DataFile;
-                }
-
-                if (localSettings.PreferredSort != null)
-                {
-                    PreferredSort = localSettings.PreferredSort;
-                }
-
-
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+                try
+                {
+                    using (FileStream fs = File.Create(SettingsFile))
+                    {
+                        LocalSettings Settings = new LocalSettings
+                        {
+                            PrimaryContentColor = PrimaryContentColor,
+                            SecondaryHContentColor = SecondaryHContentColor,
+                            SecondaryCContentColor = SecondaryCContentColor,
+                            PreferredSort = PreferredSort,
+                            DataFile = ContactsFile
+                        };
+
+                        string jsonSettingsString = JsonConvert.SerializeObject(Settings, Formatting.Indented);
+                        byte[] bytes = Encoding.Default.GetBytes(jsonSettingsString);
+                        fs.Write(bytes);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
         private void SettingsPush()
@@ -92,7 +115,6 @@ namespace ContactManager
 
             string jsonSettingsString = JsonConvert.SerializeObject(Settings, Formatting.Indented);
             File.WriteAllText(SettingsFile, jsonSettingsString);
-
         }
 
         private void Login()
@@ -100,40 +122,61 @@ namespace ContactManager
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
 
-            try
+            if (File.Exists(ContactsFile))
             {
-                var jsonString = File.ReadAllText(ContactsFile);
-                byte[] bytes = Encoding.Default.GetBytes(jsonString);
-                jsonString = Encoding.UTF8.GetString(bytes);
-
-                List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
-
-                foreach (var account in accounts)
+                try
                 {
-                    if (account.Username == username && account.Password == password)
+                    var jsonString = File.ReadAllText(ContactsFile);
+                    byte[] bytes = Encoding.Default.GetBytes(jsonString);
+                    jsonString = Encoding.UTF8.GetString(bytes);
+
+                    List<Account> accounts = JsonConvert.DeserializeObject<List<Account>>(jsonString);
+
+                    foreach (var account in accounts)
                     {
-                        Account = account;
-                        //PrimaryContentColor = Account.ContentColor;
-                        incorrectPassOrUser.Visible = false;
-                        ContactWindow contactWindow = new ContactWindow();
-                        contactWindow.Show();
-                        this.Hide();
+                        if (account.Username == username && account.Password == password)
+                        {
+                            Account = account;
+                            //PrimaryContentColor = Account.ContentColor;
+                            incorrectPassOrUser.Visible = false;
+                            ContactWindow contactWindow = new ContactWindow();
+                            contactWindow.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            incorrectPassOrUser.Visible = true;
+                        }
                     }
-                    else
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
+
+                    if (MessageBox.Show(text: "Error: Database file not found. \n Select file in Settings.") ==
+                        DialogResult.OK)
                     {
-                        incorrectPassOrUser.Visible = true;
+                        Settings settings = new Settings();
+                        settings.ShowDialog();
                     }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
-
-                if (MessageBox.Show(text: "Error: Database file not found. \n Select file in Settings.") ==
-                    DialogResult.OK)
+                try
                 {
-                    Settings settings = new Settings();
-                    settings.ShowDialog();
+                    using (FileStream fs = File.Create(ContactsFile))
+                    {
+                        List<Account> accounts = new List<Account>();
+
+                        string jsonString = JsonConvert.SerializeObject(accounts, Formatting.Indented);
+                        byte[] bytes = Encoding.Default.GetBytes(jsonString);
+                        fs.Write(bytes);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
                 }
             }
         }

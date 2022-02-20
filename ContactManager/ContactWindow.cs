@@ -143,7 +143,6 @@ namespace ContactManager
             }
         }
 
-
         private void SelectedContactToTable(int rowIndex)
         {
             try
@@ -198,7 +197,6 @@ namespace ContactManager
             }
         }
 
-
         private void contactsGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -210,7 +208,6 @@ namespace ContactManager
                 Console.WriteLine(exception);
             }
         }
-
 
         private void CreateContactFormActions(bool action)
         {
@@ -352,7 +349,6 @@ namespace ContactManager
             ContactCreate = false;
         }
 
-
         private void createSubmitContact_Click(object sender, EventArgs e)
         {
             // Kontrola, jestli je je zadané jméno. 
@@ -434,7 +430,6 @@ namespace ContactManager
             noteBox.Text = "";
         }
 
-
         private void colorButton_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
@@ -451,14 +446,12 @@ namespace ContactManager
             }
         }
 
-
         private void ContactWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             ContactSave();
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
-
 
         private void sortPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -513,7 +506,6 @@ namespace ContactManager
             }
         }
 
-
         private List<Contact> SortAZ ()
         {
             Dictionary<Contact, string> contactDictionaryAZ = new Dictionary<Contact, string>();
@@ -533,7 +525,6 @@ namespace ContactManager
 
             return contactsAZ;
         }
-
 
         private void ContactWinContentColor(Color primaryContentColor, Color secondaryHContentColor, Color secondaryCContentColor)
         {
@@ -585,28 +576,49 @@ namespace ContactManager
             panel22.BackColor = primaryContentColor;
         }
 
-
         private void searchBox_Click(object sender, EventArgs e)
         {
             searchBox.SelectAll();
             searchBox.ForeColor = Color.Black;
         }
 
-
         private void searchButton_Click(object sender, EventArgs e)
         {
             string searchInput = searchBox.Text;
-            contactsGrid.ClearSelection();
+            if (string.IsNullOrEmpty(searchInput) || (searchInput == "Search" && searchBox.ForeColor == Color.DarkGray))
+            {
+                searchBox.Text = "Search";
+                searchBox.ForeColor = Color.DarkGray;
+            }
+            else
+            {
+                contactsGrid.ClearSelection();
+
+                for (int i = 0; i < contactsGrid.Rows.Count; i++)
+                {
+                    if (contactsGrid.Rows[i].Cells["FullName"].Value.ToString().ToLower().Contains(searchInput.ToLower()))
+                    {
+                        contactsGrid.Rows[i].Cells["FullName"].Style.BackColor = System.Drawing.ColorTranslator.FromHtml("#e0e0e0");
+                        contactsGrid.Rows[i].Cells["FullName"].Style.ForeColor = LoginWindow.PrimaryContentColor;
+                    }
+                }
+                searchButton.Hide();
+                searchClear.Show();
+            }
+
+        }
+        private void searchClear_Click(object sender, EventArgs e)
+        {
+            searchBox.Text = "Search";
+            searchBox.ForeColor = Color.DarkGray;
 
             for (int i = 0; i < contactsGrid.Rows.Count; i++)
             {
-                if (contactsGrid.Rows[i].Cells["FullName"].Value.ToString().ToLower().Contains(searchInput.ToLower()))
-                {
-                    contactsGrid.Rows[i].Selected = true;
-                    SelectedContactToTable(i);
-                }
+                contactsGrid.Rows[i].Cells["Fullname"].Style.BackColor = Color.White;
+                contactsGrid.Rows[i].Cells["Fullname"].Style.ForeColor = Color.Black;
             }
-            
+            searchButton.Show();
+            searchClear.Hide();
         }
 
         private void noteEditCancel_Click(object sender, EventArgs e)
@@ -698,23 +710,23 @@ namespace ContactManager
             ContactEdit = false;
         }
 
-        // Tvorba nového ID, najde největší a nové je o 1 větší, pokud nenajde začne jedničkou.
+        // Tvorba nového ID, najde největší a nové je o 1 větší, pokud nenajde začne nulou.
         private int GetNewID(Account loggetAccount)
         {
             List<int> idList = new List<int>();
-            if (loggedAccount.Contacts != null)
+            if (loggedAccount.Contacts.Count > 0)
             {
                 foreach (var contact in loggedAccount.Contacts)
                 {
                     idList.Add(contact.ID);
                 }
+
+                return idList.Max() + 1;
             }
             else
             {
-                idList.Add((int)0);
+                return 0;
             }
-
-            return idList.Max() + 1;
         }
 
         // Kontrola validního data narození
@@ -775,5 +787,6 @@ namespace ContactManager
                 return -1;
             }
         }
+
     }
 }

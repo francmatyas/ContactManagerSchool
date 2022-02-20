@@ -87,6 +87,7 @@ namespace ContactManager
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.settingsButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.searchClear = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.searchButton = new System.Windows.Forms.PictureBox();
             this.searchBox = new System.Windows.Forms.TextBox();
@@ -120,6 +121,7 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchClear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).BeginInit();
             this.panel20.SuspendLayout();
             this.SuspendLayout();
@@ -777,6 +779,7 @@ namespace ContactManager
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.searchClear);
             this.panel4.Controls.Add(this.panel14);
             this.panel4.Controls.Add(this.searchButton);
             this.panel4.Controls.Add(this.searchBox);
@@ -788,6 +791,19 @@ namespace ContactManager
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(187, 426);
             this.panel4.TabIndex = 17;
+            // 
+            // searchClear
+            // 
+            this.searchClear.ErrorImage = global::ContactManager.Properties.Resources.cross;
+            this.searchClear.Image = global::ContactManager.Properties.Resources.cross;
+            this.searchClear.Location = new System.Drawing.Point(109, 2);
+            this.searchClear.Name = "searchClear";
+            this.searchClear.Size = new System.Drawing.Size(20, 20);
+            this.searchClear.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.searchClear.TabIndex = 43;
+            this.searchClear.TabStop = false;
+            this.searchClear.Visible = false;
+            this.searchClear.Click += new System.EventHandler(this.searchClear_Click);
             // 
             // panel14
             // 
@@ -966,6 +982,7 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchClear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).EndInit();
             this.panel20.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1044,5 +1061,6 @@ namespace ContactManager
         private System.Windows.Forms.Button editCancelContact;
         private System.Windows.Forms.Button editSubmitContact;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.PictureBox searchClear;
     }
 }
