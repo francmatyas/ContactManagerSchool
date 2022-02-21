@@ -9,10 +9,12 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
 
@@ -22,6 +24,7 @@ namespace ContactManager
     {
         private Account loggedAccount = LoginWindow.Account;
         private Contact selectedContact;
+        private List<Contact> contactsInGrid;
 
         private bool ContactEdit = false;
         private bool ContactCreate = false;
@@ -34,6 +37,7 @@ namespace ContactManager
 
         private void GridContactLoad(List<Contact> contacts)
         {
+            contactsInGrid = contacts;
             contactsGrid.Rows.Clear();
             var source = new BindingSource();
             List<Contact> gridContacts = new List<Contact>();
@@ -141,6 +145,9 @@ namespace ContactManager
                         break;
                 }
             }
+
+            BirthdayReminder();
+
         }
 
         private void SelectedContactToTable(int rowIndex)
@@ -788,5 +795,86 @@ namespace ContactManager
             }
         }
 
+        // Kontrola, jestli má někdo narozeniny
+        private void BirthdayReminder()
+        {
+            List<Contact> contacts = new List<Contact>();
+            string birthdayContacts = "";
+            DateTime todayTime = DateTime.Today;
+
+            foreach (var contact in loggedAccount.Contacts)
+            {
+                if (contact.Birthday.Day == todayTime.Day && contact.Birthday.Month == todayTime.Month)
+                {
+                    contacts.Add(contact);
+                    birthdayContacts = birthdayContacts  + contact.FullName + ", ";
+                }
+            }
+            birthdayContacts = birthdayContacts.Remove(birthdayContacts.Length - 2, 2);
+
+            if (contacts.Count > 0)
+            {
+                birthdayGrid.Visible = true;
+                var source = new BindingSource();
+                source.DataSource = contacts;
+
+                birthdayGrid.DataSource = source;
+                birthdayGrid.Columns["FullName"].HeaderText = "Birthday";
+                birthdayGrid.Columns["FullName"].Width = 150;
+                birthdayGrid.Columns["Favorite"].Visible = false;
+                birthdayGrid.Columns["FirstName"].Visible = false;
+                birthdayGrid.Columns["SecondName"].Visible = false;
+                birthdayGrid.Columns["ID"].Visible = false;
+                birthdayGrid.Columns["Birthday"].Visible = false;
+                birthdayGrid.Columns["Email"].Visible = false;
+                birthdayGrid.Columns["PhoneNumber"].Visible = false;
+                birthdayGrid.Columns["Note"].Visible = false;
+                birthdayGrid.Columns["Color"].Width = 1;
+                birthdayGrid.Columns["Deleted"].Visible = false;
+                birthdayGrid.Columns["Created"].Visible = false;
+
+                for (int i = 0; i < contacts.Count; i++)
+                {
+                    Contact contact = birthdayGrid.Rows[i].DataBoundItem as Contact;
+                    birthdayGrid.Rows[i].Cells["Color"].Style.BackColor = contact.Color;
+                    birthdayGrid.Rows[i].Cells["Color"].Style.ForeColor = contact.Color;
+                    birthdayGrid.Rows[i].Cells["Color"].Style.SelectionForeColor = contact.Color;
+                    birthdayGrid.Rows[i].Cells["Color"].Style.SelectionBackColor = contact.Color;
+                }
+            }
+            else
+            {
+                birthdayGrid.Visible = false;
+            }
+
+            new ToastContentBuilder()
+                .AddArgument("action", "viewConversation").AddArgument("conversationId", 9813)
+                .AddText("Birthday Reminder!")
+                .AddText("Wish happy birthday to " + birthdayContacts + "!")
+                .AddAppLogoOverride(new Uri(Path.Combine(Directory.GetCurrentDirectory(), "birthday-cake.png")), ToastGenericAppLogoCrop.Circle)
+                .Show();
+        }
+
+        private void birthdayGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Contact contact = birthdayGrid.Rows[birthdayGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+            for (int i = 0; i < contactsInGrid.Count; i++)
+            {
+                if (contactsInGrid[i] == contact)
+                {
+                    contactsGrid.ClearSelection();
+                    contactsGrid.Rows[i].Selected = true;
+
+                    try
+                    {
+                        SelectedContactToTable(i);
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception);
+                    }
+                }
+            }
+        }
     }
 }

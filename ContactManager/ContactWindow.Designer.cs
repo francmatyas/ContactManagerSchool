@@ -36,6 +36,9 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactWindow));
             this.phoneNumberBox = new System.Windows.Forms.TextBox();
             this.emailBox = new System.Windows.Forms.TextBox();
@@ -55,6 +58,7 @@ namespace ContactManager
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.contactsGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.birthdayGrid = new System.Windows.Forms.DataGridView();
             this.editCancelContact = new System.Windows.Forms.Button();
             this.editSubmitContact = new System.Windows.Forms.Button();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
@@ -107,6 +111,7 @@ namespace ContactManager
             label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.contactsGrid)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.birthdayGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editNotePicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPictureBox)).BeginInit();
@@ -135,6 +140,7 @@ namespace ContactManager
             label5.Size = new System.Drawing.Size(46, 17);
             label5.TabIndex = 4;
             label5.Text = "Email:";
+            this.toolTip.SetToolTip(label5, "Email");
             // 
             // phoneNumberBox
             // 
@@ -230,6 +236,7 @@ namespace ContactManager
             this.colorButton.Size = new System.Drawing.Size(53, 28);
             this.colorButton.TabIndex = 14;
             this.colorButton.Text = "Color";
+            this.toolTip.SetToolTip(this.colorButton, "Click to change contact color");
             this.colorButton.UseVisualStyleBackColor = false;
             this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
             // 
@@ -242,6 +249,7 @@ namespace ContactManager
             this.label1.Size = new System.Drawing.Size(78, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "First name:";
+            this.toolTip.SetToolTip(this.label1, "First name (must be included)");
             // 
             // label2
             // 
@@ -252,6 +260,7 @@ namespace ContactManager
             this.label2.Size = new System.Drawing.Size(94, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Second name:";
+            this.toolTip.SetToolTip(this.label2, "Second name");
             // 
             // label4
             // 
@@ -262,6 +271,7 @@ namespace ContactManager
             this.label4.Size = new System.Drawing.Size(105, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "Phone number:";
+            this.toolTip.SetToolTip(this.label4, "Phonenumber");
             // 
             // label6
             // 
@@ -272,6 +282,7 @@ namespace ContactManager
             this.label6.Size = new System.Drawing.Size(66, 17);
             this.label6.TabIndex = 5;
             this.label6.Text = "Birthday:";
+            this.toolTip.SetToolTip(this.label6, "Birthday (dd.mm.yyyy)");
             // 
             // sortPicker
             // 
@@ -288,6 +299,7 @@ namespace ContactManager
             this.sortPicker.Name = "sortPicker";
             this.sortPicker.Size = new System.Drawing.Size(53, 23);
             this.sortPicker.TabIndex = 15;
+            this.toolTip.SetToolTip(this.sortPicker, "Select sort method");
             this.sortPicker.SelectedIndexChanged += new System.EventHandler(this.sortPicker_SelectedIndexChanged);
             // 
             // contactsLabel
@@ -313,6 +325,7 @@ namespace ContactManager
             this.deleteContact.Size = new System.Drawing.Size(90, 28);
             this.deleteContact.TabIndex = 5;
             this.deleteContact.Text = "Delete";
+            this.toolTip.SetToolTip(this.deleteContact, "Delete selected contact");
             this.deleteContact.UseVisualStyleBackColor = false;
             this.deleteContact.Click += new System.EventHandler(this.deleteContact_Click);
             // 
@@ -327,6 +340,7 @@ namespace ContactManager
             this.createContact.Size = new System.Drawing.Size(90, 28);
             this.createContact.TabIndex = 6;
             this.createContact.Text = "Create";
+            this.toolTip.SetToolTip(this.createContact, "Create a new contact");
             this.createContact.UseVisualStyleBackColor = false;
             this.createContact.Click += new System.EventHandler(this.createContact_Click);
             // 
@@ -381,6 +395,7 @@ namespace ContactManager
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.birthdayGrid);
             this.panel1.Controls.Add(this.editCancelContact);
             this.panel1.Controls.Add(this.editSubmitContact);
             this.panel1.Controls.Add(this.monthCalendar);
@@ -403,6 +418,50 @@ namespace ContactManager
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(451, 426);
             this.panel1.TabIndex = 16;
+            // 
+            // birthdayGrid
+            // 
+            this.birthdayGrid.AllowUserToAddRows = false;
+            this.birthdayGrid.AllowUserToDeleteRows = false;
+            this.birthdayGrid.AllowUserToResizeColumns = false;
+            this.birthdayGrid.AllowUserToResizeRows = false;
+            this.birthdayGrid.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.birthdayGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.birthdayGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.birthdayGrid.DefaultCellStyle = dataGridViewCellStyle7;
+            this.birthdayGrid.Location = new System.Drawing.Point(3, 313);
+            this.birthdayGrid.MultiSelect = false;
+            this.birthdayGrid.Name = "birthdayGrid";
+            this.birthdayGrid.ReadOnly = true;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.birthdayGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.birthdayGrid.RowHeadersVisible = false;
+            this.birthdayGrid.RowTemplate.Height = 25;
+            this.birthdayGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.birthdayGrid.Size = new System.Drawing.Size(158, 81);
+            this.birthdayGrid.TabIndex = 43;
+            this.birthdayGrid.Visible = false;
+            this.birthdayGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.birthdayGrid_CellClick);
             // 
             // editCancelContact
             // 
@@ -468,6 +527,7 @@ namespace ContactManager
             this.contactEditButton.Size = new System.Drawing.Size(82, 28);
             this.contactEditButton.TabIndex = 39;
             this.contactEditButton.Text = "Edit Contact";
+            this.toolTip.SetToolTip(this.contactEditButton, "Edit selected contact");
             this.contactEditButton.UseVisualStyleBackColor = true;
             this.contactEditButton.Click += new System.EventHandler(this.contactEditButton_Click);
             // 
@@ -619,6 +679,7 @@ namespace ContactManager
             this.dateSelectButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.dateSelectButton.TabIndex = 40;
             this.dateSelectButton.TabStop = false;
+            this.toolTip.SetToolTip(this.dateSelectButton, "Click to select date from calendar");
             this.dateSelectButton.Visible = false;
             this.dateSelectButton.Click += new System.EventHandler(this.dateSelectButton_Click);
             // 
@@ -774,6 +835,7 @@ namespace ContactManager
             this.settingsButton.Size = new System.Drawing.Size(61, 23);
             this.settingsButton.TabIndex = 36;
             this.settingsButton.Text = "Settings";
+            this.toolTip.SetToolTip(this.settingsButton, "Settings");
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
@@ -835,6 +897,7 @@ namespace ContactManager
             this.searchBox.Size = new System.Drawing.Size(105, 16);
             this.searchBox.TabIndex = 22;
             this.searchBox.Text = "Search";
+            this.toolTip.SetToolTip(this.searchBox, "Search through contacts");
             this.searchBox.Click += new System.EventHandler(this.searchBox_Click);
             // 
             // panel6
@@ -966,6 +1029,7 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.contactsGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.birthdayGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editNotePicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorPictureBox)).EndInit();
@@ -1062,5 +1126,6 @@ namespace ContactManager
         private System.Windows.Forms.Button editSubmitContact;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.PictureBox searchClear;
+        private System.Windows.Forms.DataGridView birthdayGrid;
     }
 }
