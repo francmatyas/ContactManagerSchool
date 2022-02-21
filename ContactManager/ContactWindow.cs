@@ -452,9 +452,9 @@ namespace ContactManager
             loginWindow.Show();
         }
 
-        private void sortPicker_SelectedIndexChanged(object sender, EventArgs e)
+        private void SortContacts(int index)
         {
-            switch (sortPicker.SelectedIndex)
+            switch (index)
             {
                 case 0:
                     GridContactLoad(loggedAccount.Contacts);
@@ -479,6 +479,7 @@ namespace ContactManager
                     {
                         contactsZA.Add(item.Key);
                     }
+
                     GridContactLoad(contactsZA);
                     break;
 
@@ -493,6 +494,7 @@ namespace ContactManager
                             contactsFav.Add(contact);
                         }
                     }
+
                     foreach (var contact in contacts)
                     {
                         if (!contact.Favorite)
@@ -500,9 +502,15 @@ namespace ContactManager
                             contactsFav.Add(contact);
                         }
                     }
+
                     GridContactLoad(contactsFav);
                     break;
             }
+        }
+
+        private void sortPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SortContacts(sortPicker.SelectedIndex);
         }
 
         private List<Contact> SortAZ ()
@@ -662,7 +670,12 @@ namespace ContactManager
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-
+            ContactWinSettings contactWinSettings = new ContactWinSettings();
+            if (contactWinSettings.ShowDialog() == DialogResult.OK)
+            {
+                ContactSave();
+                SortContacts(sortPicker.SelectedIndex);
+            }
         }
 
         private void dateSelectButton_Click(object sender, EventArgs e)

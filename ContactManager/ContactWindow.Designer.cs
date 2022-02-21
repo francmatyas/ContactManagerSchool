@@ -457,7 +457,7 @@ namespace ContactManager
             this.birthdayGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.birthdayGrid.RowHeadersVisible = false;
             this.birthdayGrid.RowTemplate.Height = 25;
-            this.birthdayGrid.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.birthdayGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.birthdayGrid.Size = new System.Drawing.Size(158, 81);
             this.birthdayGrid.TabIndex = 43;
             this.birthdayGrid.Visible = false;
