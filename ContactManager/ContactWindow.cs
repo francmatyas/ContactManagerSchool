@@ -1,21 +1,11 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Toolkit.Uwp.Notifications;
-using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
 
 namespace ContactManager
@@ -188,11 +178,13 @@ namespace ContactManager
 
                     if (contact.Favorite)
                     {
-                        FavoriteEnablePicture();
+                        favoriteDisabledPicture.Visible = false;
+                        favoriteEnabledPicture.Visible = true;
                     }
                     else
                     {
-                        FavoriteDisablePicture();
+                        favoriteDisabledPicture.Visible = true;
+                        favoriteEnabledPicture.Visible = false;
                     }
 
                     createdDateLabel.Text = selectedContact.Created.Date.ToString("dd.MM.yyyy");
@@ -847,6 +839,7 @@ namespace ContactManager
                 birthdayGrid.Visible = false;
             }
 
+            // Toast notification -> připomíná narozeniny jako Windows notifikace.
             new ToastContentBuilder()
                 .AddArgument("action", "viewConversation").AddArgument("conversationId", 9813)
                 .AddText("Birthday Reminder!")
@@ -857,12 +850,13 @@ namespace ContactManager
 
         private void birthdayGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            contactsGrid.ClearSelection();
             Contact contact = birthdayGrid.Rows[birthdayGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+
             for (int i = 0; i < contactsInGrid.Count; i++)
             {
                 if (contactsInGrid[i] == contact)
                 {
-                    contactsGrid.ClearSelection();
                     contactsGrid.Rows[i].Selected = true;
 
                     try

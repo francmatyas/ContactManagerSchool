@@ -51,6 +51,17 @@ namespace ContactManager
 
                     LocalSettings localSettings = JsonConvert.DeserializeObject<LocalSettings>(jsonString);
 
+                    try
+                    {
+                        PrimaryContentColor = localSettings.PrimaryContentColor;
+                        SecondaryHContentColor = localSettings.SecondaryHContentColor;
+                        SecondaryCContentColor = localSettings.SecondaryCContentColor;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    /*
                     if (localSettings.PrimaryContentColor != null)
                     {
                         PrimaryContentColor = localSettings.PrimaryContentColor;
@@ -63,6 +74,7 @@ namespace ContactManager
                     {
                         SecondaryCContentColor = localSettings.SecondaryCContentColor;
                     }
+                    */
                     if (localSettings.DataFile != null)
                     {
                         ContactsFile = localSettings.DataFile;
