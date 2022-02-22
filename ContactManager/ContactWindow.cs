@@ -175,7 +175,7 @@ namespace ContactManager
                     noteBox.Text = contact.Note;
                     noteEditCancel.Hide();
                     noteEditSubmit.Hide();
-
+                    
                     if (contact.Favorite)
                     {
                         favoriteDisabledPicture.Visible = false;
@@ -389,8 +389,9 @@ namespace ContactManager
                 if (!(ContactEdit || ContactCreate || ContactNoteEdit))
                 {
                     selectedContact.Favorite = true;
-                    contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
                 }
+                SortContacts(sortPicker.SelectedIndex);
+
             }
         }
 
@@ -409,8 +410,8 @@ namespace ContactManager
                 if (!(ContactEdit || ContactCreate || ContactNoteEdit))
                 {
                     selectedContact.Favorite = false;
-                    contactsGrid.CurrentRow.Cells["Favorite"].Value = selectedContact.Favorite;
                 }
+                SortContacts(sortPicker.SelectedIndex);
             }
         }
 
@@ -815,7 +816,6 @@ namespace ContactManager
                     birthdayContacts = birthdayContacts  + contact.FullName + ", ";
                 }
             }
-            birthdayContacts = birthdayContacts.Remove(birthdayContacts.Length - 2, 2);
 
             if (contacts.Count > 0)
             {
@@ -853,18 +853,24 @@ namespace ContactManager
             }
 
             // Toast notification -> připomíná narozeniny jako Windows notifikace.
-            new ToastContentBuilder()
-                .AddArgument("action", "viewConversation").AddArgument("conversationId", 9813)
-                .AddText("Birthday Reminder!")
-                .AddText("Wish happy birthday to " + birthdayContacts + "!")
-                .AddAppLogoOverride(new Uri(Path.Combine(Directory.GetCurrentDirectory(), "birthday-cake.png")), ToastGenericAppLogoCrop.Circle)
-                .Show();
+            if (!string.IsNullOrEmpty(birthdayContacts))
+            {
+                birthdayContacts = birthdayContacts.Remove(birthdayContacts.Length - 2, 2);
+
+                new ToastContentBuilder()
+                    .AddArgument("action", "viewConversation").AddArgument("conversationId", 9813)
+                    .AddText("Birthday Reminder!")
+                    .AddText("Wish happy birthday to " + birthdayContacts + "!")
+                    .AddAppLogoOverride(new Uri(Path.Combine(Directory.GetCurrentDirectory(), "birthday-cake.png")), ToastGenericAppLogoCrop.Circle)
+                    .Show();
+            }
         }
 
         private void birthdayGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             contactsGrid.ClearSelection();
             Contact contact = birthdayGrid.Rows[birthdayGrid.SelectedCells[0].RowIndex].DataBoundItem as Contact;
+            selectedContact = contact;
 
             for (int i = 0; i < contactsInGrid.Count; i++)
             {
