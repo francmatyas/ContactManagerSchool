@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using ABI.Windows.Media.Streaming.Adaptive;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Newtonsoft.Json;
 
@@ -27,6 +28,8 @@ namespace ContactManager
 
         private void GridContactLoad(List<Contact> contacts)
         {
+            contacts = SortContacts(sortPicker.SelectedIndex);
+
             contactsInGrid = contacts;
             contactsGrid.Rows.Clear();
             var source = new BindingSource();
@@ -328,16 +331,23 @@ namespace ContactManager
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure, you want to delete this contact - " + selectedContact.FullName + "?",
-                    "Delete contact", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (!selectedContact.Favorite)
             {
-                selectedContact.Deleted = true;
-                ContactSave();
-                GridContactLoad(loggedAccount.Contacts);
-                if (loggedAccount.Contacts != null)
+                if (MessageBox.Show("Are you sure, you want to delete this contact - " + selectedContact.FullName + "?",
+                        "Delete contact", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    SelectedContactToTable(0);
+                    selectedContact.Deleted = true;
+                    ContactSave();
+                    GridContactLoad(loggedAccount.Contacts);
+                    if (loggedAccount.Contacts != null)
+                    {
+                        SelectedContactToTable(0);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Yout can't delete favorite contact.", "Delete contact");
             }
         }
 
@@ -390,7 +400,8 @@ namespace ContactManager
                 {
                     selectedContact.Favorite = true;
                 }
-                SortContacts(sortPicker.SelectedIndex);
+                //SortContacts(sortPicker.SelectedIndex); //TODO
+                GridContactLoad(loggedAccount.Contacts);
 
             }
         }
@@ -411,7 +422,8 @@ namespace ContactManager
                 {
                     selectedContact.Favorite = false;
                 }
-                SortContacts(sortPicker.SelectedIndex);
+                //SortContacts(sortPicker.SelectedIndex); //TODO
+                GridContactLoad(loggedAccount.Contacts);
             }
         }
 
@@ -453,17 +465,15 @@ namespace ContactManager
             loginWindow.Show();
         }
 
-        private void SortContacts(int index)
+        private List<Contact> SortContacts(int index)
         {
             switch (index)
             {
                 case 0:
-                    GridContactLoad(loggedAccount.Contacts);
-                    break;
+                   return loggedAccount.Contacts;
 
                 case 1:
-                    GridContactLoad(SortAZ());
-                    break;
+                    return SortAZ();
 
                 case 2:
                     Dictionary<Contact, string> contactDictionaryZA = new Dictionary<Contact, string>();
@@ -481,8 +491,7 @@ namespace ContactManager
                         contactsZA.Add(item.Key);
                     }
 
-                    GridContactLoad(contactsZA);
-                    break;
+                    return contactsZA;
 
                 case 3:
                     List<Contact> contacts = SortAZ();
@@ -504,14 +513,16 @@ namespace ContactManager
                         }
                     }
 
-                    GridContactLoad(contactsFav);
-                    break;
+                    return contactsFav;
             }
+
+            return loggedAccount.Contacts;
         }
 
         private void sortPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SortContacts(sortPicker.SelectedIndex);
+            //SortContacts(sortPicker.SelectedIndex); //TODO
+            GridContactLoad(loggedAccount.Contacts);
         }
 
         private List<Contact> SortAZ ()
@@ -675,7 +686,7 @@ namespace ContactManager
             if (contactWinSettings.ShowDialog() == DialogResult.OK)
             {
                 ContactSave();
-                SortContacts(sortPicker.SelectedIndex);
+                GridContactLoad(loggedAccount.Contacts);
             }
         }
 

@@ -104,15 +104,24 @@ namespace ContactManager
             restoreButton.FlatAppearance.MouseOverBackColor = secondaryHContentColor;
         }
 
+        private void ClearBoxes()
+        {
+            firstNameBox.Text = "";
+            secondNameBox.Text = "";
+        }
+
         private void restoreButton_Click(object sender, EventArgs e)
         {
             selectedContact.Deleted = false;
             GridLoad(loggedAccount.Contacts);
+            ClearBoxes();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-
+            loggedAccount.Contacts.Remove(selectedContact);
+            GridLoad(loggedAccount.Contacts);
+            ClearBoxes();
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
