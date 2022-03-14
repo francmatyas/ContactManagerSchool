@@ -153,7 +153,7 @@ namespace ContactManager
                             //PrimaryContentColor = Account.ContentColor;
                             incorrectPassOrUser.Visible = false;
                             ContactWindow contactWindow = new ContactWindow();
-                            contactWindow.Show();
+                            contactWindow.Show();   
                             this.Hide();
                         }
                         else

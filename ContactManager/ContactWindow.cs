@@ -872,8 +872,8 @@ namespace ContactManager
                     .AddArgument("action", "viewConversation").AddArgument("conversationId", 9813)
                     .AddText("Birthday Reminder!")
                     .AddText("Wish happy birthday to " + birthdayContacts + "!")
-                    .AddAppLogoOverride(new Uri(Path.Combine(Directory.GetCurrentDirectory(), "birthday-cake.png")), ToastGenericAppLogoCrop.Circle)
-                    .Show();
+                    .AddAppLogoOverride(new Uri(Path.Combine(Directory.GetCurrentDirectory(), "birthday-cake.png")),
+                        ToastGenericAppLogoCrop.Circle).Show();
             }
         }
 

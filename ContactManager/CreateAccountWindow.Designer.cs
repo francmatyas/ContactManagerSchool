@@ -30,6 +30,7 @@ namespace ContactManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccountWindow));
             this.submitCreate = new System.Windows.Forms.Button();
             this.cancelCreate = new System.Windows.Forms.Button();
             this.agPasswordCreate = new System.Windows.Forms.TextBox();
@@ -417,6 +418,7 @@ namespace ContactManager
             this.Controls.Add(this.usernameCreate);
             this.Controls.Add(this.agPasswordCreate);
             this.Controls.Add(this.passwordCreate);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CreateAccountWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
