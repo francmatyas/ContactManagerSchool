@@ -11,6 +11,7 @@ namespace ContactManager
     public partial class CreateAccountWindow : Form
     {
         private List<Account> accounts;
+        private Encryption _encryption = new Encryption();
 
         public CreateAccountWindow()
         {
@@ -72,7 +73,7 @@ namespace ContactManager
                             accounts.Add(new Account
                             {
                                 Username = usernameCreate.Text,
-                                Password = passwordCreate.Text,
+                                Password = _encryption.EncryptPlainText(passwordCreate.Text),
                                 Contacts = new List<Contact>()
                             });
 

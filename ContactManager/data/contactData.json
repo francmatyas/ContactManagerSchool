@@ -1,7 +1,7 @@
 [
   {
     "Username": "admin",
-    "Password": "admin",
+    "Password": "SpPmVRA2uD0=",
     "ContentColor": "Navy",
     "Contacts": [
       {
@@ -54,7 +54,7 @@
         "Email": "test.email@gmail.com",
         "PhoneNumber": 11111,
         "Note": "",
-        "Favorite": false,
+        "Favorite": true,
         "Created": "0001-01-01T00:00:00",
         "ID": 3,
         "Color": "0, 128, 255",
@@ -78,9 +78,9 @@
         "FirstName": "Jan",
         "SecondName": "Holý",
         "FullName": "Jan Holý",
-        "Birthday": "1984-02-02T00:00:00",
-        "Email": "test",
-        "PhoneNumber": 2142,
+        "Birthday": "2022-03-15T00:00:00",
+        "Email": "",
+        "PhoneNumber": 2142546456,
         "Note": "",
         "Favorite": true,
         "Created": "0001-01-01T00:00:00",
@@ -99,7 +99,21 @@
         "Favorite": true,
         "Created": "0001-01-01T00:00:00",
         "ID": 7,
-        "Color": "Fuchsia",
+        "Color": "0, 0, 64",
+        "Deleted": false
+      },
+      {
+        "FirstName": "fjhg",
+        "SecondName": "hgj",
+        "FullName": "fjhg hgj",
+        "Birthday": "2022-03-10T00:00:00",
+        "Email": "",
+        "PhoneNumber": -1,
+        "Note": "",
+        "Favorite": false,
+        "Created": "2022-03-15T00:00:00+01:00",
+        "ID": 9,
+        "Color": "White",
         "Deleted": false
       }
     ]

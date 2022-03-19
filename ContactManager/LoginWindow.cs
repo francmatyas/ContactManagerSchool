@@ -16,6 +16,7 @@ namespace ContactManager
 
     public partial class LoginWindow : Form
     {
+        private Encryption _encryption = new Encryption();
         public static Account Account;
         public static string ContactsFile = "contactData.json";
         public static string SettingsFile = "localSettings.json";
@@ -147,7 +148,7 @@ namespace ContactManager
 
                     foreach (var account in accounts)
                     {
-                        if (account.Username == username && account.Password == password)
+                        if (account.Username == username && _encryption.DecryptPassword(account.Password) == password)
                         {
                             Account = account;
                             //PrimaryContentColor = Account.ContentColor;
@@ -303,5 +304,8 @@ namespace ContactManager
                 Login();
             }
         }
+
+
+
     }
 }
